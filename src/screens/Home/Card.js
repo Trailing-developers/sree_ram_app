@@ -11,7 +11,7 @@ const Card = ({ title, imageUrl, onPress }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress}>
       <ImageBackground
-        source={{ uri: imageUrl }}
+        source={imageUrl}
         style={styles.imageBackground}
         resizeMode="cover"
       >

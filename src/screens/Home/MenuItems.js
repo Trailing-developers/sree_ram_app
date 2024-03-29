@@ -9,35 +9,35 @@ export default function MenuItems() {
       <View style={styles.row}>
         <Card
           title="Trails"
-          imageUrl={"https://picsum.photos/200/300"}
           onPress={() => handleCardPress("Page1")}
+          imageUrl={require("../../../assets/menuItemsImages/LordRama.jpeg")}
         />
         <Card
           title="Darshan"
           onPress={() => handleCardPress("Page2")}
-          imageUrl={"./assets/menuItemsImages/Darshan.jpg"}
+          imageUrl={require("../../../assets/menuItemsImages/Darshan.jpg")}
         />
         <Card
           title="Teachings"
           onPress={() => handleCardPress("Page3")}
-          imageUrl={"https://picsum.photos/200/300"}
+          imageUrl={require("../../../assets/menuItemsImages/Darshan.jpg")}
         />
       </View>
       <View style={styles.row}>
         <Card
           title="Danik Pragati"
           onPress={() => handleCardPress("Page4")}
-          imageUrl={"https://picsum.photos/200/300"}
+          imageUrl={require("../../../assets/menuItemsImages/UpdatedDainikPragato.jpg")}
         />
         <Card
           title="Hindu Calendar"
           onPress={() => handleCardPress("Page5")}
-          imageUrl={"https://picsum.photos/200/300"}
+          imageUrl={require("../../../assets/menuItemsImages/HinduCalender.jpg")}
         />
         <Card
           title="Feedback"
           onPress={() => handleCardPress("Page6")}
-          imageUrl={"https://picsum.photos/200/300"}
+          imageUrl={require("../../../assets/menuItemsImages/Darshan.jpg")}
         />
       </View>
     </View>

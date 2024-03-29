@@ -2,12 +2,13 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Hello from "./src/screens/Hello";
 import HomeScreen from "./src/screens/HomeScreen";
+import CharitraScreen from "./src/screens/CharitraPaath/CharitraScreen";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <HomeScreen/>
+      <CharitraScreen/>
     </View>
   );
 }

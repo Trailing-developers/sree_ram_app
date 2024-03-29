@@ -15,7 +15,7 @@ export default function MenuItems() {
         <Card
           title="Darshan"
           onPress={() => handleCardPress("Page2")}
-          imageUrl={"https://picsum.photos/200/300"}
+          imageUrl={"./assets/menuItemsImages/Darshan.jpg"}
         />
         <Card
           title="Teachings"

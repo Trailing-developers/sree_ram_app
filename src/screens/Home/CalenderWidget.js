@@ -6,7 +6,8 @@ import {
   View,
 } from "react-native";
 
-const imageUrl = "https://picsum.photos/200/300";
+const imageUrl =
+  "https://www.rmg.co.uk/sites/default/files/styles/full_width_1440/public/2021-12/Lanterns%20photographycourse%20unsplash.jpg?itok=sfpVCasg";
 
 export default function CalenderWidget() {
   const onPress = () => {

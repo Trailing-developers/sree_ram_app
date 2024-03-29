@@ -7,7 +7,7 @@ import {
 } from "react-native";
 
 const imageUrl =
-  "https://www.rmg.co.uk/sites/default/files/styles/full_width_1440/public/2021-12/Lanterns%20photographycourse%20unsplash.jpg?itok=sfpVCasg";
+  "https://d.newsweek.com/en/full/1978216/dragon-dance-chinese-new-year.jpg";
 
 export default function CalenderWidget() {
   const onPress = () => {

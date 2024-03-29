@@ -7,14 +7,38 @@ export default function MenuItems() {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <Card title="Trails" onPress={() => handleCardPress("Page1")} />
-        <Card title="Darshan" onPress={() => handleCardPress("Page2")} />
-        <Card title="Teachings" onPress={() => handleCardPress("Page3")} />
+        <Card
+          title="Trails"
+          imageUrl={"https://picsum.photos/200/300"}
+          onPress={() => handleCardPress("Page1")}
+        />
+        <Card
+          title="Darshan"
+          onPress={() => handleCardPress("Page2")}
+          imageUrl={"https://picsum.photos/200/300"}
+        />
+        <Card
+          title="Teachings"
+          onPress={() => handleCardPress("Page3")}
+          imageUrl={"https://picsum.photos/200/300"}
+        />
       </View>
       <View style={styles.row}>
-        <Card title="Danik Pragati" onPress={() => handleCardPress("Page4")} />
-        <Card title="Hindu Calendar" onPress={() => handleCardPress("Page5")} />
-        <Card title="Feedback" onPress={() => handleCardPress("Page6")} />
+        <Card
+          title="Danik Pragati"
+          onPress={() => handleCardPress("Page4")}
+          imageUrl={"https://picsum.photos/200/300"}
+        />
+        <Card
+          title="Hindu Calendar"
+          onPress={() => handleCardPress("Page5")}
+          imageUrl={"https://picsum.photos/200/300"}
+        />
+        <Card
+          title="Feedback"
+          onPress={() => handleCardPress("Page6")}
+          imageUrl={"https://picsum.photos/200/300"}
+        />
       </View>
     </View>
   );

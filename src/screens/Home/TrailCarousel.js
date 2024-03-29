@@ -29,7 +29,6 @@ const CarouselCardItem = ({ item, index }) => {
     <View style={styles.container} key={index}>
       <Image source={{ uri: item.imgUrl }} style={styles.image} />
       <Text style={styles.header}>{item.title}</Text>
-      {/* <Text style={styles.body}>{item.body}</Text> */}
     </View>
   );
 };
@@ -64,14 +63,13 @@ const styles = StyleSheet.create({
     color: "#222",
     fontSize: 18,
     paddingLeft: 20,
-    paddingLeft: 20,
     paddingRight: 20,
   },
   container2: {
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    padding: 50,
+    padding: 20,
   },
 });
 

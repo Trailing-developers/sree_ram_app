@@ -10,7 +10,7 @@ export default function MenuItems() {
         <Card
           title="Trails"
           onPress={() => handleCardPress("Page1")}
-          imageUrl={require("../../../assets/menuItemsImages/LordRama.jpeg")}
+          imageUrl={require("../../../assets/menuItemsImages/rampath.jpg")}
         />
         <Card
           title="Darshan"
@@ -20,7 +20,7 @@ export default function MenuItems() {
         <Card
           title="Teachings"
           onPress={() => handleCardPress("Page3")}
-          imageUrl={require("../../../assets/menuItemsImages/Darshan.jpg")}
+          imageUrl={require("../../../assets/menuItemsImages/Teachings.jpg")}
         />
       </View>
       <View style={styles.row}>
@@ -37,7 +37,7 @@ export default function MenuItems() {
         <Card
           title="Feedback"
           onPress={() => handleCardPress("Page6")}
-          imageUrl={require("../../../assets/menuItemsImages/Darshan.jpg")}
+          imageUrl={require("../../../assets/menuItemsImages/Screenshot (116).png")}
         />
       </View>
     </View>

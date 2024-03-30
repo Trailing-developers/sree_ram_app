@@ -1,7 +1,7 @@
 import React from "react";
 import MapView, { Marker, Polyline } from "react-native-maps";
 import { StyleSheet, View } from "react-native";
-
+//information in https://blog.logrocket.com/react-native-maps-introduction/
 const start = {
   latitude: 26.7954939,
   longitude: 78.8718,

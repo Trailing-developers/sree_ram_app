@@ -1,8 +1,10 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import Card from "../Home/Card";
+import { useNavigation } from '@react-navigation/native';
 
 export default function CharitraScreen() {
-  const handleCardPress = (routeName) => {};
+  const navigation = useNavigation();
+  const handleCardPress = (routeName) => {navigation.navigate(routeName)};
   
   const chunkArray = (arr, chunkSize) => {
     return Array(Math.ceil(arr.length / chunkSize))
@@ -45,7 +47,7 @@ const data = [
   {
     title:"Shree Ram",
     imageUrl:require("../../../assets/GodImages/ShreeRam.jpg"),
-    link:"Page1",
+    link:"TrailScreen",
   },
   {
     title:"Sita Maa",

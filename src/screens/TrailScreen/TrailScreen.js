@@ -5,8 +5,8 @@ import { StyleSheet, View } from "react-native";
 const start = {
   latitude: 26.7954939,
   longitude: 78.8718,
-  latitudeDelta: 0,
-  longitudeDelta: 0,
+  latitudeDelta: 15,
+  longitudeDelta: 15,
 };
 
 const end = {
@@ -37,24 +37,44 @@ export default function TrailScreen() {
           lineDashPattern={[1]}
         />
         <Marker
+          coordinate={start}
+          image={
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgbJotQrl0iqxt0sVeGg3N7nACcusGmPhJV4CBSowF_g&s"
+          }
+        />
+        <Marker
           coordinate={{
             latitude: 26.7954939,
             longitude: 82.1683264,
           }}
+          image={
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgbJotQrl0iqxt0sVeGg3N7nACcusGmPhJV4CBSowF_g&s"
+          }
         />
         <Marker
           coordinate={{
             latitude: 26.333035,
             longitude: 82.125303,
           }}
+          image={
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgbJotQrl0iqxt0sVeGg3N7nACcusGmPhJV4CBSowF_g&s"
+          }
         />
         <Marker
           coordinate={{
             latitude: 21.051489,
             longitude: 81.724145,
           }}
+          image={
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgbJotQrl0iqxt0sVeGg3N7nACcusGmPhJV4CBSowF_g&s"
+          }
         />
-        <Marker coordinate={end} />
+        <Marker
+          coordinate={end}
+          image={
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgbJotQrl0iqxt0sVeGg3N7nACcusGmPhJV4CBSowF_g&s"
+          }
+        />
       </MapView>
     </View>
   );

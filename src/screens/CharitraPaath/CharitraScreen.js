@@ -1,11 +1,13 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import Card from "../Home/Card";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 export default function CharitraScreen() {
   const navigation = useNavigation();
-  const handleCardPress = (routeName) => {navigation.navigate(routeName)};
-  
+  const handleCardPress = (routeName) => {
+    navigation.navigate(routeName);
+  };
+
   const chunkArray = (arr, chunkSize) => {
     return Array(Math.ceil(arr.length / chunkSize))
       .fill()
@@ -15,17 +17,17 @@ export default function CharitraScreen() {
   const chunkedData = chunkArray(data, 2);
   return (
     <View style={styles.container}>
-     {chunkedData.map((row, index) => (
-      <View key={index} style={styles.row}>
-        {row.map((item) => (
-          <Card
-          title={item.title}
-          onPress={() => handleCardPress(item.link)}
-          imageUrl={item.imageUrl}
-          />
-        ))}
-      </View>
-    ))} 
+      {chunkedData.map((row, index) => (
+        <View key={index} style={styles.row}>
+          {row.map((item) => (
+            <Card
+              title={item.title}
+              onPress={() => handleCardPress(item.link)}
+              imageUrl={item.imageUrl}
+            />
+          ))}
+        </View>
+      ))}
     </View>
   );
 }
@@ -45,33 +47,33 @@ const styles = StyleSheet.create({
 
 const data = [
   {
-    title:"Shree Ram",
-    imageUrl:require("../../../assets/GodImages/ShreeRam.jpg"),
-    link:"TrailScreen",
+    title: "Shree Ram",
+    imageUrl: require("../../../assets/GodImages/ShreeRam.jpg"),
+    link: "TrailScreen",
   },
   {
-    title:"Sita Maa",
-    imageUrl:require("../../../assets/GodImages/SitaMaa.jpg"),
-    link:"Page2",
+    title: "Sita Maa",
+    imageUrl: require("../../../assets/GodImages/SitaMaa.jpg"),
+    link: "Page2",
   },
   {
-    title:"Shree Lakshman",
-    imageUrl:require("../../../assets/GodImages/LakshmanJi.jpg"),
-    link:"Page3",
+    title: "Shree Lakshman",
+    imageUrl: require("../../../assets/GodImages/LakshmanJi.jpg"),
+    link: "Page3",
   },
   {
-    title:"Hanuman Ji",
-    imageUrl:require("../../../assets/GodImages/Hanuman.jpg"),
-    link:"Page4",
+    title: "Hanuman Ji",
+    imageUrl: require("../../../assets/GodImages/Hanuman.jpg"),
+    link: "Page4",
   },
   {
-    title:"Shree Raja Dasratha",
-    imageUrl:require("../../../assets/GodImages/RajaDasrath.jpg"),
-    link:"Page5",
+    title: "Shree Raja Dasratha",
+    imageUrl: require("../../../assets/GodImages/RajaDasrath.jpg"),
+    link: "Page5",
   },
   {
-    title:"Sugriva",
-    imageUrl:require("../../../assets/GodImages/Sugriva.png"),
-    link:"Page6",
-  }
-]
+    title: "Sugriva",
+    imageUrl: require("../../../assets/GodImages/Sugriva.png"),
+    link: "Page6",
+  },
+];

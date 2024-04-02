@@ -18,13 +18,13 @@ export default function MenuItems() {
         />
         <Card
           title="Darshan"
-          onPress={() => handleCardPress("CharitraScreen")}
+          onPress={() => handleCardPress("DarshanScreen")}
           
           imageUrl={require("../../../assets/menuItemsImages/Darshan.jpg")}
         />
         <Card
           title="Teachings"
-          onPress={() => handleCardPress("CharitraScreen")}
+          onPress={() => handleCardPress("TeachingsScreen")}
           imageUrl={require("../../../assets/menuItemsImages/Teachings.jpg")}
         />
       </View>

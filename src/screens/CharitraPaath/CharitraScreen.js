@@ -21,6 +21,7 @@ export default function CharitraScreen() {
         <View key={index} style={styles.row}>
           {row.map((item) => (
             <Card
+              key={index}
               title={item.title}
               onPress={() => handleCardPress(item.link)}
               imageUrl={item.imageUrl}

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Carousel, { Pagination } from "react-native-snap-carousel";
+import Carousel from "react-native-reanimated-carousel";
 
 const data = [
   {
@@ -49,6 +49,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
     elevation: 7,
+    margin: 20,
+    padding: 50,
   },
   image: {
     width: ITEM_WIDTH,
@@ -71,7 +73,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
   },
 });
 
@@ -82,17 +83,21 @@ export default function TrailCarousel() {
   return (
     <View style={styles.container2}>
       <Carousel
-        layoutCardOffset={3}
+        loop
+        // layoutCardOffset={3}
         ref={isCarousel}
         data={data}
         renderItem={CarouselCardItem}
-        sliderWidth={SLIDER_WIDTH}
-        itemWidth={ITEM_WIDTH}
-        inactiveSlideShift={0}
-        onSnapToItem={(index) => setIndex(index)}
-        useScrollView={true}
+        // sliderWidth={SLIDER_WIDTH}
+        // itemWidth={ITEM_WIDTH}
+        width={ITEM_WIDTH}
+        height={SLIDER_WIDTH}
+        scrollAnimationDuration={3000}
+        autoPlay={true}
+        // inactiveSlideShift={0}
+        // onSnapToItem={(index) => setIndex(index)}
       />
-      <Pagination
+      {/* <Pagination
         dotsLength={data.length}
         activeDotIndex={index}
         carouselRef={isCarousel}
@@ -106,7 +111,7 @@ export default function TrailCarousel() {
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
         tappableDots={true}
-      />
+      /> */}
     </View>
   );
 }

@@ -1,7 +1,8 @@
-import React from "react";
-import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Carousel, { Pagination } from "react-native-snap-carousel";
+
+
+import * as React from "react";
+import { Dimensions, Text, View, StyleSheet, Image } from "react-native";
+import Carousel from "react-native-reanimated-carousel";
 
 const data = [
   {
@@ -25,6 +26,7 @@ const data = [
 
 export const SLIDER_WIDTH = Dimensions.get("window").width + 10;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8) + 10;
+export const width = Dimensions.get("window").width;
 
 const CarouselCardItem = ({ item, index }) => {
   return (
@@ -75,38 +77,58 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ParsadAndOther() {
-  const isCarousel = React.useRef(null);
-  const [index, setIndex] = React.useState(0);
+// export default function ParsadAndOther() {
+//   const isCarousel = React.useRef(null);
+//   const [index, setIndex] = React.useState(0);
 
-  return (
-    <View style={styles.container2}>
-      <Carousel
-        layoutCardOffset={3}
-        ref={isCarousel}
-        data={data}
-        renderItem={CarouselCardItem}
-        sliderWidth={SLIDER_WIDTH}
-        itemWidth={ITEM_WIDTH}
-        inactiveSlideShift={0}
-        onSnapToItem={(index) => setIndex(index)}
-        useScrollView={true}
-      />
-      <Pagination
-        dotsLength={data.length}
-        activeDotIndex={index}
-        carouselRef={isCarousel}
-        dotStyle={{
-          width: 10,
-          height: 10,
-          borderRadius: 5,
-          marginHorizontal: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.92)",
-        }}
-        inactiveDotOpacity={0.4}
-        inactiveDotScale={0.6}
-        tappableDots={true}
-      />
-    </View>
-  );
-}
+//   return (
+//     <View style={styles.container2}>
+//       <Carousel
+//         layoutCardOffset={3}
+//         ref={isCarousel}
+//         data={data}
+//         renderItem={CarouselCardItem}
+//         sliderWidth={SLIDER_WIDTH}
+//         itemWidth={ITEM_WIDTH}
+//         inactiveSlideShift={0}
+//         onSnapToItem={(index) => setIndex(index)}
+//         useScrollView={true}
+//       />
+//       <Pagination
+//         dotsLength={data.length}
+//         activeDotIndex={index}
+//         carouselRef={isCarousel}
+//         dotStyle={{
+//           width: 10,
+//           height: 10,
+//           borderRadius: 5,
+//           marginHorizontal: 0,
+//           backgroundColor: "rgba(0, 0, 0, 0.92)",
+//         }}
+//         inactiveDotOpacity={0.4}
+//         inactiveDotScale={0.6}
+//         tappableDots={true}
+//       />
+//     </View>
+//   );
+// }
+
+function ParsadAndOther() {
+    const width = Dimensions.get("window").width;
+    return (
+      <View style={{ flex: 1 }}>
+        <Carousel
+          loop
+          width={width}
+          height={width / 2}
+          autoPlay={false}
+          data={data}
+          scrollAnimationDuration={1000}
+          onSnapToItem={(index) => console.log("current index:", index)}
+          renderItem={CarouselCardItem}
+        />
+      </View>
+    );
+  }
+
+  export default ParsadAndOther;

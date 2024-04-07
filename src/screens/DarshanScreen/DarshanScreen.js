@@ -51,6 +51,29 @@ const widgetData = [
       },
     ],
   },
+  {
+    wigetTitle: "Popular Krishna Temples to visit",
+    data: [
+      {
+        name: "Sivan Kovil",
+        state: "London",
+        imgUrl:
+          "https://lh3.googleusercontent.com/p/AF1QipNgiBtLzZ03v0uOMWjUze6QETGA9NfxvJsEYpff=s1360-w1360-h1020",
+      },
+      {
+        name: "Shiva temple",
+        state: "Buffalo , New York",
+        imgUrl:
+          "https://s3-media0.fl.yelpcdn.com/bphoto/FHjuREpEVZdjjp2AIqRllQ/1000s.jpg",
+      },
+      {
+        name: "Vaishno Devi",
+        state: "Katra, Jammu",
+        imgUrl:
+          "https://lh3.googleusercontent.com/p/AF1QipP_Hch3F6ImspvOZUbz8bWUksyQFehsM6rXEoUm=s1360-w1360-h1020",
+      },
+    ],
+  },
 ];
 //TODO add spacing between each widget here and pass to the children
 export default function DarshanScreen() {

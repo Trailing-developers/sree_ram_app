@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import Card from "./Card";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 export default function MenuItems() {
   const navigation = useNavigation();
@@ -19,7 +19,6 @@ export default function MenuItems() {
         <Card
           title="Darshan"
           onPress={() => handleCardPress("DarshanScreen")}
-          
           imageUrl={require("../../../assets/menuItemsImages/Darshan.jpg")}
         />
         <Card
@@ -42,7 +41,7 @@ export default function MenuItems() {
         <Card
           title="Feedback"
           onPress={() => handleCardPress("CharitraScreen")}
-          imageUrl={require("../../../assets/menuItemsImages/Screenshot (116).png")}
+          imageUrl={require("../../../assets/menuItemsImages/feedback.jpg")}
         />
       </View>
     </View>

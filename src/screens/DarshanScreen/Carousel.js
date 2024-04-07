@@ -11,7 +11,7 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
-
+//TODO experiment react native carousels working
 const { width } = Dimensions.get("window");
 
 const Carousel = ({ data }) => {

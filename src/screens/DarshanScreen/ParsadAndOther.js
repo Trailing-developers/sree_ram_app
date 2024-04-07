@@ -4,21 +4,22 @@ import Carousel from "react-native-reanimated-carousel";
 
 const data = [
   {
-    title: "Parsad",
-    body: "I love holi",
+    name: "Kedarnath",
+    state: "Uttarakhand",
     imgUrl:
-      "https://t4.ftcdn.net/jpg/05/60/58/67/360_F_560586710_VmIHNuH6TcdLHIn3cEuIDDAcCYBhkIL0.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/56/Kedarnath_Temple_in_Rainy_season.jpg",
   },
   {
-    title: "Other items",
-    body: "Aenean ut eros et nisl sagittis vestibulum. Donec posuere vulputate arcu. Proin faucibus arcu quis ante. Curabitur at lacus ac velit ornare lobortis. ",
-    imgUrl: "https://images.indianexpress.com/2020/11/diwali-feature-1.jpg",
+    name: "Somnath",
+    state: "Gujarat",
+    imgUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Somanath_mandir_%28cropped%29.jpg/220px-Somanath_mandir_%28cropped%29.jpg",
   },
   {
-    title: "Other items",
-    body: "Phasellus ullamcorper ipsum rutrum nunc. Nullam quis ante. Etiam ultricies nisi vel augue. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc.",
+    name: "Vaishno Devi",
+    state: "Katra, Jammu",
     imgUrl:
-      "https://media.gettyimages.com/id/458583265/photo/goddess-during-durga-puja-celebrations.jpg?s=612x612&w=gi&k=20&c=InuPVvTsHwQh7Q6bR_e2ZjtnaXYC1HwPNzDNLCUN2dU=",
+      "https://lh3.googleusercontent.com/p/AF1QipP_Hch3F6ImspvOZUbz8bWUksyQFehsM6rXEoUm=s1360-w1360-h1020",
   },
 ];
 
@@ -30,7 +31,8 @@ const CarouselCardItem = ({ item, index }) => {
     <View style={styles.cardContainer} key={index}>
       <Image source={{ uri: item.imgUrl }} style={styles.image} />
       <View style={styles.textContainer}>
-        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.title}>{item.name}</Text>
+        <Text style={styles.subtitle}>{item.state}</Text>
       </View>
     </View>
   );
@@ -67,8 +69,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   wigetTitleText: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: "bold",
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#666",
   },
 });
 

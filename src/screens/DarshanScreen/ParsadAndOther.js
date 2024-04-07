@@ -1,42 +1,11 @@
 import * as React from "react";
 import { Dimensions, Text, View, StyleSheet, Image } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import Carousel from "react-native-reanimated-carousel";
-
-// const data = [
-//   {
-//     name: "Kedarnath",
-//     state: "Uttarakhand",
-//     imgUrl:
-//       "https://upload.wikimedia.org/wikipedia/commons/5/56/Kedarnath_Temple_in_Rainy_season.jpg",
-//   },
-//   {
-//     name: "Somnath",
-//     state: "Gujarat",
-//     imgUrl:
-//       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Somanath_mandir_%28cropped%29.jpg/220px-Somanath_mandir_%28cropped%29.jpg",
-//   },
-//   {
-//     name: "Vaishno Devi",
-//     state: "Katra, Jammu",
-//     imgUrl:
-//       "https://lh3.googleusercontent.com/p/AF1QipP_Hch3F6ImspvOZUbz8bWUksyQFehsM6rXEoUm=s1360-w1360-h1020",
-//   },
-// ];
+import { useNavigation } from "@react-navigation/native";
 
 export const width = Dimensions.get("window").width;
 export const IMAGE_HEIGHT = width * 0.5;
-
-const CarouselCardItem = ({ item, index }) => {
-  return (
-    <View style={styles.cardContainer} key={index}>
-      <Image source={{ uri: item.imgUrl }} style={styles.image} />
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>{item.name}</Text>
-        <Text style={styles.subtitle}>{item.state}</Text>
-      </View>
-    </View>
-  );
-};
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -86,8 +55,29 @@ function ParsadAndOther({ d }) {
     width: width * 0.85,
     height: width * 0.85,
   };
+  const navigation = useNavigation();
+  const handleCardPress = (item) => {
+    navigation.navigate("TempleDetailPage", { item });
+  };
+
+  const CarouselCardItem = ({ item, index }) => {
+    return (
+      <TouchableOpacity key={index} onPress={() => handleCardPress(item)}>
+        <View style={styles.cardContainer} key={index}>
+          <Image source={{ uri: item.imgUrl }} style={styles.image} />
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{item.name}</Text>
+            <Text style={styles.subtitle}>{item.state}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
   return (
-    <View style={{ flex: 1, paddingBottom: 10, height: IMAGE_HEIGHT + 150 }}>
+    <View
+      key={wigetTitle}
+      style={{ flex: 1, paddingBottom: 10, height: IMAGE_HEIGHT + 150 }}
+    >
       <View style={styles.wigetTitleContainer}>
         <Text style={styles.wigetTitleText}>{wigetTitle}</Text>
       </View>

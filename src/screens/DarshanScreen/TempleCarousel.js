@@ -6,6 +6,7 @@
 
 import * as React from "react";
 import { Dimensions, Text, View, StyleSheet, Image } from "react-native";
+// import Carousel from "./Carousel";
 import Carousel from "react-native-reanimated-carousel";
 
 const data = [
@@ -32,101 +33,52 @@ const data = [
 export const SLIDER_WIDTH = Dimensions.get("window").width + 10;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 1) + 10;
 export const width = Dimensions.get("window").width;
+export const IMAGE_HEIGHT = width * 0.7;
 
 const CarouselCardItem = ({ item, index }) => {
   return (
-    <View style={styles.container} key={index}>
+    <View style={styles.cardContainer} key={index}>
       <Image source={{ uri: item.imgUrl }} style={styles.image} />
-      <Text style={styles.header}>{item.title}</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{item.title}</Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "white",
-    borderRadius: 8,
-    width: ITEM_WIDTH,
-    paddingBottom: 2,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
-  },
-  image: {
-    width: ITEM_WIDTH,
-    height: 200,
-  },
-  header: {
-    color: "#222",
-    fontSize: 28,
-    fontWeight: "bold",
-    paddingLeft: 10,
-    paddingTop: 20,
-  },
-  body: {
-    color: "#222",
-    fontSize: 18,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  container2: {
-    backgroundColor: "#fff",
+  cardContainer: {
+    width,
+    paddingHorizontal: 20,
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+  },
+  image: {
+    width: "100%",
+    height: IMAGE_HEIGHT, // adjust as per your requirement
+    resizeMode: "cover",
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
+    textShadowColor: "black",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
+  },
+  textContainer: {
+    position: "absolute",
+    top: 10,
+    left: 10,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 5,
   },
 });
 
-// export default function TempleCarousel() {
-//   const isCarousel = React.useRef(null);
-//   const [index, setIndex] = React.useState(0);
-
-//   return (
-//     <View style={styles.container2}>
-//       {/* <Carousel
-//         layoutCardOffset={3}
-//         ref={isCarousel}
-//         data={data}
-//         renderItem={CarouselCardItem}
-//         sliderWidth={SLIDER_WIDTH}
-//         itemWidth={ITEM_WIDTH}
-//         inactiveSlideShift={0}
-//         onSnapToItem={(index) => setIndex(index)}
-//         useScrollView={true}
-//       /> */}
-//       <Carousel
-//         loop
-//         width={width}
-//         height={width / 2}
-//         autoPlay={true}
-//         data={data}
-//         scrollAnimationDuration={1000}
-//         onSnapToItem={(index) => console.log("current index:", index)}
-//         renderItem={CarouselCardItem}
-//       />
-//       {/* <Pagination
-//         dotsLength={data.length}
-//         activeDotIndex={index}
-//         carouselRef={isCarousel}
-//         dotStyle={{
-//           width: 10,
-//           height: 10,
-//           borderRadius: 5,
-//           marginHorizontal: 0,
-//           backgroundColor: "rgba(0, 0, 0, 0.92)",
-//         }}
-//         inactiveDotOpacity={0.4}
-//         inactiveDotScale={0.6}
-//         tappableDots={true}
-//       /> */}
-//     </View>
-//   );
-// }
 function TempleCarousel() {
   const width = Dimensions.get("window").width;
   return (
@@ -134,7 +86,7 @@ function TempleCarousel() {
       <Carousel
         loop
         width={width}
-        height={width / 2}
+        height={IMAGE_HEIGHT}
         autoPlay={false}
         data={data}
         scrollAnimationDuration={1000}
@@ -143,6 +95,11 @@ function TempleCarousel() {
       />
     </View>
   );
+  // return (
+  //   <View style={{ flex: 1 }}>
+  //     <Carousel data={data} />
+  //   </View>
+  // );
 }
 
 export default TempleCarousel;

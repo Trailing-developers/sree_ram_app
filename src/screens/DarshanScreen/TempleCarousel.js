@@ -41,6 +41,7 @@ const CarouselCardItem = ({ item, index }) => {
       <Image source={{ uri: item.imgUrl }} style={styles.image} />
       <View style={styles.textContainer}>
         <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.subtitle}>{item.body}</Text>
       </View>
     </View>
   );
@@ -67,6 +68,10 @@ const styles = StyleSheet.create({
     textShadowColor: "black",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
+  },
+  subtitle: {
+    fontSize: 18,
+    color: "white",
   },
   textContainer: {
     position: "absolute",

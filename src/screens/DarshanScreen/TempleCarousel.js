@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
 function TempleCarousel() {
   const width = Dimensions.get("window").width;
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, paddingBottom: 10 }}>
       <Carousel
         loop
         width={width}
@@ -100,11 +100,6 @@ function TempleCarousel() {
       />
     </View>
   );
-  // return (
-  //   <View style={{ flex: 1 }}>
-  //     <Carousel data={data} />
-  //   </View>
-  // );
 }
 
 export default TempleCarousel;

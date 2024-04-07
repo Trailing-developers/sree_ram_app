@@ -1,5 +1,3 @@
-
-
 import * as React from "react";
 import { Dimensions, Text, View, StyleSheet, Image } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
@@ -24,111 +22,82 @@ const data = [
   },
 ];
 
-export const SLIDER_WIDTH = Dimensions.get("window").width + 10;
-export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8) + 10;
 export const width = Dimensions.get("window").width;
+export const IMAGE_HEIGHT = width * 0.5;
 
 const CarouselCardItem = ({ item, index }) => {
   return (
-    <View style={styles.container} key={index}>
+    <View style={styles.cardContainer} key={index}>
       <Image source={{ uri: item.imgUrl }} style={styles.image} />
-      <Text style={styles.header}>{item.title}</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{item.title}</Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "white",
-    borderRadius: 8,
-    width: ITEM_WIDTH,
-    paddingBottom: 2,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
+  cardContainer: {
+    width: width * 0.7,
+    justifyContent: "center",
+    borderRadius: 20,
+    shadowOpacity: 0.8,
+    alignItems: "left",
+    marginLeft: "2.5%",
+    marginStart: 20,
   },
   image: {
-    width: ITEM_WIDTH,
-    height: 200,
+    width: "100%",
+    height: IMAGE_HEIGHT, // adjust as per your requirement
+    resizeMode: "cover",
+    borderRadius: 20,
   },
-  header: {
-    color: "#222",
-    fontSize: 28,
-    fontWeight: "bold",
-    paddingLeft: 10,
-    paddingTop: 20,
-  },
-  body: {
-    color: "#222",
+  title: {
     fontSize: 18,
-    paddingLeft: 20,
-    paddingRight: 20,
+    fontWeight: "bold",
   },
-  container2: {
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
+  textContainer: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 5,
+  },
+  wigetTitleContainer: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginBottom: 10,
+  },
+  wigetTitleText: {
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });
 
-// export default function ParsadAndOther() {
-//   const isCarousel = React.useRef(null);
-//   const [index, setIndex] = React.useState(0);
-
-//   return (
-//     <View style={styles.container2}>
-//       <Carousel
-//         layoutCardOffset={3}
-//         ref={isCarousel}
-//         data={data}
-//         renderItem={CarouselCardItem}
-//         sliderWidth={SLIDER_WIDTH}
-//         itemWidth={ITEM_WIDTH}
-//         inactiveSlideShift={0}
-//         onSnapToItem={(index) => setIndex(index)}
-//         useScrollView={true}
-//       />
-//       <Pagination
-//         dotsLength={data.length}
-//         activeDotIndex={index}
-//         carouselRef={isCarousel}
-//         dotStyle={{
-//           width: 10,
-//           height: 10,
-//           borderRadius: 5,
-//           marginHorizontal: 0,
-//           backgroundColor: "rgba(0, 0, 0, 0.92)",
-//         }}
-//         inactiveDotOpacity={0.4}
-//         inactiveDotScale={0.6}
-//         tappableDots={true}
-//       />
-//     </View>
-//   );
-// }
-
 function ParsadAndOther() {
-    const width = Dimensions.get("window").width;
-    return (
-      <View style={{ flex: 1 }}>
-        <Carousel
-          loop
-          width={width}
-          height={width / 2}
-          autoPlay={false}
-          data={data}
-          scrollAnimationDuration={1000}
-          onSnapToItem={(index) => console.log("current index:", index)}
-          renderItem={CarouselCardItem}
-        />
+  const width = Dimensions.get("window").width;
+  const baseOptions = {
+    vertical: false,
+    width: width * 0.85,
+    height: width * 0.85,
+  };
+  return (
+    <View style={{ flex: 1, paddingBottom: 10, height: IMAGE_HEIGHT + 150 }}>
+      <View style={styles.wigetTitleContainer}>
+        <Text style={styles.wigetTitleText}>Popular Temples to Visit</Text>
       </View>
-    );
-  }
+      <Carousel
+        {...baseOptions}
+        loop={false}
+        style={{ width: "100%" }}
+        width={width * 0.85}
+        height={width * 0.8}
+        pagingEnabled={"true"}
+        data={data}
+        scrollAnimationDuration={1000}
+        onSnapToItem={(index) => console.log("current index:", index)}
+        renderItem={CarouselCardItem}
+      />
+    </View>
+  );
+}
 
-  export default ParsadAndOther;
+export default ParsadAndOther;

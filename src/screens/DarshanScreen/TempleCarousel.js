@@ -1,30 +1,23 @@
-// import React from "react";
-// import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
-// import { SafeAreaView } from "react-native-safe-area-context";
-// // import Carousel, { Pagination } from "react-native-snap-carousel";
-// import Carousel from "react-native-reanimated-carousel";
-
 import * as React from "react";
 import { Dimensions, Text, View, StyleSheet, Image } from "react-native";
-// import Carousel from "./Carousel";
 import Carousel from "react-native-reanimated-carousel";
 
 const data = [
   {
     title: "Ayodhya Shree Ram Mandir",
-    body: "I love holi",
+    body: "Ayodhya Shree Ram Mandir is a famous Hindu temple located in Ayodhya, Uttar Pradesh, India. It is one of the most important pilgrimage sites for devotees of Lord Ram.",
     imgUrl:
       "https://www.livemint.com/lm-img/img/2024/01/21/600x338/Ram_Temple_in_Ayodhya_1705838563493_1705838563927.jpg",
   },
   {
     title: "Hanuman Gadi",
-    body: "Aenean ut eros et nisl sagittis vestibulum. Donec posuere vulputate arcu. Proin faucibus arcu quis ante. Curabitur at lacus ac velit ornare lobortis. ",
+    body: "Hanuman Gadi is a famous temple located in Ayodhya, Uttar Pradesh, India. It is one of the most important pilgrimage sites for devotees of Lord Hanuman.",
     imgUrl:
       "https://images1.livehindustan.com/uploadimage/library/2024/01/06/16_9/16_9_6/hanuman_garhi_1704510100.jpg",
   },
   {
     title: "Kedarnath",
-    body: "Phasellus ullamcorper ipsum rutrum nunc. Nullam quis ante. Etiam ultricies nisi vel augue. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc.",
+    body: "Place of worship for Lord Shiva",
     imgUrl:
       "https://img.invinciblengo.org/iconscout/f:jpeg/w:2000/h:0/rt:fit/plain/https://invincible.s3.wasabisys.com/trek/439bc989-b47a-4fa5-a410-acc44e93dbff",
   },

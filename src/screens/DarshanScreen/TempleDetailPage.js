@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, ImageBackground } from "react-native";
 
 const data = {
   id: "temple-123",
@@ -28,7 +28,8 @@ const data = {
   history: {
     firstVisit: "2010",
     desc: "The temple was built in the 10th century and has a rich history dating back to the Chola dynasty. It is known for its intricate carvings and architectural design.",
-    backgroundImage: "https://example.com/temple-background.jpg",
+    backgroundImage:
+      "https://t4.ftcdn.net/jpg/05/71/56/51/360_F_571565144_1BivKAfVmv64ieXYkeKMWmg5GCUpx3Rr.jpg",
     highlights: [
       "Dedicated to Lord Shiva",
       "Famous for its annual Pongal festival",
@@ -103,10 +104,11 @@ const TempleDetailPage = ({ route }) => {
 
       <View style={styles.details}>
         <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.address}>{data.address}</Text>
 
-        <Text style={styles.description}>{item.description}</Text>
-
-        <Text style={styles.address}>{item.address}</Text>
+        <View style={styles.historyContainer}>
+          <Text style={styles.description}>{data.history.desc}</Text>
+        </View>
       </View>
     </View>
   );
@@ -115,7 +117,6 @@ const TempleDetailPage = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
   },
 
   image: {
@@ -141,6 +142,10 @@ const styles = StyleSheet.create({
   address: {
     fontSize: 14,
     color: "gray",
+  },
+  historyContainer: {
+    marginVertical: 20,
+    backgroundImage: `url(https://t4.ftcdn.net/jpg/05/71/56/51/360_F_571565144_1BivKAfVmv64ieXYkeKMWmg5GCUpx3Rr.jpg)`,
   },
 });
 

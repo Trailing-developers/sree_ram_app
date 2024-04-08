@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Dimensions, Text, View, StyleSheet, Image } from "react-native";
-import Carousel from "react-native-reanimated-carousel";
+import Carousel,{ TAnimationStyle } from "react-native-reanimated-carousel";
+import Animated, {Extrapolate,interpolate,useAnimatedStyle,} from "react-native-reanimated";
+
 
 const data = [
   {
@@ -27,6 +29,7 @@ export const SLIDER_WIDTH = Dimensions.get("window").width + 10;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 1) + 10;
 export const width = Dimensions.get("window").width;
 export const IMAGE_HEIGHT = width * 0.7;
+export const PAGE_WIDTH = width;
 
 const CarouselCardItem = ({ item, index }) => {
   return (
@@ -68,7 +71,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     position: "absolute",
-    top: 10,
+    bottom: 10,
     left: 10,
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     paddingHorizontal: 10,
@@ -78,21 +81,132 @@ const styles = StyleSheet.create({
 });
 
 function TempleCarousel() {
-  const width = Dimensions.get("window").width;
+  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
+
+const animationStyle = React.useCallback(
+  (value) => {
+    "worklet";
+
+    const zIndex = interpolate(value, [-1, 0, 1], [300, 0, -300]);
+    const translateX = interpolate(value, [-1, 0, 1], [0, 0, 0]);
+
+    return {
+      transform: [{ translateX }],
+      zIndex,
+    };
+  },
+  [],
+);
+
+return (
+  <View style={{ flex: 1 }}>
+    <Carousel
+      loop
+      autoPlay={true}
+      style={{ width: PAGE_WIDTH, height: 240 }}
+      width={width}
+      data={data}
+      renderItem={({ index, item, animationValue }) => {
+        return (
+          <Item
+            key={index}
+            width={PAGE_WIDTH}
+            animationValue={animationValue}
+            item={item}
+          />
+        );
+      }}
+
+      customAnimation={animationStyle}
+      scrollAnimationDuration={1200}
+    />
+  </View>
+);
+
+function Item({ width, item, animationValue }) {
+  const leftStyle = useAnimatedStyle(() => {
+    const left = interpolate(
+      animationValue.value,
+      [-1, 0, 1],
+      [-(width / 2), 0, 0],
+      Extrapolate.CLAMP
+    );
+    return {
+      left,
+    };
+  }, [animationValue, width]);
+
+  const rightStyle = useAnimatedStyle(() => {
+    const right = interpolate(
+      animationValue.value,
+      [-1, 0, 1],
+      [-(width / 2), 0, 0],
+      Extrapolate.CLAMP
+    );
+
+    return {
+      right,
+    };
+  }, [animationValue, width]);
+
   return (
-    <View style={{ flex: 1, paddingBottom: 10 }}>
-      <Carousel
-        loop
-        width={width}
-        height={IMAGE_HEIGHT}
-        autoPlay={false}
-        data={data}
-        scrollAnimationDuration={1000}
-        onSnapToItem={(index) => console.log("current index:", index)}
-        renderItem={CarouselCardItem}
-      />
+    <View style={{height: "100%", width }}>
+      <Animated.View
+        style={[
+          {
+            left: 0,
+            position: "absolute",
+            width: width / 2,
+            height: "100%",
+            overflow: "hidden",
+          },
+          leftStyle,
+        ]}
+      >
+        <Animated.Image
+          source={{uri:item.imgUrl}}
+          style={{
+            width,
+            height: "100%",
+            left: 0,
+            position: "absolute",
+          }}
+          resizeMode="cover"
+        />
+      </Animated.View>
+      <Animated.View
+        style={[
+          {
+            right: 0,
+            position: "absolute",
+            width: width / 2,
+            height: "100%",
+            overflow: "hidden",
+          },
+          rightStyle,
+        ]}
+      >
+        <Animated.Image
+          source={{uri: item.imgUrl}}
+          style={{
+            width,
+            height: "100%",
+            right: 0,
+            position: "absolute",
+          }}
+          resizeMode="cover"
+        >
+        </Animated.Image>
+        <View style={styles.textContainer}>
+        <Text style={styles.title}>{item.title}</Text>
+      </View>
+      </Animated.View>
     </View>
   );
 }
 
+}
+
 export default TempleCarousel;
+
+

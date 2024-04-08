@@ -122,14 +122,20 @@ const TempleDetailPage = ({ route }) => {
   return (
     <View style={styles.container}>
       <Image source={{ uri: item.imgUrl }} style={styles.image} />
-
       <View style={styles.details}>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.address}>{data.address}</Text>
 
-        <View style={styles.historyContainer}>
-          <Text style={styles.description}>{data.history.desc}</Text>
-        </View>
+        <ImageBackground
+          source={{
+            uri: "https://t4.ftcdn.net/jpg/05/71/56/51/360_F_571565144_1BivKAfVmv64ieXYkeKMWmg5GCUpx3Rr.jpg",
+          }}
+          style={{ width: "100%", height: "100%" }}
+        >
+          <View style={styles.historyContainer}>
+            <Text style={styles.description}>{data.history.desc}</Text>
+          </View>
+        </ImageBackground>
       </View>
     </View>
   );

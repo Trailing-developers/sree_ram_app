@@ -7,14 +7,29 @@ const data = {
   name: "Temple Name",
   description: "This is a detailed description of the temple.",
   address: "123 Main Street, Anytown USA",
-  location: {
+  locationOfPlace: {
     latitude: 12.345678,
     longitude: 98.765432,
     distanceFromCityCenter: 5,
     distanceUnit: "KM",
+    distanceFromUser: 10,
+    distanceUnit: "KM",
+  },
+  locationOfUser: {
+    latitude: 12.345678,
+    longitude: 98.765432,
   },
   crowdPatterns: {
+    timings: {
+      1: {
+        from: "10:00 AM",
+        to: "2:00 PM",
+        crowd: "high",
+        color: "orange",
+      },
+    }, //peek - red, high - orange, moderate - yellow, low - green
     peakHours: "10 AM - 2 PM",
+    candleHours: 3, //8 candles
     averageCrowd: "Moderate",
     busyDays: ["Weekends", "Holidays"],
   },
@@ -23,10 +38,16 @@ const data = {
     afternoon: "3:00 PM - 6:00 PM",
     evening: "6:00 PM - 9:00 PM",
   },
+  rightTimeToVist: {
+    bestTime: "Jan-Mar",
+    notBestTime: "Jan-Mar",
+    bestDays: ["Weekdays", "Weekends"],
+  },
   mantras: ["Om Namah Shivaya", "Shiva Shankara Bholenath", "Har Har Mahadev"],
   popularEvents: ["Diwali", "Holi", "Puja"],
   history: {
-    firstVisit: "2010",
+    openedOn: "2010",
+    builder: "Chola Dynasty",
     desc: "The temple was built in the 10th century and has a rich history dating back to the Chola dynasty. It is known for its intricate carvings and architectural design.",
     backgroundImage:
       "https://t4.ftcdn.net/jpg/05/71/56/51/360_F_571565144_1BivKAfVmv64ieXYkeKMWmg5GCUpx3Rr.jpg",

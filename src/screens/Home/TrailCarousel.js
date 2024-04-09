@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Carousel from "react-native-reanimated-carousel";
+import { interpolate } from "react-native-reanimated";
+import Carousel,{ TAnimationStyle } from "react-native-reanimated-carousel";
 
 const data = [
   {
@@ -25,12 +26,17 @@ const data = [
 
 export const SLIDER_WIDTH = Dimensions.get("window").width + 10;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8) + 10;
+export const width = Dimensions.get("window").width;
+export const IMAGE_HEIGHT = width * 0.7;
 
 const CarouselCardItem = ({ item, index }) => {
   return (
-    <View style={styles.container} key={index}>
+    <View style={styles.cardContainer} key={index}>
       <Image source={{ uri: item.imgUrl }} style={styles.image} />
-      <Text style={styles.header}>{item.title}</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.subtitle}>{item.body}</Text>
+      </View>
     </View>
   );
 };
@@ -76,42 +82,39 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function TrailCarousel() {
-  const isCarousel = React.useRef(null);
-  const [index, setIndex] = React.useState(0);
+function TrailCarousel() {
+  const width = Dimensions.get("window").width;
+
+  const animationStyle = (value) => {
+    "worklet";
+  
+    const zIndex = interpolate(value, [-1, 0, 1], [10, 20, 30]);
+    const scale = interpolate(value, [-1, 0, 1], [1.25, 1, 0.25]);
+    const opacity = interpolate(value, [-0.75, 0, 1], [0, 1, 0]);
+  
+    return {
+      transform: [{ scale }],
+      zIndex,
+      opacity,
+    };
+  };
+  
 
   return (
-    <View style={styles.container2}>
+    <View style={{ flex: 1, paddingBottom: 10 }}>
       <Carousel
-        loop
-        // layoutCardOffset={3}
-        ref={isCarousel}
+        loop = {true}
+        width={width}
+        height={IMAGE_HEIGHT}
+        autoPlay={false}
         data={data}
+        scrollAnimationDuration={1000}
+        onSnapToItem={(index) => console.log("current index:", index)}
         renderItem={CarouselCardItem}
-        // sliderWidth={SLIDER_WIDTH}
-        // itemWidth={ITEM_WIDTH}
-        width={ITEM_WIDTH}
-        height={SLIDER_WIDTH}
-        scrollAnimationDuration={3000}
-        autoPlay={true}
-        // inactiveSlideShift={0}
-        // onSnapToItem={(index) => setIndex(index)}
+        customAnimation={animationStyle}
       />
-      {/* <Pagination
-        dotsLength={data.length}
-        activeDotIndex={index}
-        carouselRef={isCarousel}
-        dotStyle={{
-          width: 10,
-          height: 10,
-          borderRadius: 5,
-          marginHorizontal: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.92)",
-        }}
-        inactiveDotOpacity={0.4}
-        inactiveDotScale={0.6}
-        tappableDots={true}
-      /> */}
     </View>
   );
 }
+
+export default TrailCarousel;

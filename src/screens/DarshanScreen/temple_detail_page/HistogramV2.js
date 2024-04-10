@@ -22,13 +22,14 @@ export default function HistogramV2() {
   };
 
   const timings = [
-    { timing: 8, label: "8:00 AM", color: "#DF5353" },
-    { timing: 10, label: "", color: "#DF5353" },
-    { timing: 15, label: "", color: "#DF5353" },
-    { timing: 20, label: "12:00 PM", color: "#DF5353" },
-    { timing: 20, label: "", color: "#DF5353" },
-    { timing: 15, label: "", color: "#DF5353" },
-    { timing: 10, label: "3:00 PM", color: "#DF5353" },
+    { timing: 8, label: "8:00 AM", color: "#FFB800" },
+    { timing: 15, label: "", color: "#FF9900" },
+    { timing: 20, label: "", color: "#FF730D" },
+    { timing: 15, label: "12:00 PM", color: "#FF730D" },
+    { timing: 5, label: "", color: "#25FF20" },
+    { timing: 15, label: "", color: "#FF730D" },
+    { timing: 25, label: "3:00 PM", color: "#FA1111" },
+    { timing: 15, label: "", color: "#FF8C00" },
     { timing: 0, label: "", color: "#DF5353" },
   ];
 

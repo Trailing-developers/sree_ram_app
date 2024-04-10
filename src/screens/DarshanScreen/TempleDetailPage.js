@@ -7,7 +7,8 @@ import {
   StyleSheet,
   ImageBackground,
 } from "react-native";
-import HistogramV2 from "./HistogramV2";
+import HistogramV2 from "./temple_detail_page/HistogramV2";
+import HistoryPage from "./temple_detail_page/HistoryPage";
 
 const data = {
   id: "temple-123",
@@ -133,38 +134,14 @@ const TempleDetailPage = ({ route }) => {
       <View style={styles.details}>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.address}>{data.address}</Text>
-
-        <View style={styles.historyContainer}>
-          <ImageBackground
-            source={{
-              uri: "https://t4.ftcdn.net/jpg/05/71/56/51/360_F_571565144_1BivKAfVmv64ieXYkeKMWmg5GCUpx3Rr.jpg",
-            }}
-            style={styles.ImageContainer}
-          >
-            <View style={styles.overlay}>
-              <Text style={styles.description}>{data.history.desc}</Text>
-            </View>
-          </ImageBackground>
-        </View>
       </View>
+      <HistoryPage data={data.history} />
       <View>
         <Text style={styles.crowdForcastTitle}>Crowd Forcast</Text>
 
         <View style={styles.crowdForcastContainer}>
           <HistogramV2 />
         </View>
-      </View>
-      <View style={styles.historyContainer}>
-        <ImageBackground
-          source={{
-            uri: "https://t4.ftcdn.net/jpg/05/71/56/51/360_F_571565144_1BivKAfVmv64ieXYkeKMWmg5GCUpx3Rr.jpg",
-          }}
-          style={styles.ImageContainer}
-        >
-          <View style={styles.overlay}>
-            <Text style={styles.description}>{data.history.desc}</Text>
-          </View>
-        </ImageBackground>
       </View>
       <View style={styles.bottomPadding} />
     </ScrollView>

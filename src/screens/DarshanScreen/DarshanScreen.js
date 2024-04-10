@@ -82,7 +82,7 @@ export default function DarshanScreen() {
       <ScrollView>
         <TempleCarousel />
         {widgetData.map((d) => {
-          return <ParsadAndOther d={d} />;
+          return <ParsadAndOther key={d.wigetTitle} d={d} />;
         })}
       </ScrollView>
     </SafeAreaView>

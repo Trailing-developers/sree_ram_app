@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import HistogramV2 from "./temple_detail_page/HistogramV2";
 import HistoryPage from "./temple_detail_page/HistoryPage";
+import CrowdForecast from "./temple_detail_page/CrowdForecast";
 
 const data = {
   id: "temple-123",
@@ -29,14 +30,17 @@ const data = {
     longitude: 98.765432,
   },
   crowdPatterns: {
-    timings: {
-      1: {
-        from: "10:00 AM",
-        to: "2:00 PM",
-        crowd: "high",
-        color: "orange",
-      },
-    }, //peek - red, high - orange, moderate - yellow, low - green
+    timings: [
+      { timing: 8, label: "8:00 AM", color: "#FFB800" },
+      { timing: 15, label: "", color: "#FF9900" },
+      { timing: 20, label: "", color: "#FF730D" },
+      { timing: 15, label: "12:00 PM", color: "#FF730D" },
+      { timing: 5, label: "", color: "#25FF20" },
+      { timing: 15, label: "", color: "#FF730D" },
+      { timing: 25, label: "3:00 PM", color: "#FA1111" },
+      { timing: 15, label: "", color: "#FF8C00" },
+      { timing: 0, label: "", color: "#DF5353" },
+    ], //peek - red, high - orange, moderate - yellow, low - green
     peakHours: "10 AM - 2 PM",
     candleHours: 3, //8 candles
     averageCrowd: "Moderate",
@@ -136,13 +140,7 @@ const TempleDetailPage = ({ route }) => {
         <Text style={styles.address}>{data.address}</Text>
       </View>
       <HistoryPage data={data.history} />
-      <View>
-        <Text style={styles.crowdForcastTitle}>Crowd Forcast</Text>
-
-        <View style={styles.crowdForcastContainer}>
-          <HistogramV2 />
-        </View>
-      </View>
+      <CrowdForecast data={data.crowdPatterns} />
       <View style={styles.bottomPadding} />
     </ScrollView>
   );
@@ -198,9 +196,7 @@ const styles = StyleSheet.create({
     borderRadius: 20, // Adjust the borderRadius value as needed
     overflow: "hidden", // Ensure content is clipped to border radius
   },
-  crowdForcastContainer: {
-    paddingVertical: 20,
-  },
+
   bottomPadding: {
     height: 100, // Adjust the height as needed to ensure content is scrollable till the end
   },

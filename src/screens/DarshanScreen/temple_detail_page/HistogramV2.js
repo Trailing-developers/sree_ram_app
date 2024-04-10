@@ -3,7 +3,7 @@ import { BarChart } from "react-native-chart-kit";
 
 const screenWidth = Dimensions.get("window").width;
 
-export default function HistogramV2() {
+export default function HistogramV2({ dataPoints }) {
   const chartConfig = {
     backgroundGradientFrom: "#fff",
     backgroundGradientFromOpacity: 0,
@@ -21,26 +21,14 @@ export default function HistogramV2() {
     decimalPlaces: 0,
   };
 
-  const timings = [
-    { timing: 8, label: "8:00 AM", color: "#FFB800" },
-    { timing: 15, label: "", color: "#FF9900" },
-    { timing: 20, label: "", color: "#FF730D" },
-    { timing: 15, label: "12:00 PM", color: "#FF730D" },
-    { timing: 5, label: "", color: "#25FF20" },
-    { timing: 15, label: "", color: "#FF730D" },
-    { timing: 25, label: "3:00 PM", color: "#FA1111" },
-    { timing: 15, label: "", color: "#FF8C00" },
-    { timing: 0, label: "", color: "#DF5353" },
-  ];
-
-  const labels = timings.map((item) => {
+  const labels = dataPoints.map((item) => {
     return item.label;
   });
 
-  const values = timings.map((item) => {
+  const values = dataPoints.map((item) => {
     return item.timing;
   });
-  const colors = timings.map((item) => {
+  const colors = dataPoints.map((item) => {
     return (opacity = 1) => item.color;
   });
 

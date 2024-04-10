@@ -1,6 +1,7 @@
 import { Dimensions, StyleSheet, View } from "react-native";
-import { BarChart } from "react-native-chart-kit";
+import { BarChart } from "react-native-gifted-charts";
 
+//https://gifted-charts.web.app/barchart
 const screenWidth = Dimensions.get("window").width;
 
 export default function HistogramV2({ dataPoints }) {
@@ -21,41 +22,25 @@ export default function HistogramV2({ dataPoints }) {
     decimalPlaces: 0,
   };
 
-  const labels = dataPoints.map((item) => {
-    return item.label;
+  const barData = dataPoints.map((item) => {
+    return {
+      value: item.timing,
+      label: item.label,
+      frontColor: item.color,
+    };
   });
-
-  const values = dataPoints.map((item) => {
-    return item.timing;
-  });
-  const colors = dataPoints.map((item) => {
-    return (opacity = 1) => item.color;
-  });
-
-  const chartData = {
-    labels,
-    datasets: [
-      {
-        data: values,
-        colors: colors,
-      },
-    ],
-  };
 
   return (
     <View style={styles.container}>
       <BarChart
-        data={chartData}
-        width={screenWidth}
-        height={220}
-        withInnerLines={false}
-        chartConfig={chartConfig}
-        showBarTops={false}
-        withHorizontalLabels={false}
-        withCustomBarColorFromData={true}
-        flatColor={true}
-        bezier
-        style={styles.chart}
+        barWidth={20}
+        noOfSections={2}
+        barBorderRadius={4}
+        frontColor="lightgray"
+        data={barData}
+        yAxisThickness={0}
+        xAxisThickness={0}
+        hideYAxisText={true}
       />
     </View>
   );
@@ -63,7 +48,8 @@ export default function HistogramV2({ dataPoints }) {
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: -30,
+    // marginLeft: -30,
+    flex: 1,
   },
   chart: {
     marginVertical: 8,

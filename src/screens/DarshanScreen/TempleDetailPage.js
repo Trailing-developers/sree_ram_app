@@ -1,5 +1,13 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, ImageBackground } from "react-native";
+import {
+  View,
+  ScrollView,
+  Text,
+  Image,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
+import HistogramV2 from "./HistogramV2";
 
 const data = {
   id: "temple-123",
@@ -120,30 +128,52 @@ const TempleDetailPage = ({ route }) => {
   const { item } = route.params;
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Image source={{ uri: item.imgUrl }} style={styles.image} />
       <View style={styles.details}>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.address}>{data.address}</Text>
 
+        <View style={styles.historyContainer}>
+          <ImageBackground
+            source={{
+              uri: "https://t4.ftcdn.net/jpg/05/71/56/51/360_F_571565144_1BivKAfVmv64ieXYkeKMWmg5GCUpx3Rr.jpg",
+            }}
+            style={styles.ImageContainer}
+          >
+            <View style={styles.overlay}>
+              <Text style={styles.description}>{data.history.desc}</Text>
+            </View>
+          </ImageBackground>
+        </View>
+      </View>
+      <View>
+        <Text style={styles.crowdForcastTitle}>Crowd Forcast</Text>
+
+        <View style={styles.crowdForcastContainer}>
+          <HistogramV2 />
+        </View>
+      </View>
+      <View style={styles.historyContainer}>
         <ImageBackground
           source={{
             uri: "https://t4.ftcdn.net/jpg/05/71/56/51/360_F_571565144_1BivKAfVmv64ieXYkeKMWmg5GCUpx3Rr.jpg",
           }}
-          style={{ width: "100%", height: "100%" }}
+          style={styles.ImageContainer}
         >
-          <View style={styles.historyContainer}>
+          <View style={styles.overlay}>
             <Text style={styles.description}>{data.history.desc}</Text>
           </View>
         </ImageBackground>
       </View>
-    </View>
+      <View style={styles.bottomPadding} />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    paddingVertical: 1,
   },
 
   image: {
@@ -162,8 +192,9 @@ const styles = StyleSheet.create({
   },
 
   description: {
-    fontSize: 16,
-    marginVertical: 10,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white",
   },
 
   address: {
@@ -172,7 +203,29 @@ const styles = StyleSheet.create({
   },
   historyContainer: {
     marginVertical: 20,
-    backgroundImage: `url(https://t4.ftcdn.net/jpg/05/71/56/51/360_F_571565144_1BivKAfVmv64ieXYkeKMWmg5GCUpx3Rr.jpg)`,
+    width: "100%",
+    height: 200,
+    elevation: 10,
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.5)", // Overlay color
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20, // Adjust the borderRadius value to match the parent container
+  },
+  ImageContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20, // Adjust the borderRadius value as needed
+    overflow: "hidden", // Ensure content is clipped to border radius
+  },
+  crowdForcastContainer: {
+    paddingVertical: 20,
+  },
+  bottomPadding: {
+    height: 100, // Adjust the height as needed to ensure content is scrollable till the end
   },
 });
 

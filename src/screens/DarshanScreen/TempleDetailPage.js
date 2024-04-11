@@ -7,9 +7,10 @@ import {
   StyleSheet,
   ImageBackground,
 } from "react-native";
-import HistogramV2 from "./temple_detail_page/HistogramV2";
 import HistoryPage from "./temple_detail_page/HistoryPage";
 import CrowdForecast from "./temple_detail_page/CrowdForecast";
+import Restaurants from "./temple_detail_page/Restaurents";
+import ExtraInformation from "./temple_detail_page/ExtraInformation";
 
 const data = {
   id: "temple-123",
@@ -92,10 +93,29 @@ const data = {
   ],
   information: {
     openingHours: "6:00 AM - 9:00 PM",
+    closedDays: ["Mondays"],
     contactInfo: {
       phone: "+1 (123) 456-7890",
       website: "https://example.com/temple",
     },
+    dosAndDonts: [
+      {
+        title: "Do's",
+        data: [
+          "Dress modestly and respectfully",
+          "Remove shoes before entering temple",
+          "Bring offerings like flowers, fruits, sweets",
+        ],
+      },
+      {
+        title: "Don'ts",
+        data: [
+          "Dont wear shorts or sleeveless tops",
+          "Avoid bringing non-vegetarian food items",
+          "Avoid bringing alcohol or tobacco products",
+        ],
+      },
+    ],
     facilities: [
       "Parking available",
       "Wheelchair accessible",
@@ -141,6 +161,13 @@ const TempleDetailPage = ({ route }) => {
       </View>
       <HistoryPage data={data.history} />
       <CrowdForecast data={data.crowdPatterns} />
+      <ExtraInformation data={data.information} />
+      <Restaurants
+        data={{
+          placeLocation: data.locationOfPlace,
+          userLocation: data.locationOfUser,
+        }}
+      />
       <View style={styles.bottomPadding} />
     </ScrollView>
   );

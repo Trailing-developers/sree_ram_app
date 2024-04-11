@@ -3,25 +3,6 @@ import { View, Text, StyleSheet } from "react-native";
 import { Card } from "react-native-paper";
 
 const ExtraInformation = ({ data }) => {
-  const dosAndDonts = [
-    {
-      title: "Do's",
-      data: [
-        "Dress modestly and respectfully",
-        "Remove shoes before entering temple",
-        "Bring offerings like flowers, fruits, sweets",
-      ],
-    },
-    {
-      title: "Don'ts",
-      data: [
-        "Dont wear shorts or sleeveless tops",
-        "Avoid bringing non-vegetarian food items",
-        "Avoid bringing alcohol or tobacco products",
-      ],
-    },
-  ];
-
   return (
     <Card>
       <Card.Title title={"Temple Information"} style={styles.cardTitle} />

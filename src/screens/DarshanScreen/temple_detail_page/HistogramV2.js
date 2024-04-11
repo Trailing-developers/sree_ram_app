@@ -2,6 +2,8 @@ import { Dimensions, StyleSheet, View } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
 
 //https://gifted-charts.web.app/barchart
+//more details to use https://github.com/Abhinandan-Kushwaha/react-native-gifted-charts/blob/master/docs/BarChart/BarChartProps.md
+
 const screenWidth = Dimensions.get("window").width;
 
 export default function HistogramV2({ dataPoints }) {
@@ -41,6 +43,7 @@ export default function HistogramV2({ dataPoints }) {
         yAxisThickness={0}
         xAxisThickness={0}
         hideYAxisText={true}
+        isAnimated={true}
       />
     </View>
   );

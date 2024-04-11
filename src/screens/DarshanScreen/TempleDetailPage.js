@@ -12,6 +12,7 @@ import CrowdForecast from "./temple_detail_page/CrowdForecast";
 import Restaurants from "./temple_detail_page/Restaurents";
 import ExtraInformation from "./temple_detail_page/ExtraInformation";
 import GodWorshippedPage from "./temple_detail_page/GodWorshippedPage";
+import DarshanType from "./temple_detail_page/DarshanType";
 
 const data = {
   id: "temple-123",
@@ -48,10 +49,27 @@ const data = {
     averageCrowd: "Moderate",
     busyDays: ["Weekends", "Holidays"],
   },
-  darshanTiming: {
-    morning: "6:00 AM - 12:00 PM",
-    afternoon: "3:00 PM - 6:00 PM",
-    evening: "6:00 PM - 9:00 PM",
+  darshanDetails: {
+    timing: {
+      morning: "6:00 AM - 12:00 PM",
+      afternoon: "3:00 PM - 6:00 PM",
+      evening: "6:00 PM - 9:00 PM",
+    },
+    charges: {
+      entry: {
+        adult: 20,
+        child: 10,
+        senior: 10,
+      },
+      parking: {
+        car: 50,
+        bike: 20,
+      },
+      darshan: {
+        vip: 500,
+        regular: 100,
+      },
+    },
   },
   rightTimeToVist: {
     bestTime: "Jan-Mar",
@@ -166,6 +184,7 @@ const TempleDetailPage = ({ route }) => {
       <CrowdForecast data={data.crowdPatterns} />
       <ExtraInformation data={data.information} />
       <GodWorshippedPage data={data.godAndGoddess} />
+      <DarshanType data={data.darshanDetails} />
       <Restaurants
         data={{
           placeLocation: data.locationOfPlace,

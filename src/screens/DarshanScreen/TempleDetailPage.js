@@ -11,6 +11,7 @@ import HistoryPage from "./temple_detail_page/HistoryPage";
 import CrowdForecast from "./temple_detail_page/CrowdForecast";
 import Restaurants from "./temple_detail_page/Restaurents";
 import ExtraInformation from "./temple_detail_page/ExtraInformation";
+import GodWorshippedPage from "./temple_detail_page/GodWorshippedPage";
 
 const data = {
   id: "temple-123",
@@ -88,7 +89,9 @@ const data = {
   godAndGoddess: [
     {
       name: "Lord Shiva",
-      image: "https://example.com/lord-shiva.jpg",
+      image:
+        "https://cdn.pixabay.com/photo/2023/11/26/10/04/lord-shiva-8413252_640.png",
+      link: "https://en.wikipedia.org/wiki/Shiva",
     },
   ],
   information: {
@@ -162,6 +165,7 @@ const TempleDetailPage = ({ route }) => {
       <HistoryPage data={data.history} />
       <CrowdForecast data={data.crowdPatterns} />
       <ExtraInformation data={data.information} />
+      <GodWorshippedPage data={data.godAndGoddess} />
       <Restaurants
         data={{
           placeLocation: data.locationOfPlace,

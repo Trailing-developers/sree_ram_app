@@ -1,8 +1,4 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import Hello from "./src/screens/Hello";
-import HomeScreen from "./src/screens/HomeScreen";
-import CharitraScreen from "./src/screens/CharitraPaath/CharitraScreen";
 import Mynavigation from "./src/navigation/Mynavigation";
 
 export default function App() {
@@ -11,11 +7,9 @@ export default function App() {
     //   <StatusBar style="auto" />
     //   <CharitraScreen/>
     // </View>
-    <Mynavigation/> 
+    <Mynavigation />
   );
 }
-
-
 
 const styles = StyleSheet.create({
   container: {

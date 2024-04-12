@@ -13,6 +13,7 @@ import Restaurants from "./temple_detail_page/Restaurents";
 import ExtraInformation from "./temple_detail_page/ExtraInformation";
 import GodWorshippedPage from "./temple_detail_page/GodWorshippedPage";
 import DarshanType from "./temple_detail_page/DarshanType";
+import NearByTemples from "./temple_detail_page/NearBytemples";
 
 const data = {
   id: "temple-123",
@@ -185,6 +186,12 @@ const TempleDetailPage = ({ route }) => {
       <ExtraInformation data={data.information} />
       <GodWorshippedPage data={data.godAndGoddess} />
       <DarshanType data={data.darshanDetails} />
+      <NearByTemples 
+        data={{
+          placeLocation: data.locationOfPlace,
+          userLocation: data.locationOfUser,
+        }}
+      />  
       <Restaurants
         data={{
           placeLocation: data.locationOfPlace,

@@ -3,12 +3,16 @@ import { View, ImageBackground, Text } from "react-native";
 
 const DarshanType = ({ data }) => {
   return (
-    <View>
+    <View style={{ margin: 10, marginVertical: 20 }}>
+      <Text style={{ fontSize: 18, fontWeight: "bold", marginBottom: 10 }}>
+        Darshan Prices Onsite
+      </Text>
       <ImageBackground
         source={{
-          uri: "https://lh3.googleusercontent.com/DmAQ9GHbea-X_CSDyFrRxA39zPWmz0L064U_TaatEWoW32Fi7-06IlzZvD43s68xvk-NhvGXdmFfm4ZVPHxlOoapOTU=w640-h400-e365-rj-sc0x00ffffff",
+          uri: "https://londonmandir.baps.org/images/2011/10/darshan02_main.jpg",
         }}
         style={{ width: "100%", height: 200 }}
+        blurRadius={5}
       >
         <Text style={{ fontSize: 20, color: "white", margin: 10 }}>
           General Darshan: 10

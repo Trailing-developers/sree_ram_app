@@ -2,13 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Mynavigation from "./src/navigation/Mynavigation";
 
 export default function App() {
-  return (
-    // <View style={styles.container}>
-    //   <StatusBar style="auto" />
-    //   <CharitraScreen/>
-    // </View>
-    <Mynavigation />
-  );
+  return <Mynavigation />;
 }
 
 const styles = StyleSheet.create({

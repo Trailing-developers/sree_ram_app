@@ -12,8 +12,8 @@ import CrowdForecast from "./temple_detail_page/CrowdForecast";
 import Restaurants from "./temple_detail_page/Restaurents";
 import ExtraInformation from "./temple_detail_page/ExtraInformation";
 import GodWorshippedPage from "./temple_detail_page/GodWorshippedPage";
-import DarshanType from "./temple_detail_page/DarshanType";
 import NearByTemples from "./temple_detail_page/NearBytemples";
+import DarshanInfoPage from "./temple_detail_page/DarshanInfoPage";
 
 const data = {
   id: "temple-123",
@@ -46,7 +46,6 @@ const data = {
       { timing: 0, label: "", color: "#DF5353" },
     ], //peek - red, high - orange, moderate - yellow, low - green
     peakHours: "10 AM - 2 PM",
-    candleHours: 3, //8 candles
     averageCrowd: "Moderate",
     busyDays: ["Weekends", "Holidays"],
   },
@@ -62,14 +61,32 @@ const data = {
         child: 10,
         senior: 10,
       },
-      parking: {
-        car: 50,
-        bike: 20,
-      },
-      darshan: {
-        vip: 500,
-        regular: 100,
-      },
+      darshan: [
+        {
+          type: "Regular Darshan",
+          price: 20,
+        },
+        {
+          type: "Special Darshan",
+          price: 100,
+        },
+        {
+          type: "Regular Darshan",
+          price: 20,
+        },
+        {
+          type: "Hawan",
+          price: 100,
+        },
+        {
+          type: "Maha Abhishek",
+          price: 20,
+        },
+        {
+          type: "VIP Darshan",
+          price: 100,
+        },
+      ],
     },
   },
   rightTimeToVist: {
@@ -116,6 +133,11 @@ const data = {
   information: {
     openingHours: "6:00 AM - 9:00 PM",
     closedDays: ["Mondays"],
+    parking: {
+      available: true,
+      freeParking: true,
+      parkingCharges: 0,
+    },
     contactInfo: {
       phone: "+1 (123) 456-7890",
       website: "https://example.com/temple",
@@ -185,13 +207,13 @@ const TempleDetailPage = ({ route }) => {
       <CrowdForecast data={data.crowdPatterns} />
       <ExtraInformation data={data.information} />
       <GodWorshippedPage data={data.godAndGoddess} />
-      <DarshanType data={data.darshanDetails} />
-      <NearByTemples 
+      <DarshanInfoPage data={data.darshanDetails} />
+      <NearByTemples
         data={{
           placeLocation: data.locationOfPlace,
           userLocation: data.locationOfUser,
         }}
-      />  
+      />
       <Restaurants
         data={{
           placeLocation: data.locationOfPlace,

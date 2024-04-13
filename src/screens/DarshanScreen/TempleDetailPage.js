@@ -14,6 +14,13 @@ import ExtraInformation from "./temple_detail_page/ExtraInformation";
 import GodWorshippedPage from "./temple_detail_page/GodWorshippedPage";
 import NearByTemples from "./temple_detail_page/NearBytemples";
 import DarshanInfoPage from "./temple_detail_page/DarshanInfoPage";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
+import Animated from "react-native-reanimated";
+import CustomTransition from "../animated/CustomTransition";
+import TempleTitle from "./temple_detail_page/TempleTitle";
+import * as Animatable from "react-native-animatable";
 
 const data = {
   id: "temple-123",
@@ -195,48 +202,102 @@ const data = {
 
 const TempleDetailPage = ({ route }) => {
   const { item } = route.params;
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Image source={{ uri: item.imgUrl }} style={styles.image} />
-      <View style={styles.details}>
-        <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.address}>{data.address}</Text>
-      </View>
-      <HistoryPage data={data.history} />
-      <CrowdForecast data={data.crowdPatterns} />
-      <ExtraInformation data={data.information} />
-      <GodWorshippedPage data={data.godAndGoddess} />
-      <DarshanInfoPage data={data.darshanDetails} />
-      <NearByTemples
-        data={{
-          placeLocation: data.locationOfPlace,
-          userLocation: data.locationOfUser,
-        }}
-      />
-      <Restaurants
-        data={{
-          placeLocation: data.locationOfPlace,
-          userLocation: data.locationOfUser,
-        }}
-      />
-      <View style={styles.bottomPadding} />
-    </ScrollView>
+    // <ScrollView contentContainerStyle={styles.container}>
+    //   <Image source={{ uri: item.imgUrl }} style={styles.image} />
+    //   <View style={styles.details}>
+    //     <Text style={styles.name}>{item.name}</Text>
+    //     <Text style={styles.address}>{data.address}</Text>
+    //   </View>
+    //   <HistoryPage data={data.history} />
+    //   <CrowdForecast data={data.crowdPatterns} />
+    //   <ExtraInformation data={data.information} />
+    //   <GodWorshippedPage data={data.godAndGoddess} />
+    //   <DarshanInfoPage data={data.darshanDetails} />
+    //   <NearByTemples
+    //     data={{
+    //       placeLocation: data.locationOfPlace,
+    //       userLocation: data.locationOfUser,
+    //     }}
+    //   />
+    //   <Restaurants
+    //     data={{
+    //       placeLocation: data.locationOfPlace,
+    //       userLocation: data.locationOfUser,
+    //     }}
+    //   />
+    //   <View style={styles.bottomPadding} />
+    // </ScrollView>
+    <View style={styles.container}>
+      <Animatable.View
+        style={[styles.backButton, { marginTop: insets.top }]}
+        animation={"fadeInUp"}
+        easing={"ease-in-out"}
+        delay={500}
+        duration={400}
+      >
+        <Icon
+          name="arrow-left"
+          size={30}
+          color="#900"
+          onPress={() => navigation.goBack()}
+        />
+      </Animatable.View>
+      <Animated.View
+        style={[StyleSheet.absoluteFillObject, styles.imageBox]}
+        sharedTransitionTag={`item.${item.id}.image`}
+        sharedTransitionStyle={CustomTransition}
+      >
+        <Image
+          source={{
+            uri: item.imgUrl,
+          }}
+          style={[StyleSheet.absoluteFillObject, styles.image]}
+        />
+      </Animated.View>
+      <TempleTitle title={item.name} address={data.address} />
+    </View>
   );
 };
 
+// TempleDetailPage.sharedElements = (route) => {
+//   const { item } = route.params;
+//   return [
+//     {
+//       id: `item.${item.id}.image`,
+//     },
+//   ];
+// };
+
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 1,
+    flex: 1,
   },
-
+  imageBox: {
+    overflow: "hidden",
+  },
   image: {
     width: "100%",
-    height: 300,
+    height: "100%",
+    resizeMode: "cover",
+  },
+  backButton: {
+    position: "absolute",
+    top: 20,
+    left: 20,
+    zIndex: 1,
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    padding: 10,
+    borderRadius: 50,
   },
 
   details: {
+    marginTop: 50,
     alignItems: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
     padding: 20,
   },
 

@@ -3,6 +3,9 @@ import { Dimensions, Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Carousel from "react-native-reanimated-carousel";
 import { useNavigation } from "@react-navigation/native";
+// import { SharedElement } from "react-navigation-shared-element";
+import Animated from "react-native-reanimated";
+import CustomTransition from "../animated/CustomTransition";
 
 export const width = Dimensions.get("window").width;
 export const IMAGE_HEIGHT = width * 0.5;
@@ -63,13 +66,21 @@ function ParsadAndOther({ d }) {
   const CarouselCardItem = ({ item, index }) => {
     return (
       <TouchableOpacity key={index} onPress={() => handleCardPress(item)}>
-        <View style={styles.cardContainer} key={index}>
-          <Image source={{ uri: item.imgUrl }} style={styles.image} />
-          <View style={styles.textContainer}>
-            <Text style={styles.title}>{item.name}</Text>
-            <Text style={styles.subtitle}>{item.state}</Text>
+        <View style={styles.cardContainer}>
+          <View style={styles.cardContainer} key={index}>
+            <Animated.Image
+              source={{ uri: item.imgUrl }}
+              style={styles.image}
+              sharedTransitionTag={`item.${item.id}.image`}
+              sharedTransitionStyle={CustomTransition}
+            />
+            <View style={styles.textContainer}>
+              <Text style={styles.title}>{item.name}</Text>
+              <Text style={styles.subtitle}>{item.state}</Text>
+            </View>
           </View>
         </View>
+        {/* </SharedElement> */}
       </TouchableOpacity>
     );
   };

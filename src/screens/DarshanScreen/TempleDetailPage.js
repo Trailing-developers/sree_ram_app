@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   View,
   ScrollView,
@@ -21,6 +21,9 @@ import Animated from "react-native-reanimated";
 import CustomTransition from "../animated/CustomTransition";
 import TempleTitle from "./temple_detail_page/TempleTitle";
 import * as Animatable from "react-native-animatable";
+import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
+import BottomSheetCustomHandler from "./temple_detail_page/BottomSheetCustomHandler";
+import Divider from "./temple_detail_page/Divider";
 
 const data = {
   id: "temple-123",
@@ -204,6 +207,7 @@ const TempleDetailPage = ({ route }) => {
   const { item } = route.params;
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
+  const spanPoints = useMemo(() => ["30%", "80%"], []);
 
   return (
     // <ScrollView contentContainerStyle={styles.container}>
@@ -231,6 +235,7 @@ const TempleDetailPage = ({ route }) => {
     //   />
     //   <View style={styles.bottomPadding} />
     // </ScrollView>
+
     <View style={styles.container}>
       <Animatable.View
         style={[styles.backButton, { marginTop: insets.top }]}
@@ -258,7 +263,35 @@ const TempleDetailPage = ({ route }) => {
           style={[StyleSheet.absoluteFillObject, styles.image]}
         />
       </Animated.View>
-      <TempleTitle title={item.name} address={data.address} />
+      <BottomSheet
+        snapPoints={spanPoints}
+        visible={true}
+        index={0}
+        handleComponent={BottomSheetCustomHandler}
+      >
+        <TempleTitle title={item.name} address={data.address} />
+        <Divider />
+        <BottomSheetScrollView>
+          <HistoryPage data={data.history} />
+          <CrowdForecast data={data.crowdPatterns} />
+          <ExtraInformation data={data.information} />
+          <GodWorshippedPage data={data.godAndGoddess} />
+          <DarshanInfoPage data={data.darshanDetails} />
+          <NearByTemples
+            data={{
+              placeLocation: data.locationOfPlace,
+              userLocation: data.locationOfUser,
+            }}
+          />
+          <Restaurants
+            data={{
+              placeLocation: data.locationOfPlace,
+              userLocation: data.locationOfUser,
+            }}
+          />
+          <View style={styles.bottomPadding} />
+        </BottomSheetScrollView>
+      </BottomSheet>
     </View>
   );
 };

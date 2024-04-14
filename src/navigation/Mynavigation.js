@@ -8,6 +8,10 @@ import TrailScreen from "../screens/TrailScreen/TrailScreen";
 import DarshanScreen from "../screens/DarshanScreen/DarshanScreen";
 import TeachingsScreen from "../screens/TeachingsScreen/TeachingsScreen";
 import TempleDetailPage from "../screens/DarshanScreen/TempleDetailPage";
+// import BottomSheetModelProvider from "@gorhom/bottom-sheet";
+// import GestureHandlerRootView, {
+//   PanGestureHandler,
+// } from "react-native-gesture-handler";
 
 const Stack = createNativeStackNavigator();
 // const Stack = createSharedElementStackNavigator();

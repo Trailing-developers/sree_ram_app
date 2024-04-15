@@ -207,7 +207,7 @@ const TempleDetailPage = ({ route }) => {
   const { item } = route.params;
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
-  const spanPoints = useMemo(() => ["30%", "80%"], []);
+  const spanPoints = useMemo(() => ["10%", "80%"], []);
 
   return (
     // <ScrollView contentContainerStyle={styles.container}>

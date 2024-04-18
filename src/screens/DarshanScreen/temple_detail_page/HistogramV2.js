@@ -43,7 +43,7 @@ export default function HistogramV2({ dataPoints }) {
         yAxisThickness={0}
         xAxisThickness={0}
         hideYAxisText={true}
-        isAnimated={true}
+        isAnimated={false}
       />
     </View>
   );

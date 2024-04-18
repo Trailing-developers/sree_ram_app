@@ -53,6 +53,7 @@ const data = {
       { timing: 15, label: "", color: "#FF730D" },
       { timing: 25, label: "3 PM", color: "#FA1111" },
       { timing: 15, label: "", color: "#FF8C00" },
+      { timing: 15, label: "5 PM", color: "#FF8C00" },
       { timing: 0, label: "", color: "#DF5353" },
     ], //peek - red, high - orange, moderate - yellow, low - green
     peakHours: "10 AM - 2 PM",

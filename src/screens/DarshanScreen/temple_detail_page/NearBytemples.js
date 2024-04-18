@@ -1,5 +1,10 @@
 import React from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
+import Carousel from "../../../shared/Carousel";
+import Card from "../../../shared/Card/Card";
+import CardMedia from "../../../shared/Card/CardMedia";
+import CardContent from "../../../shared/Card/CardContent";
+import { sizes } from "../../../constants/theme";
 
 const temples = [
   {
@@ -19,11 +24,17 @@ const NearByTemples = ({ data }) => {
   const { placeLocation, userLocation } = data;
 
   return (
-    <View style={{ marginLeft: 10, marginVertical: 20 }}>
-      <Text style={{ fontSize: 18, fontWeight: "bold", marginBottom: 10 }}>
+    <View style={{ marginVertical: 20 }}>
+      <Text
+        style={{
+          fontSize: 18,
+          fontWeight: "bold",
+          marginLeft: 10,
+        }}
+      >
         Nearby Temples
       </Text>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {temples.map((temple) => (
           <View key={temple.name} style={{ marginRight: 20 }}>
             <Image
@@ -33,9 +44,43 @@ const NearByTemples = ({ data }) => {
             <Text>{temple.name}</Text>
           </View>
         ))}
-      </ScrollView>
+      </ScrollView> */}
+      <Carousel
+        items={temples}
+        renderItems={({ item, style }) => {
+          return (
+            <Card key={item.title} style={[styles.card, style]}>
+              <CardMedia source={item.image} />
+              <CardContent style={styles.container}>
+                <View style={styles.textBox}>
+                  <Text style={styles.title}>{item.name}</Text>
+                </View>
+                <View style={styles.distanceBox}>
+                  <Text style={styles.title}>5 KM</Text>
+                </View>
+              </CardContent>
+            </Card>
+          );
+        }}
+      />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    height: 200,
+  },
+  container: {
+    height: 50,
+  },
+  textBox: {
+    flex: 1,
+  },
+  title: {
+    fontSize: sizes.body,
+    fontWeight: "bold",
+  },
+});
 
 export default NearByTemples;

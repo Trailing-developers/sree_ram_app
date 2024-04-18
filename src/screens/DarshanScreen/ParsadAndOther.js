@@ -1,11 +1,15 @@
 import * as React from "react";
 import { Dimensions, Text, View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import Carousel from "react-native-reanimated-carousel";
+// import Carousel from "react-native-reanimated-carousel";
 import { useNavigation } from "@react-navigation/native";
 // import { SharedElement } from "react-navigation-shared-element";
 import Animated from "react-native-reanimated";
 import CustomTransition from "../animated/CustomTransition";
+import Card from "../../shared/Card/Card";
+import CardMedia from "../../shared/Card/CardMedia";
+import CardContent from "../../shared/Card/CardContent";
+import Carousel from "../../shared/Carousel";
 
 export const width = Dimensions.get("window").width;
 export const IMAGE_HEIGHT = width * 0.5;
@@ -63,10 +67,10 @@ function ParsadAndOther({ d }) {
     navigation.navigate("TempleDetailPage", { item });
   };
 
-  const CarouselCardItem = ({ item, index }) => {
+  const CarouselCardItem = ({ item, index, style }) => {
     return (
       <TouchableOpacity key={index} onPress={() => handleCardPress(item)}>
-        <View style={styles.cardContainer}>
+        {/* <View style={styles.cardContainer}>
           <View style={styles.cardContainer} key={index}>
             <Animated.Image
               source={{ uri: item.imgUrl }}
@@ -79,7 +83,18 @@ function ParsadAndOther({ d }) {
               <Text style={styles.subtitle}>{item.state}</Text>
             </View>
           </View>
-        </View>
+        </View> */}
+
+        <Card key={item.title} style={[styles.card, style]}>
+          <CardMedia source={item.imgUrl} />
+          <CardContent style={styles.container}>
+            <View style={styles.textContainer}>
+              <Text style={styles.title}>{item.name}</Text>
+              <Text style={styles.subtitle}>{item.state}</Text>
+            </View>
+          </CardContent>
+        </Card>
+
         {/* </SharedElement> */}
       </TouchableOpacity>
     );
@@ -92,7 +107,7 @@ function ParsadAndOther({ d }) {
       <View style={styles.wigetTitleContainer}>
         <Text style={styles.wigetTitleText}>{wigetTitle}</Text>
       </View>
-      <Carousel
+      {/* <Carousel
         {...baseOptions}
         loop={false}
         style={{ width: "100%" }}
@@ -103,7 +118,8 @@ function ParsadAndOther({ d }) {
         scrollAnimationDuration={1000}
         onSnapToItem={(index) => console.log("current index:", index)}
         renderItem={CarouselCardItem}
-      />
+      /> */}
+      <Carousel items={data} renderItems={CarouselCardItem} />
     </View>
   );
 }

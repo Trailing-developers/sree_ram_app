@@ -21,7 +21,7 @@ export default function Card({
 const styles = StyleSheet.create({
   card: {
     width: 200,
-    height: 200,
+    height: 250,
     backgroundColor: colors.white,
     borderRadius: sizes.radius,
   },

@@ -8,6 +8,7 @@ import TrailScreen from "../screens/TrailScreen/TrailScreen";
 import DarshanScreen from "../screens/DarshanScreen/DarshanScreen";
 import TeachingsScreen from "../screens/TeachingsScreen/TeachingsScreen";
 import TempleDetailPage from "../screens/DarshanScreen/TempleDetailPage";
+import PhotosPage from "../screens/DarshanScreen/temple_detail_page/PhotosPage";
 // import BottomSheetModelProvider from "@gorhom/bottom-sheet";
 // import GestureHandlerRootView, {
 //   PanGestureHandler,
@@ -40,6 +41,19 @@ export default function Mynavigation() {
           component={TempleDetailPage}
           options={{
             headerShown: false,
+            useNativeDrive: true,
+            cardStyleInterpolator: ({ current: { progress } }) => ({
+              cardStyle: {
+                opacity: progress,
+              },
+            }),
+          }}
+        />
+        <Stack.Screen
+          name="TemplePhotoPage"
+          component={PhotosPage}
+          options={{
+            headerShown: true,
             useNativeDrive: true,
             cardStyleInterpolator: ({ current: { progress } }) => ({
               cardStyle: {

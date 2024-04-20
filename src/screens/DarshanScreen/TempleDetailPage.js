@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
   ImageBackground,
+  Button,
 } from "react-native";
 import HistoryPage from "./temple_detail_page/HistoryPage";
 import CrowdForecast from "./temple_detail_page/CrowdForecast";
@@ -252,6 +253,21 @@ const TempleDetailPage = ({ route }) => {
           onPress={() => navigation.goBack()}
         />
       </Animatable.View>
+      <Animatable.View
+        style={[
+          styles.moreButton,
+          { marginTop: insets.top, marginRight: insets.right },
+        ]}
+        animation={"fadeInUp"}
+        easing={"ease-in-out"}
+        delay={500}
+        duration={400}
+      >
+        <Button
+          title={"Photos"}
+          onPress={() => navigation.push("TemplePhotoPage", { item })}
+        />
+      </Animatable.View>
       <Animated.View
         style={[StyleSheet.absoluteFillObject, styles.imageBox]}
         sharedTransitionTag={`item.${item.id}.image`}
@@ -322,6 +338,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 20,
     left: 20,
+    zIndex: 1,
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    padding: 10,
+    borderRadius: 50,
+  },
+  moreButton: {
+    position: "absolute",
+    top: 20,
+    right: 20,
     zIndex: 1,
     backgroundColor: "rgba(255, 255, 255, 0.5)",
     padding: 10,

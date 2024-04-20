@@ -45,6 +45,12 @@ const styles = StyleSheet.create({
   },
   tabs: {
     marginLeft: spacing.m + 20,
+    margin: 10,
+    backgroundColor: "#ccc",
+    padding: 15,
+    paddingLeft: 30,
+    paddingRight: 30,
+    borderRadius: 10,
   },
   activeTab: {
     borderBottomColor: "#900",
@@ -53,16 +59,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   tabText: {
-    color: colors.gray,
+    color: colors.primary,
     fontSize: 20,
   },
   activeTabText: {
     color: colors.primary,
+    fontWeight: "bold",
     fontSize: 20,
   },
   dot: {
     position: "absolute",
-    top: 8,
+    top: 18,
     left: -13,
     width: 10,
     height: 10,

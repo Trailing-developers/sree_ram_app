@@ -88,22 +88,6 @@ const PhotosPage = () => {
   return (
     <View style={styles.container}>
       <Tabs items={tabContent} />
-      {/* <FlatList
-        data={photos}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <Image style={styles.image} source={{ uri: item.source }} />
-        )}
-      /> */}
-      {/* <MasonryList
-        data={photos}
-        key={(item) => item.id}
-        numColumns={2}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.masonary}
-        renderItem={({ item }) => <PhotoPageCard item={item} />}
-        refreshing={false}
-      /> */}
     </View>
   );
 };

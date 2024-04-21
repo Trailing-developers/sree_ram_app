@@ -3,7 +3,7 @@ import { View, ImageBackground, Text, StyleSheet } from "react-native";
 
 const cardView = (charge, index) => {
   return (
-    <View style={styles.textBackground}>
+    <View key={index} style={styles.textBackground}>
       <Text style={styles.text}>{charge.type}</Text>
       <Text style={styles.price}>₹ {charge.price}</Text>
     </View>

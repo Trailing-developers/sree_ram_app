@@ -11,20 +11,26 @@ const photos = [
     source:
       "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
     type: "Photos",
+    parents: ["Photos"],
+    isVisible: true,
     year: "2022",
   },
   {
     id: "2",
     source:
       "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
-    type: "Photos",
+    type: "Aarti",
+    parents: ["Photos", "Aarti"],
+    isVisible: true,
     date: "2022",
   },
   {
     id: "3",
     source:
       "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
-    type: "Photos",
+    type: "Mandir",
+    parents: ["Photos", "Mandir"],
+    isVisible: false,
     date: "2022",
   },
   {
@@ -32,6 +38,8 @@ const photos = [
     source:
       "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
     type: "Videos",
+    parents: ["Photos"],
+    isVisible: true,
     date: "2022",
   },
   {
@@ -39,6 +47,8 @@ const photos = [
     source:
       "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
     type: "Photos",
+    parents: ["Photos"],
+    isVisible: true,
     date: "2022",
   },
   {
@@ -46,6 +56,8 @@ const photos = [
     source:
       "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
     type: "Photos",
+    parents: ["Photos"],
+    isVisible: true,
     date: "2022",
   },
   {
@@ -53,6 +65,8 @@ const photos = [
     source:
       "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
     type: "Photos",
+    parents: ["Photos"],
+    isVisible: true,
     date: "2022",
   },
   {
@@ -60,15 +74,22 @@ const photos = [
     source:
       "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
     type: "Videos",
+    parents: ["Videos"],
+    isVisible: true,
     date: "2022",
   },
 ];
 
-const tabList = [...new Set(photos.map((photo) => photo.type))];
+const tabList = [
+  ...new Set(
+    photos.filter((photo) => photo.isVisible).map((photo) => photo.type)
+  ),
+];
 
 const PhotosPage = () => {
   const tabContent = tabList.map((tab) => {
-    const data = photos.filter((photo) => photo.type === tab);
+    console.log(tab);
+    const data = photos.filter((photo) => photo.parents.includes(tab));
     return {
       type: tab,
       contentView: () => (

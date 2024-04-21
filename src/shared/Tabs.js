@@ -1,56 +1,69 @@
 // Existing code
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { colors, spacing } from "../constants/theme";
 import Animated, { BounceIn } from "react-native-reanimated";
 
 const Tabs = ({ items }) => {
   const [index, setIndex] = useState(0);
   return (
-    <>
+    <View style={styles.container}>
       <View style={styles.tabBar}>
-        {items.map((item, i) => {
-          const active = i === index;
-          return (
-            <TouchableOpacity
-              key={item.type + "_" + i}
-              style={[styles.tabs, active && styles.activeTab]}
-              onPress={() => setIndex(i)}
-            >
-              {active && (
-                <Animated.View entering={BounceIn} style={styles.dot} />
-              )}
-              <Text style={active ? styles.activeTabText : styles.tabText}>
-                {item.type}
-              </Text>
-            </TouchableOpacity>
-          );
-        })}
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.scrollContainer}
+        >
+          {items.map((item, i) => {
+            const active = i === index;
+            return (
+              <TouchableOpacity
+                key={item.type + "_" + i}
+                style={[styles.tabs, active && styles.activeTab]}
+                onPress={() => setIndex(i)}
+              >
+                <View>
+                  <Text style={active ? styles.activeTabText : styles.tabText}>
+                    {item.type}
+                  </Text>
+                  {active && (
+                    <Animated.View entering={BounceIn} style={styles.dot} />
+                  )}
+                </View>
+              </TouchableOpacity>
+            );
+          })}
+        </ScrollView>
       </View>
       {items[index].contentView()}
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     marginTop: 10,
   },
+  scrollContainer: {},
   tabBar: {
     flexDirection: "row",
     justifyContent: "flex-end",
-    paddingHorizontal: spacing.l,
     paddingBottom: spacing.m,
   },
   tabs: {
-    marginLeft: spacing.m + 20,
-    margin: 10,
-    backgroundColor: "#ccc",
+    marginLeft: spacing.m,
+    marginTop: spacing.s,
     padding: 15,
     paddingLeft: 30,
     paddingRight: 30,
     borderRadius: 10,
+    backgroundColor: colors.lightGray,
   },
   activeTab: {
     borderBottomColor: "#900",
@@ -69,8 +82,8 @@ const styles = StyleSheet.create({
   },
   dot: {
     position: "absolute",
-    top: 18,
-    left: -13,
+    top: 8,
+    right: -15,
     width: 10,
     height: 10,
     borderRadius: 5,

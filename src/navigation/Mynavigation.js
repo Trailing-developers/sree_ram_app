@@ -1,7 +1,6 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import HomeScreen from "../screens/HomeScreen";
 import CharitraScreen from "../screens/CharitraPaath/CharitraScreen";
 import TrailScreen from "../screens/TrailScreen/TrailScreen";
@@ -9,13 +8,8 @@ import DarshanScreen from "../screens/DarshanScreen/DarshanScreen";
 import TeachingsScreen from "../screens/TeachingsScreen/TeachingsScreen";
 import TempleDetailPage from "../screens/DarshanScreen/TempleDetailPage";
 import PhotosPage from "../screens/DarshanScreen/temple_detail_page/PhotosPage";
-// import BottomSheetModelProvider from "@gorhom/bottom-sheet";
-// import GestureHandlerRootView, {
-//   PanGestureHandler,
-// } from "react-native-gesture-handler";
 
 const Stack = createNativeStackNavigator();
-// const Stack = createSharedElementStackNavigator();
 
 export default function Mynavigation() {
   return (

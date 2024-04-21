@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { interpolate } from "react-native-reanimated";
-import Carousel,{ TAnimationStyle } from "react-native-reanimated-carousel";
+import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
 
 const data = [
   {
@@ -31,7 +31,7 @@ export const IMAGE_HEIGHT = width * 0.7;
 
 const CarouselCardItem = ({ item, index }) => {
   return (
-    <View style={styles.cardContainer} key={index}>
+    <View style={styles.container2} key={index}>
       <Image source={{ uri: item.imgUrl }} style={styles.image} />
       <View style={styles.textContainer}>
         <Text style={styles.title}>{item.title}</Text>
@@ -42,7 +42,7 @@ const CarouselCardItem = ({ item, index }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  cardContainer: {
     backgroundColor: "white",
     borderRadius: 8,
     width: ITEM_WIDTH,
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 20,
   },
 });
 
@@ -87,23 +88,22 @@ function TrailCarousel() {
 
   const animationStyle = (value) => {
     "worklet";
-  
+
     const zIndex = interpolate(value, [-1, 0, 1], [10, 20, 30]);
     const scale = interpolate(value, [-1, 0, 1], [1.25, 1, 0.25]);
     const opacity = interpolate(value, [-0.75, 0, 1], [0, 1, 0]);
-  
+
     return {
       transform: [{ scale }],
       zIndex,
       opacity,
     };
   };
-  
 
   return (
     <View style={{ flex: 1, paddingBottom: 10 }}>
       <Carousel
-        loop = {true}
+        loop={true}
         width={width}
         height={IMAGE_HEIGHT}
         autoPlay={false}

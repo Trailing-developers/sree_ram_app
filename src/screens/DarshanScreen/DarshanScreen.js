@@ -87,13 +87,11 @@ const widgetData = [
 //TODO add spacing between each widget here and pass to the children
 export default function DarshanScreen() {
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <TempleCarousel />
-        {widgetData.map((d) => {
-          return <ParsadAndOther key={d.wigetTitle} d={d} />;
-        })}
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView>
+      <TempleCarousel />
+      {widgetData.map((d) => {
+        return <ParsadAndOther key={d.wigetTitle} d={d} />;
+      })}
+    </ScrollView>
   );
 }

@@ -1,18 +1,14 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import Card from "../../shared/Card/Card";
+import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import { KATHA_LIST } from "../../data";
-import CardMedia from "../../shared/Card/CardMedia";
-import CardContent from "../../shared/Card/CardContent";
 import { colors, spacing } from "../../constants/theme";
+import KathaCard from "./KathaCard";
+import { useNavigation } from "@react-navigation/native";
 
 export default function TeachingsScreen() {
   const navigation = useNavigation();
-
-  const handleCardPress = (routeName) => {
-    navigation.navigate(routeName);
+  const handlePress = (item) => {
+    navigation.navigate("KathaContent", { bookId: item.id });
   };
-
   return (
     <FlatList
       data={KATHA_LIST}
@@ -24,20 +20,7 @@ export default function TeachingsScreen() {
         backgroundColor: colors.bhagwa,
         flex: 1,
       }}
-      renderItem={({ item }) => (
-        <Card
-          key={item.id}
-          style={{
-            marginLeft: spacing.s,
-            marginBottom: spacing.l,
-          }}
-        >
-          <CardMedia source={item.image} />
-          <CardContent style={styles.cardContent}>
-            <Text style={styles.cardText}>{item.title}</Text>
-          </CardContent>
-        </Card>
-      )}
+      renderItem={({ item }) => <KathaCard item={item} />}
     />
   );
 }

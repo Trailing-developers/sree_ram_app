@@ -11,61 +11,61 @@ const photos = [
     source:
       "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
     type: "Photos",
-    parents: ["Photos"],
+    parents: ["photos"],
     isVisible: true,
     year: "2022",
   },
   {
     id: "2",
     source:
-      "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
+      "https://wpassets.adda247.com/wp-content/uploads/multisite/sites/5/2023/06/16111548/Kedarnath.jpg",
     type: "Aarti",
-    parents: ["Photos", "Aarti"],
+    parents: ["photos", "aarti", "night"],
     isVisible: true,
     date: "2022",
   },
   {
     id: "3",
     source:
-      "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
+      "https://i.pinimg.com/736x/22/d8/25/22d825b76a28090e93efd7802af15e7f.jpg",
     type: "Mandir",
-    parents: ["Photos", "Mandir"],
+    parents: ["photos", "mandir", "night"],
     isVisible: false,
     date: "2022",
   },
   {
     id: "4",
     source:
-      "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
+      "https://i.pinimg.com/736x/56/8f/3c/568f3c7734d7f1596b7d165600958074.jpg",
     type: "Videos",
-    parents: ["Photos"],
+    parents: ["photos"],
     isVisible: true,
     date: "2022",
   },
   {
     id: "5",
     source:
-      "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
+      "https://www.euttaranchal.com/tourism/photos/kedarnath-temple-3618171.jpg",
     type: "Photos",
-    parents: ["Photos"],
+    parents: ["photos"],
     isVisible: true,
     date: "2022",
   },
   {
     id: "6",
     source:
-      "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIsI9TKFfXKwGet1Gh7vE1S3lCEbFry2I7zClPL5ADRQ&s",
     type: "Photos",
-    parents: ["Photos"],
+    parents: ["photos"],
     isVisible: true,
     date: "2022",
   },
   {
     id: "7",
     source:
-      "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCX03SrNPCzKwvVuz4M9HDNR8SMdJ0-9vmzKTspVHIjg&s",
     type: "Photos",
-    parents: ["Photos"],
+    parents: ["photos"],
     isVisible: true,
     date: "2022",
   },
@@ -74,7 +74,7 @@ const photos = [
     source:
       "https://assets.cntraveller.in/photos/60ba1486002baf698cc67003/1:1/w_1080,h_1080,c_limit/GettyImages-539105384.jpg",
     type: "Videos",
-    parents: ["Videos"],
+    parents: ["videos"],
     isVisible: true,
     date: "2022",
   },
@@ -88,8 +88,9 @@ const tabList = [
 
 const PhotosPage = () => {
   const tabContent = tabList.map((tab) => {
-    console.log(tab);
-    const data = photos.filter((photo) => photo.parents.includes(tab));
+    const data = photos.filter((photo) =>
+      photo.parents.includes(tab.toLowerCase())
+    );
     return {
       type: tab,
       contentView: () => (

@@ -8,6 +8,7 @@ import DarshanScreen from "../screens/DarshanScreen/DarshanScreen";
 import TeachingsScreen from "../screens/TeachingsScreen/TeachingsScreen";
 import TempleDetailPage from "../screens/DarshanScreen/TempleDetailPage";
 import PhotosPage from "../screens/DarshanScreen/temple_detail_page/PhotosPage";
+import GodAndGoddessDetailPage from "../screens/DarshanScreen/God_and_goddess_details/GodAndGoddessDetailPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +55,13 @@ export default function Mynavigation() {
                 opacity: progress,
               },
             }),
+          }}
+        />
+        <Stack.Screen
+          name="GodDetails"
+          component={GodAndGoddessDetailPage}
+          options={{
+            useNativeDrive: true,
           }}
         />
       </Stack.Navigator>

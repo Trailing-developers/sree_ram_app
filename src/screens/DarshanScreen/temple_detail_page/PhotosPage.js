@@ -99,7 +99,7 @@ const photos = [
     id: "8",
     source: "qVEiDgK8hq4",
     type: "Videos",
-    parents: ["videos"],
+    parents: ["videos", "aarti"],
     isVisible: true,
     isVideo: true,
     date: "2022",

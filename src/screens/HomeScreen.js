@@ -6,12 +6,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <TrailCarousel />
-        <CalenderWidget />
-        <MenuItems />
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView>
+      <TrailCarousel />
+      <CalenderWidget />
+      <MenuItems />
+    </ScrollView>
   );
 }

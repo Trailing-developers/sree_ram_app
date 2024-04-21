@@ -1,79 +1,57 @@
-import { ScrollView, StyleSheet, View } from "react-native";
-import Card from "../Home/Card";
+import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Card from "../../shared/Card/Card";
+import { KATHA_LIST } from "../../data";
+import CardMedia from "../../shared/Card/CardMedia";
+import CardContent from "../../shared/Card/CardContent";
+import { colors, spacing } from "../../constants/theme";
 
 export default function TeachingsScreen() {
   const navigation = useNavigation();
+
   const handleCardPress = (routeName) => {
     navigation.navigate(routeName);
   };
 
-  const chunkArray = (arr, chunkSize) => {
-    return Array(Math.ceil(arr.length / chunkSize))
-      .fill()
-      .map((_, index) => index * chunkSize)
-      .map((start) => arr.slice(start, start + chunkSize));
-  };
-  const chunkedData = chunkArray(data, 2);
   return (
-    <View style={styles.container}>
-      {chunkedData.map((row, index) => (
-        <View key={index} style={styles.row}>
-          {row.map((item) => (
-            <Card
-              title={item.title}
-              onPress={() => handleCardPress(item.link)}
-              imageUrl={item.imageUrl}
-            />
-          ))}
-        </View>
-      ))}
-    </View>
+    <FlatList
+      data={KATHA_LIST}
+      keyExtractor={(item) => item.id}
+      numColumns={2}
+      contentContainerStyle={{
+        paddingVertical: spacing.l,
+        paddingHorizontal: spacing.s,
+        backgroundColor: colors.bhagwa,
+        flex: 1,
+      }}
+      renderItem={({ item }) => (
+        <Card
+          key={item.id}
+          style={{
+            marginLeft: spacing.s,
+            marginBottom: spacing.l,
+          }}
+        >
+          <CardMedia source={item.image} />
+          <CardContent style={styles.cardContent}>
+            <Text style={styles.cardText}>{item.title}</Text>
+          </CardContent>
+        </Card>
+      )}
+    />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 10,
   },
-  row: {
-    flexDirection: "row",
-    marginBottom: 10,
+  cardContent: {
+    justifyContent: "center",
+    backgroundColor: colors.bhagwadark,
+  },
+  cardText: {
+    fontSize: 15,
+    textAlign: "center",
   },
 });
-
-const data = [
-  {
-    title: "Ramayan",
-    imageUrl: require("../../../assets/GodImages/ShreeRam.jpg"),
-    link: "Page1",
-  },
-  {
-    title: "Sunderkand",
-    imageUrl: require("../../../assets/GodImages/SitaMaa.jpg"),
-    link: "Page2",
-  },
-  {
-    title: "Hanuman Chalisa",
-    imageUrl: require("../../../assets/GodImages/LakshmanJi.jpg"),
-    link: "Page3",
-  },
-  {
-    title: "Shree Maadbhagvat Geeta",
-    imageUrl: require("../../../assets/GodImages/Hanuman.jpg"),
-    link: "Page4",
-  },
-  {
-    title: "Shree Raja Dasratha",
-    imageUrl: require("../../../assets/GodImages/RajaDasrath.jpg"),
-    link: "Page5",
-  },
-  {
-    title: "Sugriva",
-    imageUrl: require("../../../assets/GodImages/Sugriva.png"),
-    link: "Page6",
-  },
-];

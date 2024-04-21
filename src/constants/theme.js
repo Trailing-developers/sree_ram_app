@@ -9,6 +9,8 @@ export const colors = {
   light: "#fbfbfb",
   white: "#fff",
   black: "#000",
+  bhagwa: "#FFC470",
+  bhagwadark: "#FF6D03",
 };
 
 export const shadow = {

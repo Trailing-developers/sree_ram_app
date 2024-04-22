@@ -1,13 +1,18 @@
 import React from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
+import { Title } from "react-native-paper";
+import { ScrollView } from "react-native";
+
 
 const GodAndGoddessDetailPage = ({ route }) => {
   const { image, name } = route.params;
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: image }} style={styles.image} />
-      <Text style={styles.description}>{name}</Text>
-    </View>
+    <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+      <View style={styles.container}>
+        <Image source={{ uri: image }} style={styles.image} />
+        <Text style={styles.description}>{name}</Text>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -16,13 +21,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    width: 200,
+    width: 350,
     height: 200,
+    resizeModE: 'cover',
   },
   description: {
     marginTop: 10,
     textAlign: "center",
   },
 });
+
+
+
+
+
 
 export default GodAndGoddessDetailPage;

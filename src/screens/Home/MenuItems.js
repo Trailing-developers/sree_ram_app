@@ -35,7 +35,7 @@ export default function MenuItems() {
         />
         <Card
           title="Hindu Calendar"
-          onPress={() => handleCardPress("CharitraScreen")}
+          onPress={() => handleCardPress("Calender")}
           imageUrl={require("../../../assets/menuItemsImages/HinduCalender.jpg")}
         />
         <Card

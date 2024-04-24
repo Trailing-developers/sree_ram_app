@@ -1,87 +1,125 @@
 import { TouchableWithoutFeedback } from "@gorhom/bottom-sheet";
-import React, { useMemo, useRef, useState } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useMemo, useRef, useState } from "react";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { colors } from "../../constants/theme";
-import moment from "moment";
-import Swiper from "react-native-swiper";
+import {
+  Calendar,
+  Agenda,
+  ExpandableCalendar,
+  CalendarProvider,
+  AgendaList,
+} from "react-native-calendars";
+
+// https://blog.logrocket.com/create-customizable-shareable-calendars-react-native/
+
+const items = {
+  "2024-04-01": [{ name: "Cycling" }, { name: "Walking" }, { name: "Running" }],
+  "2024-04-05": null,
+  "2024-04-12": [{ name: "Writing" }],
+};
+const iitems = [
+  {
+    title: "2024-04-24",
+    data: [{ name: "Cycling" }, { name: "Walking" }, { name: "Running" }],
+  },
+  {
+    title: "2024-04-27",
+    data: [{ name: "Cycling" }, { name: "Walking" }, { name: "Running" }],
+  },
+];
+
+const marked = {
+  "2024-04-10": { marked: true, dotColor: "red" },
+  "2024-04-12": {
+    marked: true,
+    selected: true,
+    selectedColor: "#aa2222",
+    selectedTextColor: "yellow",
+    dotColor: "white",
+  },
+};
+
+const leftArrowIcon = require("../../../assets/icons/previous.png");
+const rightArrowIcon = require("../../../assets/icons/next.png");
 
 const CalendarScreen = () => {
-  const [value, setValue] = useState(new Date());
-  const [week, setWeek] = useState(0);
-  const swiper = useRef();
+  const [selected, setSelected] = useState(new Date());
 
-  const weeks = useMemo(() => {
-    const start = moment(start).add(week, "weeks").startOf("week");
-    return [-1, 0, 1].map((adj) => {
-      return Array.from({ length: 7 }, (_, i) => {
-        const date = moment(start).add(adj, "week").add(i, "day");
-        return {
-          weekday: date.format("ddd"),
-          date: date.toDate(),
-        };
-      });
-    });
-  }, [week]);
+  const renderItem = (item) => {
+    console.log(item);
+    return (
+      <TouchableOpacity style={styles.item}>
+        <Text style={styles.itemText}>{item.item.name}</Text>
+      </TouchableOpacity>
+    );
+  };
+
+  const marked = useMemo(
+    () => ({
+      [selected]: {
+        selected: true,
+        selectedColor: "#222222",
+        selectedTextColor: "yellow",
+      },
+    }),
+    [selected]
+  );
+  const ds = new Date().toDateString();
 
   return (
-    // <SafeAreaView>
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Your Schedule</Text>
-      </View>
-      <View style={styles.picker}>
-        <Swiper
-          index={1}
-          ref={swiper}
-          showsPagination={false}
-          loop={false}
-          onIndexChanged={(ind) => {
-            if (ind === 1) {
-              return;
-            }
-            setTimeout(() => {
-              const newIndex = ind - 1;
-              const newWeek = week + newIndex;
-              setWeek(newWeek);
-              setValue(moment(value).add(newIndex, "weeks").toDate());
-              swiper.current.scrollTo(1, true);
-            }, 100);
-          }}
-        >
-          {weeks.map((dates, index) => (
-            <View
-              key={index}
-              style={[styles.itemRow, { paddingHorizontal: 16 }]}
-            >
-              {dates.map((item, dateindex) => {
-                const isActive =
-                  value.toDateString() === item.date.toDateString();
-                return (
-                  <TouchableWithoutFeedback
-                    key={dateindex}
-                    onPress={() => setValue(item.date)}
-                  >
-                    <View
-                      style={[styles.dateItem, isActive && styles.activeItem]}
-                    >
-                      <Text style={styles.weekday}>{item.weekday}</Text>
-                      <Text style={styles.date}>{item.date.getDate()}</Text>
-                    </View>
-                  </TouchableWithoutFeedback>
-                );
-              })}
-            </View>
-          ))}
-        </Swiper>
-      </View>
-      <View style={{ paddingVertical: 24, paddingHorizontal: 16 }}>
-        <Text style={styles.contentText}>{value.toDateString()}</Text>
-        <View style={styles.placeholder}>
-          <View style={styles.placeholderContent}></View>
-        </View>
-      </View>
-    </View>
-    // </SafeAreaView>
+    <CalendarProvider showTodayButton date={ds}>
+      <ExpandableCalendar
+        marked={marked}
+        leftArrowImageSource={leftArrowIcon}
+        rightArrowImageSource={rightArrowIcon}
+      />
+      <AgendaList
+        sections={iitems}
+        renderItem={renderItem}
+        // scrollToNextEvent
+        sectionStyle={styles.section}
+        // dayFormat={'yyyy-MM-d'}
+      />
+    </CalendarProvider>
+    // <Calendar
+    //   onDayPress={(d) => setSelected(d.dateString)}
+    //   onMonthChange={(date) => console.log("onMonthChange", date)}
+    //   markedDates={marked}
+    // />
+    // <Agenda
+    //   selected={ds}
+    //   items={{
+    //     "2024-04-01": [
+    //       { name: "Cycling" },
+    //       { name: "Walking" },
+    //       { name: "Running" },
+    //     ],
+    //     "2024-04-05": null,
+    //     "2024-04-12": [{ name: "Writing" }],
+    //   }}
+    //   renderItem={(item, isFirst) => {
+    //     if (item == null) return <></>;
+    //     return (
+    //       <TouchableOpacity style={styles.item}>
+    //         <Text style={styles.itemText}>{item.name}</Text>
+    //       </TouchableOpacity>
+    //     );
+    //   }}
+    //   theme={{
+    //     backgroundColor: colors.bhagwadark,
+    //     calendarBackground: colors.bhagwa,
+    //     agendaDayNumColor: "green",
+    //   }}
+    //   style={{
+    //     backgroundColor: colors.bhagwa,
+    //   }}
+    // />
   );
 };
 
@@ -156,6 +194,27 @@ const styles = StyleSheet.create({
     borderStyle: "dashed",
     borderRadius: 9,
     flex: 1,
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  item: {
+    backgroundColor: colors.bhagwa,
+    flex: 1,
+    borderRadius: 5,
+    padding: 10,
+    marginRight: 10,
+    marginTop: 17,
+  },
+  itemText: {
+    color: "#888",
+    fontSize: 16,
+  },
+  section: {
+    backgroundColor: colors.bhagwadark,
+    color: "grey",
+    textTransform: "capitalize",
   },
 });
 

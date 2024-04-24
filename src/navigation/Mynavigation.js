@@ -10,6 +10,7 @@ import TempleDetailPage from "../screens/DarshanScreen/TempleDetailPage";
 import PhotosPage from "../screens/DarshanScreen/temple_detail_page/PhotosPage";
 import GodAndGoddessDetailPage from "../screens/DarshanScreen/God_and_goddess_details/GodAndGoddessDetailPage";
 import BookKathaContent from "../screens/TeachingsScreen/BookKathaContent";
+import CalendarScreen from "../screens/Calendar/Calendar";
 
 const Stack = createNativeStackNavigator();
 
@@ -68,6 +69,13 @@ export default function Mynavigation() {
         <Stack.Screen
           name="KathaContent"
           component={BookKathaContent}
+          options={{
+            useNativeDrive: true,
+          }}
+        />
+        <Stack.Screen
+          name="Calender"
+          component={CalendarScreen}
           options={{
             useNativeDrive: true,
           }}

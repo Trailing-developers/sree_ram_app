@@ -9,7 +9,10 @@ import { useNavigation } from "@react-navigation/native";
 const KathaCard = ({ item }) => {
   const navigate = useNavigation();
   const handlePress = () => {
-    navigate.navigate("KathaContent", { bookId: item.id });
+    navigate.navigate("KathaContent", {
+      bookId: item.id,
+      pdfLink: item.pdfLink,
+    });
   };
 
   return (

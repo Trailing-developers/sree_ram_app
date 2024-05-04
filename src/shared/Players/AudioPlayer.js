@@ -12,8 +12,12 @@ import { SONG_LIST } from "../../data";
 import TrackListItem from "./AudioPlayer/TrackListItem";
 import { itemDivider } from "../../constants/theme";
 import { ScrollView } from "react-native-gesture-handler";
+import { useNavigationSearch } from "../../hooks/useNavigationSearch";
 
 export default function AudioPlayer() {
+  const search = useNavigationSearch({
+    searchBarOptions: { placeholder: "Search Songs" },
+  });
   const ItemDivider = () => {
     return (
       <View
@@ -35,6 +39,7 @@ export default function AudioPlayer() {
         data={SONG_LIST}
         ItemSeparatorComponent={ItemDivider}
         scrollEnabled={false}
+        contentContainerStyle={{ paddingTop: 20, paddingBottom: 128 }}
         renderItem={(item, index) => {
           return (
             <TrackListItem

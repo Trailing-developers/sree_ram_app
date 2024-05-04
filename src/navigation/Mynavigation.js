@@ -12,7 +12,7 @@ import GodAndGoddessDetailPage from "../screens/DarshanScreen/God_and_goddess_de
 import BookKathaContent from "../screens/TeachingsScreen/BookKathaContent";
 import CalendarScreen from "../screens/Calendar/Calendar";
 import AudioPlayer from "../shared/Players/AudioPlayer";
-// import AudioPlayer from "../shared/Players/AudioPlayer";
+import { StackScreenWithSearchBar } from "../constants/layout";
 
 const Stack = createNativeStackNavigator();
 
@@ -86,6 +86,9 @@ export default function Mynavigation() {
           name="AudioPlayer"
           component={AudioPlayer}
           options={{
+            ...StackScreenWithSearchBar,
+            headerShown: true,
+            headerTitle: "Songs",
             useNativeDrive: true,
           }}
         />

@@ -23,7 +23,7 @@ export const useNavigationSearch = ({ searchBarOptions }) => {
   }, [navigation, searchBarOptions]);
 
   const onChangeSearch = (query) => {
-    setSearch(query);
+    setSearch(query.nativeEvent.text);
   };
 
   return search;

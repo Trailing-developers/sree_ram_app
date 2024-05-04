@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   View,
   Text,
@@ -13,6 +13,7 @@ import TrackListItem from "./AudioPlayer/TrackListItem";
 import { itemDivider } from "../../constants/theme";
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigationSearch } from "../../hooks/useNavigationSearch";
+import { trackTitleFilter } from "../../helper/filter";
 
 export default function AudioPlayer() {
   const search = useNavigationSearch({
@@ -30,16 +31,22 @@ export default function AudioPlayer() {
     );
   };
 
+  const filteredSongs = useMemo(() => {
+    if (!search) return SONG_LIST;
+    return SONG_LIST.filter(trackTitleFilter(search));
+  }, [search]);
+
   return (
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"
       style={{ ...styles.mainContainer, paddingHorizontal: 20 }}
     >
       <FlatList
-        data={SONG_LIST}
+        data={filteredSongs}
         ItemSeparatorComponent={ItemDivider}
         scrollEnabled={false}
         contentContainerStyle={{ paddingTop: 20, paddingBottom: 128 }}
+        ListFooterComponent={ItemDivider}
         renderItem={(item, index) => {
           return (
             <TrackListItem

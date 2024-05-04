@@ -11,6 +11,7 @@ import PhotosPage from "../screens/DarshanScreen/temple_detail_page/PhotosPage";
 import GodAndGoddessDetailPage from "../screens/DarshanScreen/God_and_goddess_details/GodAndGoddessDetailPage";
 import BookKathaContent from "../screens/TeachingsScreen/BookKathaContent";
 import CalendarScreen from "../screens/Calendar/Calendar";
+import AudioPlayer from "../shared/Players/AudioPlayer";
 // import AudioPlayer from "../shared/Players/AudioPlayer";
 
 const Stack = createNativeStackNavigator();
@@ -81,13 +82,13 @@ export default function Mynavigation() {
             useNativeDrive: true,
           }}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           name="AudioPlayer"
           component={AudioPlayer}
           options={{
             useNativeDrive: true,
           }}
-        /> */}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

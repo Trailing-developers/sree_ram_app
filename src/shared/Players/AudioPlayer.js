@@ -1,59 +1,62 @@
-import { View, Text } from "react-native";
+import { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 import TrackPlayer from "react-native-track-player";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { SONG_LIST } from "../../data";
+import TrackListItem from "./AudioPlayer/TrackListItem";
+import { itemDivider } from "../../constants/theme";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function AudioPlayer() {
-  const [trackTitle, setTrackTitle] = useState("");
-  const [trackArtist, setTrackArtist] = useState("");
-  const [playbackState, setPlaybackState] = useState(null);
-
-  useEffect(() => {
-    const fetchTrackInfo = async () => {
-      const track = await TrackPlayer.getCurrentTrack();
-      if (track) {
-        setTrackTitle(track.title);
-        setTrackArtist(track.artist);
-      }
-    };
-
-    const updatePlaybackState = (state) => {
-      setPlaybackState(state);
-    };
-
-    TrackPlayer.addEventListener("playback-state", updatePlaybackState);
-
-    fetchTrackInfo();
-
-    return () => {
-      TrackPlayer.removeEventListener("playback-state", updatePlaybackState);
-    };
-  }, []);
-
-  const togglePlayback = async () => {
-    const state = await TrackPlayer.getState();
-    if (state === TrackPlayer.STATE_PLAYING) {
-      TrackPlayer.pause();
-    } else {
-      TrackPlayer.play();
-    }
+  const ItemDivider = () => {
+    return (
+      <View
+        style={{
+          ...itemDivider.itemSeperator,
+          marginVertical: 9,
+          marginLeft: 60,
+        }}
+      />
+    );
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.trackTitle}>{trackTitle}</Text>
-      <Text style={styles.trackArtist}>{trackArtist}</Text>
-
-      <TouchableOpacity onPress={togglePlayback}>
-        <Icon
-          name={playbackState === TrackPlayer.STATE_PLAYING ? "pause" : "play"}
-          size={32}
-          color="#444"
-        />
-      </TouchableOpacity>
-    </View>
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      style={{ ...styles.mainContainer, paddingHorizontal: 20 }}
+    >
+      <FlatList
+        data={SONG_LIST}
+        ItemSeparatorComponent={ItemDivider}
+        scrollEnabled={false}
+        renderItem={(item, index) => {
+          return (
+            <TrackListItem
+              track={{
+                title: item.item.title,
+                artist: item.item.artist,
+                image: item.item.artwork,
+              }}
+              scrollEnabled={false}
+            />
+          );
+        }}
+      />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
   container: {
     flexDirection: "row",
     alignItems: "center",

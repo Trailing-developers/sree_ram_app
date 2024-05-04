@@ -1,6 +1,13 @@
-import { Dimensions } from "react-native";
+import { Dimensions, Image, StyleSheet } from "react-native";
 
 const { width, height } = Dimensions.get("window");
+
+export const unknownTrackImageUri = Image.resolveAssetSource(
+  require("../../assets/unknown_track.png")
+).uri;
+export const unknownArtistImageUri = Image.resolveAssetSource(
+  require("../../assets/unknown_artist.png")
+).uri;
 
 export const colors = {
   primary: "#070f18",
@@ -50,3 +57,11 @@ export const spacing = {
   l: 24,
   xl: 40,
 };
+
+export const itemDivider = StyleSheet.create({
+  itemSeperator: {
+    borderColor: colors.lightGray,
+    borderWidth: StyleSheet.hairlineWidth,
+    opacity: 0.3,
+  },
+});

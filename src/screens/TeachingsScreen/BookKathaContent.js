@@ -10,10 +10,12 @@ import {
 import Pdf from "react-native-pdf";
 import { colors } from "../../constants/theme";
 import Icon from "react-native-vector-icons/FontAwesome";
+import AudioPlayer from "../../shared/Players/AudioPlayer";
+import { useNavigation } from "@react-navigation/native";
 
 const BookKathaContent = ({ route }) => {
   const { bookId, pdfLink } = route.params;
-  console.log(pdfLink);
+  const navigation = useNavigation();
   const source = {
     uri: pdfLink,
     cache: true,
@@ -24,6 +26,7 @@ const BookKathaContent = ({ route }) => {
       <View style={styles.pdfContainer}>
         <Text>Book Katha Content for {bookId}</Text>
         <Pdf
+          trustAllCerts={false}
           source={source}
           onLoadComplete={(numberOfPages, filePath) => {
             console.log(`Number of pages: ${numberOfPages}`);
@@ -43,7 +46,11 @@ const BookKathaContent = ({ route }) => {
         />
       </View>
       <View style={styles.iconContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("AudioPlayer");
+          }}
+        >
           <Icon name="music" size={50} color={colors.black} />
         </TouchableOpacity>
         <TouchableOpacity>

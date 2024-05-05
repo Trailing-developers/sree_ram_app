@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { SONG_LIST } from "../../data";
 import TrackListItem from "./AudioPlayer/TrackListItem";
-import { itemDivider } from "../../constants/theme";
+import { itemDivider, utilsStyles } from "../../constants/theme";
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigationSearch } from "../../hooks/useNavigationSearch";
 import { trackTitleFilter } from "../../helper/filter";
@@ -51,6 +51,11 @@ export default function AudioPlayer() {
         scrollEnabled={false}
         contentContainerStyle={{ paddingTop: 20, paddingBottom: 128 }}
         ListFooterComponent={ItemDivider}
+        ListEmptyComponent={
+          <View>
+            <Text style={itemDivider.emptyContentText}>No songs found!</Text>
+          </View>
+        }
         renderItem={(item, index) => {
           return (
             <TrackListItem

@@ -64,4 +64,19 @@ export const itemDivider = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     opacity: 0.3,
   },
+  emptyContentText: {
+    color: colors.gray,
+    fontSize: 40,
+    textAlign: "center",
+    paddingVertical: spacing.m,
+    marginTop: 20,
+  },
 });
+
+export const styles = {
+  colors,
+  shadow,
+  sizes,
+  spacing,
+  itemDivider,
+};

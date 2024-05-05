@@ -1,5 +1,5 @@
 import TrackPlayer, { useIsPlaying } from "react-native-track-player";
-import { FontAwesome, FontAwesome6 } from "@expo/vector-icons";
+import { FontAwesome6 } from "@expo/vector-icons";
 import { View } from "react-native";
 import { colors } from "../../../constants/theme";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -13,7 +13,7 @@ export const PlayPauseButton = ({ style, iconSize }) => {
         onPress={playing ? TrackPlayer.pause : TrackPlayer.play}
         activeOpactiy={0.5}
       >
-        <FontAwesome
+        <FontAwesome6
           name={playing ? "pause" : "play"}
           size={iconSize}
           color={colors.primary}

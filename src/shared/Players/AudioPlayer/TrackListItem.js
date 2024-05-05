@@ -2,10 +2,13 @@ import React from "react";
 import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { colors, unknownTrackImageUri } from "../../../constants/theme";
-import { useActiveTrack } from "react-native-track-player";
+import { useActiveTrack, useIsPlaying } from "react-native-track-player";
 import { Entypo } from "@expo/vector-icons";
+import LoaderKit from "react-native-loader-kit";
+import { Ionicons } from "@expo/vector-icons";
 
 export default TrackListItem = ({ track, handleTrackSelect }) => {
+  const playing = useIsPlaying();
   const isActiveTrack = useActiveTrack()?.url === track.url;
   return (
     <TouchableHighlight
@@ -20,11 +23,26 @@ export default TrackListItem = ({ track, handleTrackSelect }) => {
               uri: track.artwork ?? unknownTrackImageUri,
               priority: FastImage.priority.normal,
             }}
-            style={[
-              styles.trackArtworkImage,
-              (opacity = isActiveTrack ? 0.6 : 1),
-            ]}
+            style={{
+              ...styles.trackArtworkImage,
+              opacity: isActiveTrack ? 0.7 : 1,
+            }}
           />
+          {isActiveTrack &&
+            (playing.playing ? (
+              <LoaderKit
+                style={styles.trackPlayingIconIndicator}
+                name="LineScaleParty"
+                color={colors.primary}
+              />
+            ) : (
+              <Ionicons
+                style={styles.trackPausedIconIndicator}
+                name="play"
+                size={24}
+                color={colors.primary}
+              />
+            ))}
         </View>
         <View
           style={{
@@ -37,10 +55,10 @@ export default TrackListItem = ({ track, handleTrackSelect }) => {
           <View style={{ width: "100%" }}>
             <Text
               numberOfLines={1}
-              style={[
-                styles.trackTitleText,
-                (color = isActiveTrack ? colors.primary : colors.black),
-              ]}
+              style={{
+                ...styles.trackTitleText,
+                color: isActiveTrack ? colors.bhagwadark : colors.primary,
+              }}
             >
               {track.title}
             </Text>
@@ -63,6 +81,18 @@ const styles = StyleSheet.create({
     columnGap: 14,
     alignItems: "center",
     paddingRight: 20,
+  },
+  trackPlayingIconIndicator: {
+    position: "absolute",
+    top: 18,
+    left: 16,
+    width: 16,
+    height: 16,
+  },
+  trackPausedIconIndicator: {
+    position: "absolute",
+    top: 14,
+    left: 16,
   },
   trackArtworkImage: {
     width: 50,

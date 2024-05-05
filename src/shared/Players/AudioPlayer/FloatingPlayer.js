@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { PlayPauseButton, SkipToNextButton } from "./PlayerControl";
 import FastImage from "react-native-fast-image";
 import { useLastActiveTrack } from "../../../hooks/useLastActiveTrack";
+import { MovingText } from "./MovingText";
 
 export const FloatingPlayer = ({ style }) => {
   const activeTrack = useActiveTrack();
@@ -23,7 +24,11 @@ export const FloatingPlayer = ({ style }) => {
           style={styles.trackArtworkImage}
         />
         <View style={styles.trackTitleContainer}>
-          <Text style={styles.trackTitle}>{displayTrack.title}</Text>
+          <MovingText
+            style={styles.trackTitle}
+            text={displayTrack.title ?? ""}
+            animationThreshold={25}
+          />
         </View>
         <View style={styles.trackControlContainer}>
           <PlayPauseButton iconSize={24} />

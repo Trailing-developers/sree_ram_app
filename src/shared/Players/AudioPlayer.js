@@ -6,8 +6,6 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import TrackPlayer from "react-native-track-player";
-import Icon from "react-native-vector-icons/FontAwesome";
 import { SONG_LIST } from "../../data";
 import TrackListItem from "./AudioPlayer/TrackListItem";
 import { itemDivider } from "../../constants/theme";
@@ -36,6 +34,12 @@ export default function AudioPlayer() {
     return SONG_LIST.filter(trackTitleFilter(search));
   }, [search]);
 
+  const handleTrackSelect = (track) => {
+    // TrackPlayer.reset();
+    // TrackPlayer.add(track);
+    console.log(track);
+  };
+
   return (
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"
@@ -50,12 +54,9 @@ export default function AudioPlayer() {
         renderItem={(item, index) => {
           return (
             <TrackListItem
-              track={{
-                title: item.item.title,
-                artist: item.item.artist,
-                image: item.item.artwork,
-              }}
+              track={{ ...item.item }}
               scrollEnabled={false}
+              handleTrackSelect={handleTrackSelect}
             />
           );
         }}

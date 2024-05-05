@@ -12,6 +12,7 @@ import { itemDivider } from "../../constants/theme";
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigationSearch } from "../../hooks/useNavigationSearch";
 import { trackTitleFilter } from "../../helper/filter";
+import TrackPlayer from "react-native-track-player";
 
 export default function AudioPlayer() {
   const search = useNavigationSearch({
@@ -34,10 +35,8 @@ export default function AudioPlayer() {
     return SONG_LIST.filter(trackTitleFilter(search));
   }, [search]);
 
-  const handleTrackSelect = (track) => {
-    // TrackPlayer.reset();
-    // TrackPlayer.add(track);
-    console.log(track);
+  const handleTrackSelect = async (track) => {
+    await TrackPlayer.load(track);
   };
 
   return (

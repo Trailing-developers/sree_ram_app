@@ -10,8 +10,6 @@ const setupPlayer = async () => {
 };
 
 export const useSetupTrackPlayer = ({ onLoad }) => {
-  const [trackPlayer, setTrackPlayer] = useState();
-
   const isInitialized = useRef(false);
   useEffect(() => {
     setupPlayer()
@@ -24,6 +22,4 @@ export const useSetupTrackPlayer = ({ onLoad }) => {
         console.error(e);
       });
   }, [onLoad]);
-
-  return trackPlayer;
 };

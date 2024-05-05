@@ -4,14 +4,14 @@ import { colors, unknownTrackImageUri } from "../../../constants/theme";
 import { StyleSheet, Text, View } from "react-native";
 import { PlayPauseButton, SkipToNextButton } from "./PlayerControl";
 import FastImage from "react-native-fast-image";
+import { useLastActiveTrack } from "../../../hooks/useLastActiveTrack";
 
 export const FloatingPlayer = ({ style }) => {
   const activeTrack = useActiveTrack();
 
-  const displayTrack = activeTrack ?? {
-    title: "this is a song",
-  };
-  console.log("floating player active track", displayTrack);
+  const lastActiveTrack = useLastActiveTrack();
+
+  const displayTrack = activeTrack ?? lastActiveTrack;
 
   if (!displayTrack) return null;
 

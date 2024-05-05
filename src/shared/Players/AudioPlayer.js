@@ -37,6 +37,7 @@ export default function AudioPlayer() {
 
   const handleTrackSelect = async (track) => {
     await TrackPlayer.load(track);
+    await TrackPlayer.play();
   };
 
   return (

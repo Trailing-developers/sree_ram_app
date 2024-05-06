@@ -13,6 +13,8 @@ import BookKathaContent from "../screens/TeachingsScreen/BookKathaContent";
 import CalendarScreen from "../screens/Calendar/Calendar";
 import AudioPlayer from "../shared/Players/AudioPlayer";
 import { StackScreenWithSearchBar } from "../constants/layout";
+import PlayerScreen from "../shared/Players/AudioPlayer/PlayerScreen";
+import { FloatingPlayer } from "../shared/Players/AudioPlayer/FloatingPlayer";
 
 const Stack = createNativeStackNavigator();
 
@@ -92,7 +94,26 @@ export default function Mynavigation() {
             useNativeDrive: true,
           }}
         />
+        <Stack.Screen
+          name="PlayerScreen"
+          component={PlayerScreen}
+          options={{
+            presentation: "card",
+            gestureEnabled: true,
+            gestureDirection: "vertical",
+            animationDuration: 400,
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
+      <FloatingPlayer
+        style={{
+          Positions: "absolute",
+          left: 8,
+          right: 8,
+          botton: 78,
+        }}
+      />
     </NavigationContainer>
   );
 }

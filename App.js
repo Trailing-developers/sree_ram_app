@@ -23,14 +23,6 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Mynavigation />
-      <FloatingPlayer
-        style={{
-          Positions: "absolute",
-          left: 8,
-          right: 8,
-          botton: 78,
-        }}
-      />
     </GestureHandlerRootView>
   );
 }

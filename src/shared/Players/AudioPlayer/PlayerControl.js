@@ -1,10 +1,22 @@
 import TrackPlayer, { useIsPlaying } from "react-native-track-player";
 import { FontAwesome6 } from "@expo/vector-icons";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { colors } from "../../../constants/theme";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export const PlayPauseButton = ({ style, iconSize }) => {
+export const PlayerControls = ({ style }) => {
+  return (
+    <View style={[styles.container, style]}>
+      <View style={styles.row}>
+        <SkipToPreviousButton />
+        <PlayPauseButton />
+        <SkipToNextButton />
+      </View>
+    </View>
+  );
+};
+
+export const PlayPauseButton = ({ style, iconSize = 48 }) => {
   const { playing } = useIsPlaying();
 
   return (
@@ -23,7 +35,7 @@ export const PlayPauseButton = ({ style, iconSize }) => {
   );
 };
 
-export const SkipToNextButton = ({ iconSize }) => {
+export const SkipToNextButton = ({ iconSize = 30 }) => {
   return (
     <TouchableOpacity
       onPress={() => TrackPlayer.skipToNext}
@@ -34,7 +46,7 @@ export const SkipToNextButton = ({ iconSize }) => {
   );
 };
 
-export const SkipToPreviousButton = ({ iconSize }) => {
+export const SkipToPreviousButton = ({ iconSize = 30 }) => {
   return (
     <TouchableOpacity
       onPress={() => TrackPlayer.skipToPrevious}
@@ -44,3 +56,14 @@ export const SkipToPreviousButton = ({ iconSize }) => {
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+});

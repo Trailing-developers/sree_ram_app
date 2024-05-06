@@ -6,18 +6,30 @@ import { PlayPauseButton, SkipToNextButton } from "./PlayerControl";
 import FastImage from "react-native-fast-image";
 import { useLastActiveTrack } from "../../../hooks/useLastActiveTrack";
 import { MovingText } from "./MovingText";
+// import { useRouter } from "expo-router";
+import { useNavigation } from "@react-navigation/native";
 
 export const FloatingPlayer = ({ style }) => {
   const activeTrack = useActiveTrack();
 
+  const navigation = useNavigation();
+
   const lastActiveTrack = useLastActiveTrack();
+
+  const handlePress = () => {
+    navigation.navigate("PlayerScreen");
+  };
 
   const displayTrack = activeTrack ?? lastActiveTrack;
 
   if (!displayTrack) return null;
 
   return (
-    <TouchableOpacity activeOpacity={0.9} style={[styles.container, style]}>
+    <TouchableOpacity
+      onPress={handlePress}
+      activeOpacity={0.9}
+      style={[styles.container, style]}
+    >
       <>
         <FastImage
           source={{ uri: displayTrack.artwork ?? unknownTrackImageUri }}

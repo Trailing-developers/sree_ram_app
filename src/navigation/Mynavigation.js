@@ -102,7 +102,7 @@ export default function Mynavigation() {
             gestureEnabled: true,
             gestureDirection: "vertical",
             animationDuration: 400,
-            headerShown: false,
+            headerShown: true,
           }}
         />
       </Stack.Navigator>

@@ -6,10 +6,10 @@ export const StackScreenWithSearchBar = {
     backgroundColor: colors.bhagwa,
   },
   headerLargeTitleStyle: {
-    color: colors.text,
+    color: colors.primary,
   },
-  headerTintColor: colors.text,
-  headerTransparent: true,
+  headerTintColor: colors.primary,
+  // headerTransparent: true,  //doesn't work on android
   headerBlurEffect: "prominent",
   headerShadowVisible: false,
 };

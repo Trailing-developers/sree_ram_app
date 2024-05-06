@@ -4,14 +4,13 @@ import {
   Text,
   StyleSheet,
   Dimensions,
-  Touchable,
   TouchableOpacity,
 } from "react-native";
 import Pdf from "react-native-pdf";
 import { colors } from "../../constants/theme";
-import Icon from "react-native-vector-icons/FontAwesome";
-import AudioPlayer from "../../shared/Players/AudioPlayer";
+// import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesome6 } from "@expo/vector-icons";
 
 const BookKathaContent = ({ route }) => {
   const { bookId, pdfLink } = route.params;
@@ -50,11 +49,12 @@ const BookKathaContent = ({ route }) => {
           onPress={() => {
             navigation.navigate("AudioPlayer");
           }}
+          style={{ paddingBottom: 30 }}
         >
-          <Icon name="music" size={50} color={colors.black} />
+          <FontAwesome6 name="music" size={30} color={colors.black} />
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Icon name="youtube" size={50} color={colors.black} />
+        <TouchableOpacity style={{ marginBottom: 30 }}>
+          <FontAwesome6 name="youtube" size={30} color={colors.black} />
         </TouchableOpacity>
       </View>
     </View>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   pdf: {
-    flex: 0.9,
+    flex: 0.95,
     marginTop: 10,
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height,

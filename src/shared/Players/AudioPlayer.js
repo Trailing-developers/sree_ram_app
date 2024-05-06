@@ -1,59 +1,80 @@
-import { View, Text } from "react-native";
+import { useEffect, useMemo, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
+import { SONG_LIST } from "../../data";
+import TrackListItem from "./AudioPlayer/TrackListItem";
+import { itemDivider, utilsStyles } from "../../constants/theme";
+import { ScrollView } from "react-native-gesture-handler";
+import { useNavigationSearch } from "../../hooks/useNavigationSearch";
+import { trackTitleFilter } from "../../helper/filter";
 import TrackPlayer from "react-native-track-player";
 
 export default function AudioPlayer() {
-  const [trackTitle, setTrackTitle] = useState("");
-  const [trackArtist, setTrackArtist] = useState("");
-  const [playbackState, setPlaybackState] = useState(null);
+  const search = useNavigationSearch({
+    searchBarOptions: { placeholder: "Search Songs" },
+  });
+  const ItemDivider = () => {
+    return (
+      <View
+        style={{
+          ...itemDivider.itemSeperator,
+          marginVertical: 9,
+          marginLeft: 60,
+        }}
+      />
+    );
+  };
 
-  useEffect(() => {
-    const fetchTrackInfo = async () => {
-      const track = await TrackPlayer.getCurrentTrack();
-      if (track) {
-        setTrackTitle(track.title);
-        setTrackArtist(track.artist);
-      }
-    };
+  const filteredSongs = useMemo(() => {
+    if (!search) return SONG_LIST;
+    return SONG_LIST.filter(trackTitleFilter(search));
+  }, [search]);
 
-    const updatePlaybackState = (state) => {
-      setPlaybackState(state);
-    };
-
-    TrackPlayer.addEventListener("playback-state", updatePlaybackState);
-
-    fetchTrackInfo();
-
-    return () => {
-      TrackPlayer.removeEventListener("playback-state", updatePlaybackState);
-    };
-  }, []);
-
-  const togglePlayback = async () => {
-    const state = await TrackPlayer.getState();
-    if (state === TrackPlayer.STATE_PLAYING) {
-      TrackPlayer.pause();
-    } else {
-      TrackPlayer.play();
-    }
+  const handleTrackSelect = async (track) => {
+    await TrackPlayer.load(track);
+    await TrackPlayer.play();
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.trackTitle}>{trackTitle}</Text>
-      <Text style={styles.trackArtist}>{trackArtist}</Text>
-
-      <TouchableOpacity onPress={togglePlayback}>
-        <Icon
-          name={playbackState === TrackPlayer.STATE_PLAYING ? "pause" : "play"}
-          size={32}
-          color="#444"
-        />
-      </TouchableOpacity>
-    </View>
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      style={{ ...styles.mainContainer, paddingHorizontal: 20 }}
+    >
+      <FlatList
+        data={filteredSongs}
+        ItemSeparatorComponent={ItemDivider}
+        scrollEnabled={false}
+        contentContainerStyle={{ paddingTop: 20, paddingBottom: 128 }}
+        ListFooterComponent={ItemDivider}
+        ListEmptyComponent={
+          <View>
+            <Text style={itemDivider.emptyContentText}>No songs found!</Text>
+          </View>
+        }
+        renderItem={(item, index) => {
+          return (
+            <TrackListItem
+              track={{ ...item.item }}
+              scrollEnabled={false}
+              handleTrackSelect={handleTrackSelect}
+            />
+          );
+        }}
+      />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
   container: {
     flexDirection: "row",
     alignItems: "center",

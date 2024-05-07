@@ -38,7 +38,7 @@ export const PlayPauseButton = ({ style, iconSize = 48 }) => {
 export const SkipToNextButton = ({ iconSize = 30 }) => {
   return (
     <TouchableOpacity
-      onPress={() => TrackPlayer.skipToNext}
+      onPress={() => TrackPlayer.skipToNext()}
       activeOpacity={0.7}
     >
       <FontAwesome6 name="forward" size={iconSize} color={colors.primary} />

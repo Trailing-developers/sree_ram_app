@@ -53,7 +53,10 @@ const BookKathaContent = ({ route }) => {
         >
           <FontAwesome6 name="music" size={30} color={colors.black} />
         </TouchableOpacity>
-        <TouchableOpacity style={{ marginBottom: 30 }}>
+        <TouchableOpacity
+          style={{ marginBottom: 30 }}
+          onPress={() => navigation.navigate("VideoScreen")}
+        >
           <FontAwesome6 name="youtube" size={30} color={colors.black} />
         </TouchableOpacity>
       </View>

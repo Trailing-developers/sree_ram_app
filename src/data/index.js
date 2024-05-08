@@ -152,3 +152,71 @@ export const SONG_LIST = [
     playlist: ["Chill 🌱"],
   },
 ];
+
+export const VIDEO_LIST = [
+  {
+    id: "1",
+    createdAt: "5 months ago",
+    title:
+      "Build a Realtime Chat App in React Native (tutorial for beginners) 🔴  ",
+    thumbnail:
+      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/thumbnails/thumbnail1.jpeg",
+    videoUrl: "QCyEHSMWK1s",
+    duration: 66,
+    user: {
+      name: "Ayudh Pratap",
+      image:
+        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg",
+    },
+    views: 32345123,
+    isYoutube: true,
+  },
+  {
+    id: "2",
+    createdAt: "2 months ago",
+    title: "🔴 Build the Uber clone in React Native (Tutorial for Beginners)",
+    thumbnail:
+      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/thumbnails/thumbnail2.jpeg",
+    videoUrl: "WaZQRjuFc34",
+    duration: 584,
+    user: {
+      name: "Bakku",
+      image:
+        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg",
+    },
+    views: 257000,
+    isYoutube: true,
+  },
+  {
+    id: "3",
+    createdAt: "2 months ago",
+    title: "How Graham Stephan makes $4,578,896.32 a year on YouTube",
+    thumbnail:
+      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/thumbnails/thumbnail3.jpeg",
+    videoUrl: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    duration: 584,
+    user: {
+      name: "Graham Stephan",
+      image:
+        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/graham.jpg",
+    },
+    views: 257000,
+    isYoutube: false,
+  },
+  {
+    id: "4",
+    createdAt: "2 months ago",
+    title: "My One Month Bitcoin Mining Journey",
+    thumbnail:
+      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/thumbnails/thumbnail4.jpeg",
+    videoUrl: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+    duration: 584,
+    user: {
+      name: "Biahaze",
+      image:
+        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/biahaze.jpg",
+    },
+    views: 257000,
+    isYoutube: false,
+  },
+];

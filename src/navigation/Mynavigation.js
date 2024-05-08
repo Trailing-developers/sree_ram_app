@@ -15,6 +15,7 @@ import AudioPlayer from "../shared/Players/AudioPlayer";
 import { StackScreenWithSearchBar } from "../constants/layout";
 import PlayerScreen from "../shared/Players/AudioPlayer/PlayerScreen";
 import { FloatingPlayer } from "../shared/Players/AudioPlayer/FloatingPlayer";
+import { VideoScreen } from "../shared/Players/VideoPlayer/VideoScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -102,6 +103,13 @@ export default function Mynavigation() {
             gestureEnabled: true,
             gestureDirection: "vertical",
             animationDuration: 400,
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="VideoScreen"
+          component={VideoScreen}
+          option={{
             headerShown: true,
           }}
         />

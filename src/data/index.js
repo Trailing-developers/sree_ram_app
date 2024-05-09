@@ -174,10 +174,10 @@ export const VIDEO_LIST = [
   {
     id: "2",
     createdAt: "2 months ago",
-    title: "🔴 Build the Uber clone in React Native (Tutorial for Beginners)",
+    title: "🔴 Way to chant Mantra",
     thumbnail:
       "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/thumbnails/thumbnail2.jpeg",
-    videoUrl: "WaZQRjuFc34",
+    videoUrl: "LjHzFaQf79w",
     duration: 584,
     user: {
       name: "Bakku",

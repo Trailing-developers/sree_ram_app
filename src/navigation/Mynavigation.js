@@ -16,6 +16,7 @@ import { StackScreenWithSearchBar } from "../constants/layout";
 import PlayerScreen from "../shared/Players/AudioPlayer/PlayerScreen";
 import { FloatingPlayer } from "../shared/Players/AudioPlayer/FloatingPlayer";
 import { VideoScreen } from "../shared/Players/VideoPlayer/VideoScreen";
+import FeedbackScreen from "../screens/feedback/FeedbackScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -109,6 +110,13 @@ export default function Mynavigation() {
         <Stack.Screen
           name="VideoScreen"
           component={VideoScreen}
+          option={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="FeedbackScreen"
+          component={FeedbackScreen}
           option={{
             headerShown: true,
           }}

@@ -27,14 +27,14 @@ export default FeedbackScreen = () => {
 
   const progress = useSharedValue(1);
   const min = useSharedValue(0);
-  const max = useSharedValue(5);
+  const max = useSharedValue(4);
 
   const handlePress = () => {};
 
   const caValue =
-    parseInt(sliderValue / 2) >= faces.length
+    parseInt(sliderValue) >= faces.length
       ? faces.length - 1
-      : parseInt(sliderValue / 2);
+      : parseInt(sliderValue);
 
   return (
     <View

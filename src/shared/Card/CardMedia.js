@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { sizes } from "../../constants/theme";
+import FastImage from "react-native-fast-image";
 
 const CardMedia = ({ source, borderRadius = false }) => {
   return (
@@ -9,7 +10,7 @@ const CardMedia = ({ source, borderRadius = false }) => {
         borderRadius ? styles.bordorBottomRadius : null
       )}
     >
-      <Image source={{ uri: source }} style={styles.image} />
+      <FastImage source={{ uri: source }} style={styles.image} />
     </View>
   );
 };

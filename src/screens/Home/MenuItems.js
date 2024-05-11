@@ -30,7 +30,7 @@ export default function MenuItems() {
       <View style={styles.row}>
         <Card
           title="Danik Pragati"
-          onPress={() => handleCardPress("CharitraScreen")}
+          onPress={() => handleCardPress("DanikPragati")}
           imageUrl={require("../../../assets/menuItemsImages/UpdatedDainikPragato.jpg")}
         />
         <Card

@@ -18,6 +18,8 @@ import { FloatingPlayer } from "../shared/Players/AudioPlayer/FloatingPlayer";
 import { VideoScreen } from "../shared/Players/VideoPlayer/VideoScreen";
 import FeedbackScreen from "../screens/feedback/FeedbackScreen";
 import { DanikPragati } from "../screens/danikpragati/DanikPragati";
+import { MantraPage } from "../screens/danikpragati/MantraPage";
+import { MindPage } from "../screens/danikpragati/MindPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -125,6 +127,20 @@ export default function Mynavigation() {
         <Stack.Screen
           name="DanikPragati"
           component={DanikPragati}
+          option={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="MantraPage"
+          component={MantraPage}
+          option={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="MindPage"
+          component={MindPage}
           option={{
             headerShown: true,
           }}

@@ -3,7 +3,6 @@ import Card from "../../../shared/Card/Card";
 import CardContent from "../../../shared/Card/CardContent";
 
 export const DarshanListItem = ({ item }) => {
-  console.log(item);
   return (
     <Card key={item.index} style={styles.textBackground}>
       <CardContent>

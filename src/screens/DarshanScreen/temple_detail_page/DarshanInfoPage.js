@@ -1,5 +1,7 @@
 import React from "react";
 import { View, ImageBackground, Text, StyleSheet } from "react-native";
+import { DarshanListItem } from "./DarshanListItem";
+import { FlatList, ScrollView } from "react-native-gesture-handler";
 
 const cardView = (charge, index) => {
   return (
@@ -10,13 +12,18 @@ const cardView = (charge, index) => {
   );
 };
 
-const DarshanInfoPage = ({ data }) => {
+export default DarshanInfoPage = ({ data }) => {
   const { charges } = data;
 
   const HEIGHT = charges.darshan.length * 50; // Assuming each card has a height of 50
 
   return (
-    <View style={{ margin: 5, marginVertical: 10 }}>
+    // <FlatList
+    //   data={charges}
+    //   renderItem={(item, index) => <DarshanListItem item={item} />}
+    //   scrollEnabled={false}
+    // />
+    <ScrollView contentContainerStyle={{ margin: 5, marginVertical: 10 }}>
       <Text style={{ fontSize: 18, fontWeight: "bold", marginBottom: 10 }}>
         Darshan Prices Onsite
       </Text>
@@ -27,20 +34,21 @@ const DarshanInfoPage = ({ data }) => {
         style={{ width: "100%", height: HEIGHT }}
         blurRadius={1}
       >
-        <View style={styles.textContainer}>
-          {charges.darshan.map((charge, index) => cardView(charge, index))}
-        </View>
+        <FlatList
+          data={charges.darshan}
+          numColumns={2}
+          renderItem={(item, index) => <DarshanListItem item={item} />}
+          scrollEnabled={false}
+        />
       </ImageBackground>
-    </View>
+    </ScrollView>
   );
 };
 
-export default DarshanInfoPage;
-
 const styles = StyleSheet.create({
   textBackground: {
-    // backgroundColor: "rgba(255, 255, 255, 0.5)", // White background with 50% opacity
-    backgroundColor: "lightblue", // White background with 50% opacity
+    backgroundColor: "rgba(255, 255, 255, 0.5)", // White background with 50% opacity
+    // backgroundColor: "lightblue", // White background with 50% opacity
     padding: 10,
     borderRadius: 10,
     alignItems: "center",

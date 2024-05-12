@@ -260,3 +260,219 @@ export const DANIK_PRGATI_HOME = [
       "https://static.toiimg.com/thumb/imgsize-23456,msid-105968419,width-600,resizemode-4/105968419.jpg",
   },
 ];
+
+// "Shiva Mantra",
+//   "Gayatri Mantra",
+//   "Hanuman Mantra",
+//   "Durga",
+//   "Rama",
+//   "Beej Mantra",
+//   "Om Mantra",
+//   "Mahamrityunjaya Mantra",
+//   "Budh Mantra",
+//   "Chandraghanta",
+//   "Surya",
+//   "Kuber Mantra",
+//   "Panchakshari Shiva Mantra",
+export const MANTRA_LIST = [
+  { title: "Rudra" },
+  { title: "Hanuman Mantra" },
+  { title: "Durga" },
+];
+
+export const TEMPLE_DETAIL_PAGE = {
+  id: "temple-123",
+  image: "https://example.com/temple-image.jpg",
+  name: "Temple Name",
+  description: "This is a detailed description of the temple.",
+  address: "123 Main Street, Anytown USA",
+  locationOfPlace: {
+    latitude: 12.345678,
+    longitude: 98.765432,
+    distanceFromCityCenter: 5,
+    distanceUnit: "KM",
+    distanceFromUser: 10,
+    distanceUnit: "KM",
+  },
+  locationOfUser: {
+    latitude: 12.345678,
+    longitude: 98.765432,
+  },
+  crowdPatterns: {
+    timings: [
+      { timing: 8, label: "8 AM", color: "#FFB800" },
+      { timing: 15, label: "", color: "#FF9900" },
+      { timing: 20, label: "", color: "#FF730D" },
+      { timing: 15, label: "12 PM", color: "#FF730D" },
+      { timing: 5, label: "", color: "#25FF20" },
+      { timing: 15, label: "", color: "#FF730D" },
+      { timing: 25, label: "3 PM", color: "#FA1111" },
+      { timing: 15, label: "", color: "#FF8C00" },
+      { timing: 15, label: "5 PM", color: "#FF8C00" },
+      { timing: 0, label: "", color: "#DF5353" },
+    ], //peek - red, high - orange, moderate - yellow, low - green
+    peakHours: "10 AM - 2 PM",
+    averageCrowd: "Moderate",
+    busyDays: ["Weekends", "Holidays"],
+  },
+  darshanDetails: {
+    timing: {
+      morning: "6:00 AM - 12:00 PM",
+      afternoon: "3:00 PM - 6:00 PM",
+      evening: "6:00 PM - 9:00 PM",
+    },
+    charges: {
+      entry: {
+        adult: 20,
+        child: 10,
+        senior: 10,
+      },
+      darshan: [
+        {
+          type: "Regular Darshan",
+          price: 20,
+        },
+        {
+          type: "Special Darshan",
+          price: 100,
+        },
+        {
+          type: "Regular Darshan",
+          price: 20,
+        },
+        {
+          type: "Hawan",
+          price: 100,
+        },
+        {
+          type: "Maha Abhishek",
+          price: 20,
+        },
+        {
+          type: "VIP Darshan",
+          price: 100,
+        },
+      ],
+    },
+  },
+  rightTimeToVist: {
+    bestTime: "Jan-Mar",
+    notBestTime: "Jan-Mar",
+    bestDays: ["Weekdays", "Weekends"],
+  },
+  mantras: ["Om Namah Shivaya", "Shiva Shankara Bholenath", "Har Har Mahadev"],
+  popularEvents: ["Diwali", "Holi", "Puja"],
+  history: {
+    openedOn: "2010",
+    builder: "Chola Dynasty",
+    desc: "The temple was built in the 10th century and has a rich history dating back to the Chola dynasty. It is known for its intricate carvings and architectural design.",
+    backgroundImage:
+      "https://t4.ftcdn.net/jpg/05/71/56/51/360_F_571565144_1BivKAfVmv64ieXYkeKMWmg5GCUpx3Rr.jpg",
+    highlights: [
+      "Dedicated to Lord Shiva",
+      "Famous for its annual Pongal festival",
+      "Attracts thousands of devotees during major festivals",
+    ],
+  },
+  relatedStories: [
+    {
+      title: "The Legend of the Temple",
+      content:
+        "The temple was built in the 10th century and has a rich history dating back to the Chola dynasty. It is known for its intricate carvings and architectural design.",
+      image: "https://example.com/temple-legend.jpg",
+    },
+    {
+      title: "Devotees Flock to the Temple During Festivals",
+      content:
+        "The temple attracts thousands of devotees during major festivals like Diwali and Holi. The celebrations include traditional rituals, music, and dance performances.",
+      image: "https://example.com/temple-festival.jpg",
+    },
+  ],
+  godAndGoddess: [
+    {
+      name: "Lord Shiva",
+      image:
+        "https://cdn.pixabay.com/photo/2023/11/26/10/04/lord-shiva-8413252_640.png",
+      link: "https://en.wikipedia.org/wiki/Shiva",
+    },
+    {
+      name: "Lord Krishna",
+      image:
+        "https://blog.cdn.level.game/2023/10/manishaleveldesigner_render_lord_krishna_image_in_landscape_hor_2a16ba8f-8329-4cd1-8542-589638dbdb09.png",
+      link: "https://en.wikipedia.org/wiki/Krishna",
+    },
+    {
+      name: "Lord Ganesh",
+      image:
+        "https://img.freepik.com/premium-photo/indian-god-ganesh-ganesha-hindu-elephant-god-indian-god-ganesh-hd-wallpaper_583952-7084.jpg?w=740",
+      link: "https://en.wikipedia.org/wiki/Ganesh",
+    },
+    {
+      name: "Virabhadra",
+      image:
+        "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/41449218-133a-4eae-b2c2-c7a14ded6e1c/dg5xvkj-f5f9f984-0e9a-4612-93cd-3ef6417fa0c9.png/v1/fill/w_784,h_1019,q_70,strp/virabhadra______by_akshaylasunkute_dg5xvkj-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2MyIsInBhdGgiOiJcL2ZcLzQxNDQ5MjE4LTEzM2EtNGVhZS1iMmMyLWM3YTE0ZGVkNmUxY1wvZGc1eHZrai1mNWY5Zjk4NC0wZTlhLTQ2MTItOTNjZC0zZWY2NDE3ZmEwYzkucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.O_kHPT607z002Px26La-nlAPVK-UnA8D3Ed0NGzJFdE",
+      link: "https://en.wikipedia.org/wiki/Virabhadra",
+    },
+  ],
+  information: {
+    openingHours: "6:00 AM - 9:00 PM",
+    closedDays: ["Mondays"],
+    parking: {
+      available: true,
+      freeParking: true,
+      parkingCharges: 0,
+    },
+    contactInfo: {
+      phone: "+1 (123) 456-7890",
+      website: "https://example.com/temple",
+    },
+    dosAndDonts: [
+      {
+        title: "Do's",
+        data: [
+          "Dress modestly and respectfully",
+          "Remove shoes before entering temple",
+          "Bring offerings like flowers, fruits, sweets",
+        ],
+      },
+      {
+        title: "Don'ts",
+        data: [
+          "Dont wear shorts or sleeveless tops",
+          "Avoid bringing non-vegetarian food items",
+          "Avoid bringing alcohol or tobacco products",
+        ],
+      },
+    ],
+    facilities: [
+      "Parking available",
+      "Wheelchair accessible",
+      "Free entry",
+      "Photography allowed",
+      "Audio guide available",
+      "Gift shop on-site",
+      "Lockers available",
+      "Meditation room",
+      "Vegetarian restaurant on-site",
+      "Guided tours available",
+      "Audio guide available in multiple languages",
+      "Donation box on-site",
+      "Drinking water available",
+      "Restrooms available",
+      "ATM on-site",
+      "Cloakroom available",
+      "Valet parking available",
+      "Multilingual staff on-site",
+      "Guided meditation sessions",
+      "Yoga classes available",
+      "Ayurvedic treatments available",
+      "Meditation workshops conducted",
+    ],
+    restrictions: {
+      noSmoking: true,
+      noAlcohol: true,
+      noPets: true,
+      noFlash: true,
+    },
+  },
+};

@@ -46,7 +46,7 @@ export default function Mynavigation() {
           name="TempleDetailPage"
           component={TempleDetailPage}
           options={{
-            headerShown: false,
+            headerShown: true,
             useNativeDrive: true,
             cardStyleInterpolator: ({ current: { progress } }) => ({
               cardStyle: {
@@ -135,6 +135,7 @@ export default function Mynavigation() {
           name="MantraPage"
           component={MantraPage}
           option={{
+            ...StackScreenWithSearchBar,
             headerShown: true,
           }}
         />

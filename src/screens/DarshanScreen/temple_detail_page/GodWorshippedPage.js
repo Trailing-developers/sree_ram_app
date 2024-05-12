@@ -47,11 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const data = [
-  { image: "image_url_1", name: "God 1" },
-  { image: "image_url_2", name: "God 2" },
-  { image: "image_url_3", name: "God 3" },
-  { image: "image_url_4", name: "God 4" },
-];
-
 export default GodWorshippedPage;

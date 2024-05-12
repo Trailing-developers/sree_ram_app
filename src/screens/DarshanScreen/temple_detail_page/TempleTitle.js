@@ -4,18 +4,20 @@ import * as Animatable from "react-native-animatable";
 
 const TempleTitle = ({ title, address }) => {
   return (
-    <Animatable.View
-      style={styles.headers}
-      animation={"fadeInUp"}
-      easing={"ease-in-out"}
-      delay={500}
-      duration={400}
-    >
+    // <Animatable.View
+    //   style={styles.headers}
+    //   animation={"fadeInUp"}
+    //   easing={"ease-in-out"}
+    //   delay={500}
+    //   duration={400}
+    // >
+    <View style={styles.headers}>
       <Text selectable={true} style={styles.title}>
         {title}
       </Text>
       <Text style={styles.address}>{address}</Text>
-    </Animatable.View>
+    </View>
+    // </Animatable.View>
 
     // <View style={styles.card}>
     //   <Animatable.View

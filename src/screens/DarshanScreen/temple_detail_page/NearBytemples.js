@@ -36,17 +36,6 @@ const NearByTemples = ({ data }) => {
       >
         Nearby Temples
       </Text>
-      {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {temples.map((temple) => (
-          <View key={temple.name} style={{ marginRight: 20 }}>
-            <Image
-              source={{ uri: temple.image }}
-              style={{ width: 200, height: 150 }}
-            />
-            <Text>{temple.name}</Text>
-          </View>
-        ))}
-      </ScrollView> */}
       <Carousel
         items={temples}
         renderItems={({ item, style }) => {
@@ -72,6 +61,7 @@ const NearByTemples = ({ data }) => {
 const styles = StyleSheet.create({
   card: {
     height: 200,
+    elevation: 10,
   },
   container: {
     height: 50,

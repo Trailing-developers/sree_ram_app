@@ -1,6 +1,7 @@
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { sizes, spacing } from "../constants/theme";
+import { FlatList } from "react-native-gesture-handler";
 
 const CARD_WIDTH = sizes.width - 80;
 const CARD_WIDTH_SPACING = CARD_WIDTH + spacing.l;
@@ -24,6 +25,7 @@ export default function Carousel({ renderItems, items }) {
               width: CARD_WIDTH,
               marginLeft: spacing.l,
               marginRight: index === items.length - 1 ? spacing.l : 0,
+              marginBottom: 5,
             },
           });
         }

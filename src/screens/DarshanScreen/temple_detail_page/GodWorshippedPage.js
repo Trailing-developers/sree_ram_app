@@ -1,6 +1,7 @@
 import { TouchableOpacity } from "@gorhom/bottom-sheet";
 import { ScrollView, Image, StyleSheet, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { FlatList } from "react-native-gesture-handler";
 
 const GodWorshippedPage = ({ data }) => {
   const navigation = useNavigation();
@@ -47,12 +48,10 @@ const styles = StyleSheet.create({
 });
 
 const data = [
-  { image: 'image_url_1', name: 'God 1' },
-  { image: 'image_url_2', name: 'God 2' },
-  { image: 'image_url_3', name: 'God 3' },
-  { image: 'image_url_4', name: 'God 4' },
+  { image: "image_url_1", name: "God 1" },
+  { image: "image_url_2", name: "God 2" },
+  { image: "image_url_3", name: "God 3" },
+  { image: "image_url_4", name: "God 4" },
 ];
-
-
 
 export default GodWorshippedPage;

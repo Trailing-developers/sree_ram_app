@@ -45,6 +45,7 @@ const TempleDetailPage = ({ route }) => {
   const spanPoints = useMemo(() => ["10%", "80%"], []);
   const scrollRef = useAnimatedRef();
   const scrollOffset = useScrollViewOffset(scrollRef);
+  const AnimatedFastImage = Animated.createAnimatedComponent(FastImage);
 
   const imageAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -70,7 +71,7 @@ const TempleDetailPage = ({ route }) => {
   return (
     <View style={styles.container}>
       <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
-        <Animated.Image
+        <AnimatedFastImage
           source={{
             uri: item.imgUrl,
           }}

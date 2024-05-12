@@ -140,24 +140,25 @@ const data = {
       image:
         "https://cdn.pixabay.com/photo/2023/11/26/10/04/lord-shiva-8413252_640.png",
       link: "https://en.wikipedia.org/wiki/Shiva",
-
     },
     {
       name: "Lord Krishna",
-      image: "https://blog.cdn.level.game/2023/10/manishaleveldesigner_render_lord_krishna_image_in_landscape_hor_2a16ba8f-8329-4cd1-8542-589638dbdb09.png",
-      link: "https://en.wikipedia.org/wiki/Krishna"
+      image:
+        "https://blog.cdn.level.game/2023/10/manishaleveldesigner_render_lord_krishna_image_in_landscape_hor_2a16ba8f-8329-4cd1-8542-589638dbdb09.png",
+      link: "https://en.wikipedia.org/wiki/Krishna",
     },
     {
       name: "Lord Ganesh",
-      image: "https://img.freepik.com/premium-photo/indian-god-ganesh-ganesha-hindu-elephant-god-indian-god-ganesh-hd-wallpaper_583952-7084.jpg?w=740",
-      link: "https://en.wikipedia.org/wiki/Ganesh"
+      image:
+        "https://img.freepik.com/premium-photo/indian-god-ganesh-ganesha-hindu-elephant-god-indian-god-ganesh-hd-wallpaper_583952-7084.jpg?w=740",
+      link: "https://en.wikipedia.org/wiki/Ganesh",
     },
     {
       name: "Virabhadra",
-      image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/41449218-133a-4eae-b2c2-c7a14ded6e1c/dg5xvkj-f5f9f984-0e9a-4612-93cd-3ef6417fa0c9.png/v1/fill/w_784,h_1019,q_70,strp/virabhadra______by_akshaylasunkute_dg5xvkj-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2MyIsInBhdGgiOiJcL2ZcLzQxNDQ5MjE4LTEzM2EtNGVhZS1iMmMyLWM3YTE0ZGVkNmUxY1wvZGc1eHZrai1mNWY5Zjk4NC0wZTlhLTQ2MTItOTNjZC0zZWY2NDE3ZmEwYzkucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.O_kHPT607z002Px26La-nlAPVK-UnA8D3Ed0NGzJFdE",
-      link: "https://en.wikipedia.org/wiki/Virabhadra"
-    }
-
+      image:
+        "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/41449218-133a-4eae-b2c2-c7a14ded6e1c/dg5xvkj-f5f9f984-0e9a-4612-93cd-3ef6417fa0c9.png/v1/fill/w_784,h_1019,q_70,strp/virabhadra______by_akshaylasunkute_dg5xvkj-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY2MyIsInBhdGgiOiJcL2ZcLzQxNDQ5MjE4LTEzM2EtNGVhZS1iMmMyLWM3YTE0ZGVkNmUxY1wvZGc1eHZrai1mNWY5Zjk4NC0wZTlhLTQ2MTItOTNjZC0zZWY2NDE3ZmEwYzkucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.O_kHPT607z002Px26La-nlAPVK-UnA8D3Ed0NGzJFdE",
+      link: "https://en.wikipedia.org/wiki/Virabhadra",
+    },
   ],
   information: {
     openingHours: "6:00 AM - 9:00 PM",
@@ -229,35 +230,9 @@ const TempleDetailPage = ({ route }) => {
   const spanPoints = useMemo(() => ["10%", "80%"], []);
 
   return (
-    // <ScrollView contentContainerStyle={styles.container}>
-    //   <Image source={{ uri: item.imgUrl }} style={styles.image} />
-    //   <View style={styles.details}>
-    //     <Text style={styles.name}>{item.name}</Text>
-    //     <Text style={styles.address}>{data.address}</Text>
-    //   </View>
-    //   <HistoryPage data={data.history} />
-    //   <CrowdForecast data={data.crowdPatterns} />
-    //   <ExtraInformation data={data.information} />
-    //   <GodWorshippedPage data={data.godAndGoddess} />
-    //   <DarshanInfoPage data={data.darshanDetails} />
-    //   <NearByTemples
-    //     data={{
-    //       placeLocation: data.locationOfPlace,
-    //       userLocation: data.locationOfUser,
-    //     }}
-    //   />
-    //   <Restaurants
-    //     data={{
-    //       placeLocation: data.locationOfPlace,
-    //       userLocation: data.locationOfUser,
-    //     }}
-    //   />
-    //   <View style={styles.bottomPadding} />
-    // </ScrollView>
-
     <View style={styles.container}>
       <Animatable.View
-        style={[styles.backButton, { marginTop: insets.top }]}
+        style={[styles.backButton]}
         animation={"fadeInUp"}
         easing={"ease-in-out"}
         delay={500}
@@ -271,10 +246,7 @@ const TempleDetailPage = ({ route }) => {
         />
       </Animatable.View>
       <Animatable.View
-        style={[
-          styles.moreButton,
-          { marginTop: insets.top, marginRight: insets.right },
-        ]}
+        style={[styles.moreButton, { marginRight: insets.right }]}
         animation={"fadeInUp"}
         easing={"ease-in-out"}
         delay={500}

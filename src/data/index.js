@@ -275,9 +275,37 @@ export const DANIK_PRGATI_HOME = [
 //   "Kuber Mantra",
 //   "Panchakshari Shiva Mantra",
 export const MANTRA_LIST = [
-  { title: "Rudra" },
-  { title: "Hanuman Mantra" },
-  { title: "Durga" },
+  {
+    title: "Shiv Rudra Gayatri Mantra",
+    image:
+      "https://i1.sndcdn.com/artworks-ryo6gV4CtqsmDJQ8-nm1jvw-t500x500.jpg",
+    content: [
+      "Om Tatpurushaya Vidmahe Mahadevaya Dheemahi Tanno Rudrah Prachodayat",
+      "Om Sarveswaray Vidmahe Shulhastaay Dheemahi Tanno Rudrah Prachodayat",
+      "Om Panchvaktray Vidmahe Sahastraakshay Mahadevay Dheemahi Tanno Rudrah Prachodayat",
+    ],
+  },
+  {
+    title: "Hanuman Shabar Raksha Mantra",
+    image:
+      "https://i1.sndcdn.com/artworks-ryo6gV4CtqsmDJQ8-nm1jvw-t500x500.jpg",
+    content: [
+      "om namo bajar ka kotha",
+      "jis par pind hamaara petha,",
+      "ishvar kunji brahm ka taala,",
+      "hamaare aatho aamo ka jati hanumant rakhavaala",
+    ],
+  },
+  {
+    title: "Maa Durga Gayatri Mantra",
+    image:
+      "https://i1.sndcdn.com/artworks-ryo6gV4CtqsmDJQ8-nm1jvw-t500x500.jpg",
+    content: [
+      "Om Mahadewyae Widmahe Durgayae Dhimahi Tanno Devi Prachodayat",
+      "Om Katyaynyae Widmahe Kanykumayre Cha Dhimahi Tanno Durga Prachodayat",
+      "Om Girijay Cha Widmahe Shivpriyay Cha Dhimahi Tanno Durga Prachodayat",
+    ],
+  },
 ];
 
 export const TEMPLE_DETAIL_PAGE = {

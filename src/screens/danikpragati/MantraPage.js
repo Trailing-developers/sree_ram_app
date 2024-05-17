@@ -10,9 +10,14 @@ import { useNavigationSearch } from "../../hooks/useNavigationSearch";
 import { MANTRA_LIST } from "../../data";
 import { MantraListItem } from "./MantraListItem";
 import { mantraTitleFilter } from "../../helper/filter";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import { colors, itemDivider } from "../../constants/theme";
 import { FlatList } from "react-native-gesture-handler";
+import {
+  BottomSheetModal,
+  BottomSheetModalProvider,
+} from "@gorhom/bottom-sheet";
+import DisplayMantra from "./DisplayMantra";
 
 export const MantraPage = () => {
   const search = useNavigationSearch({
@@ -37,23 +42,45 @@ export const MantraPage = () => {
 
   const scrollY = useRef(new Animated.Value(0)).current;
 
+  const bottomSheetModalRef = useRef(null);
+  const snapPoints = useMemo(() => ["50%"], []);
+
+  const [matra, setMantra] = useState();
+
+  const openModal = (item) => {
+    setMantra(item);
+    bottomSheetModalRef.current.present();
+  };
+
   return (
     // <ScrollView
     //   contentInsetAdjustmentBehavior="automatic"
     //   style={{ ...styles.mainContainer, paddingHorizontal: 20 }}
     // >
-    <SafeAreaView style={styles.mainContainer}>
-      <FlatList
-        data={filteredMantras}
-        ItemSeparatorComponent={ItemDivider}
-        contentContainerStyle={{
-          marginTop: 10,
-          marginBottom: 10,
-        }}
-        renderItem={(item, index) => <MantraListItem item={item} />}
-      />
-      {/* </ScrollView> */}
-    </SafeAreaView>
+    <BottomSheetModalProvider>
+      <SafeAreaView style={styles.mainContainer}>
+        <FlatList
+          data={filteredMantras}
+          ItemSeparatorComponent={ItemDivider}
+          contentContainerStyle={{
+            marginTop: 10,
+            marginBottom: 10,
+          }}
+          renderItem={(item, index) => (
+            <MantraListItem item={item} onPress={() => openModal(item)} />
+          )}
+        />
+        {/* </ScrollView> */}
+      </SafeAreaView>
+      <BottomSheetModal
+        ref={bottomSheetModalRef}
+        index={0}
+        snapPoints={snapPoints}
+        style={styles.bottomSheet}
+      >
+        <DisplayMantra {...matra} />
+      </BottomSheetModal>
+    </BottomSheetModalProvider>
   );
 };
 

@@ -1,19 +1,22 @@
 import { StyleSheet, Text, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { fontSize } from "../../constants/theme";
+import { TouchableHighlight } from "react-native-gesture-handler";
 
-export const MantraListItem = ({ item }) => {
+export const MantraListItem = ({ item, onPress }) => {
   return (
-    <View key={item.item.index} style={styles.item}>
-      <FastImage
-        style={styles.image}
-        source={{ uri: item.item.image }}
-        resizeMode={FastImage.resizeMode.cover}
-      />
-      <View style={styles.wrapText}>
-        <Text style={{ fontSize: fontSize.base }}>{item.item.title}</Text>
+    <TouchableHighlight onPress={onPress}>
+      <View key={item.item.index} style={styles.item}>
+        <FastImage
+          style={styles.image}
+          source={{ uri: item.item.image }}
+          resizeMode={FastImage.resizeMode.cover}
+        />
+        <View style={styles.wrapText}>
+          <Text style={{ fontSize: fontSize.base }}>{item.item.title}</Text>
+        </View>
       </View>
-    </View>
+    </TouchableHighlight>
   );
 };
 

@@ -58,6 +58,12 @@ export const Tithi = () => {
           <Text style={styles.textMain}>Amrit Kala starts in 1 hour</Text>
         </View>
       </View>
+
+      <View style={styles.festivalContainer}>
+        <View style={styles.header}>
+          <Text>Listen Mantra/songs for this day</Text>
+        </View>
+      </View>
     </ScrollView>
   );
 };

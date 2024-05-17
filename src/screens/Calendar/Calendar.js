@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, FlatList } from "react-native";
 import moment from "moment";
 import Date from "./Date";
 import { Tithi } from "./Tithi";
+import { colors } from "../../constants/theme";
 
 export default CalendarScreen = () => {
   const [selectedDate, setSelectedDate] = useState(
@@ -85,6 +86,8 @@ const styles = StyleSheet.create({
   centered: {
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 5,
+    marginBottom: 5,
   },
   title: {
     fontSize: 20,
@@ -93,6 +96,7 @@ const styles = StyleSheet.create({
   dateSection: {
     width: "100%",
     padding: 20,
+    backgroundColor: colors.light,
   },
   contentContainer: {
     flex: 1,

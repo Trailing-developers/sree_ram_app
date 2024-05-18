@@ -504,3 +504,12 @@ export const TEMPLE_DETAIL_PAGE = {
     },
   },
 };
+
+export const SHIVA = {
+  name: "Lord Shiva",
+  image:
+    "https://cdn.pixabay.com/photo/2023/11/26/10/04/lord-shiva-8413252_640.png",
+  link: "https://en.wikipedia.org/wiki/Shiva",
+  description:
+    "Lord Shiva is the supreme god of the universe. He is the god of the sky, the earth, the sea, and the fire. He is the god of the gods and the god of the humans.",
+};

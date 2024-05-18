@@ -34,7 +34,7 @@ const NearByTemples = ({ data }) => {
           marginLeft: 10,
         }}
       >
-        Nearby Temples
+        {"Nearby Temples"}
       </Text>
       <Carousel
         items={temples}

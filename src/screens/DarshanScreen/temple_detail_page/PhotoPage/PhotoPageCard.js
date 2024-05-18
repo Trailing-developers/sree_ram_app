@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Card from "../../../../shared/Card/Card";
 import CardMedia from "../../../../shared/Card/CardMedia";
 import MyYoutubePlayer from "../../../../shared/Players/MyYoutubePlayer";
@@ -18,7 +18,12 @@ const PhotoPageCard = ({ item, index }) => {
         {item.isVideo ? (
           <MyYoutubePlayer source={item.source} />
         ) : (
-          <CardMedia source={item.source} isVideo={item.isVideo} />
+          <CardMedia
+            borderRadiusStyle={styles.borderRadiusStyle}
+            borderRadius={false}
+            source={item.source}
+            isVideo={item.isVideo}
+          />
         )}
       </Card>
     </View>
@@ -26,3 +31,10 @@ const PhotoPageCard = ({ item, index }) => {
 };
 
 export default PhotoPageCard;
+
+const styles = StyleSheet.create({
+  borderRadiusStyle: {
+    borderTopEndRadius: 0,
+    borderTopStartRadius: 0,
+  },
+});

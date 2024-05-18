@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    resizeMode: "stretch",
+    resizeMode: "cover",
   },
   masonary: {
     paddingHorizontal: spacing.s,

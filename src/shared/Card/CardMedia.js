@@ -3,11 +3,15 @@ import { Image, StyleSheet, View } from "react-native";
 import { sizes } from "../../constants/theme";
 import FastImage from "react-native-fast-image";
 
-const CardMedia = ({ source, borderRadius = false }) => {
+const CardMedia = ({
+  source,
+  borderRadius = false,
+  borderRadiusStyle = null,
+}) => {
   return (
     <View
       style={[styles.media].concat(
-        borderRadius ? styles.bordorBottomRadius : null
+        borderRadius ? styles.bordorBottomRadius : borderRadiusStyle
       )}
     >
       <FastImage source={{ uri: source }} style={styles.image} />

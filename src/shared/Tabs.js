@@ -41,51 +41,47 @@ const Tabs = ({ items }) => {
           })}
         </ScrollView>
       </View>
-      {items[index].contentView()}
+      <View>{items[index].contentView()}</View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginTop: 10,
   },
-  scrollContainer: {},
   tabBar: {
     flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "flex-start",
     paddingBottom: spacing.m,
   },
   tabs: {
-    marginLeft: spacing.m,
+    marginLeft: spacing.s,
     marginTop: spacing.s,
-    padding: 15,
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingLeft: 50,
+    paddingRight: 40,
     borderRadius: 10,
-    backgroundColor: colors.lightGray,
+    marginLeft: 20,
+    backgroundColor: colors.bhagwa,
   },
   activeTab: {
-    borderBottomColor: "#900",
-    borderBottomWidth: 3,
-    backgroundColor: "lightblue",
     borderRadius: 10,
   },
   tabText: {
     color: colors.primary,
-    fontSize: 20,
+    fontSize: 15,
   },
   activeTabText: {
     color: colors.primary,
-    fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 15,
   },
   dot: {
     position: "absolute",
     top: 8,
     right: -15,
-    width: 10,
-    height: 10,
+    width: 5,
+    height: 5,
     borderRadius: 5,
     backgroundColor: colors.primary,
   },

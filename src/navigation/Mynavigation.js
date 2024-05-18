@@ -41,7 +41,14 @@ export default function Mynavigation() {
             useNativeDrive: true,
           }}
         />
-        <Stack.Screen name="TeachingsScreen" component={TeachingsScreen} />
+        <Stack.Screen
+          name="TeachingsScreen"
+          component={TeachingsScreen}
+          option={{
+            ...StackScreenWithSearchBar,
+            headerShown: true,
+          }}
+        />
         <Stack.Screen
           name="TempleDetailPage"
           component={TempleDetailPage}

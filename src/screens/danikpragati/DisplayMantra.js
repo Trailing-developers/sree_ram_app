@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/theme";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default DisplayMantra = ({ item }) => {
   return (
-    <View style={styles.contentContainer}>
+    <ScrollView style={styles.contentContainer}>
       <Text style={styles.title}>{item.title}</Text>
       {item.content.map((it, i) => {
         return (
@@ -12,7 +13,7 @@ export default DisplayMantra = ({ item }) => {
           </Text>
         );
       })}
-    </View>
+    </ScrollView>
   );
 };
 

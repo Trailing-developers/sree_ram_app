@@ -6,7 +6,6 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import Pdf from "react-native-pdf";
 import { colors } from "../../constants/theme";
 // import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
@@ -24,25 +23,6 @@ const BookKathaContent = ({ route }) => {
     <View style={styles.container}>
       <View style={styles.pdfContainer}>
         <Text>Book Katha Content for {bookId}</Text>
-        <Pdf
-          trustAllCerts={false}
-          source={source}
-          onLoadComplete={(numberOfPages, filePath) => {
-            console.log(`Number of pages: ${numberOfPages}`);
-          }}
-          fitWidth={true}
-          onPageChanged={(page, numberOfPages) => {
-            console.log(`Current page: ${page}`);
-          }}
-          spacing={30}
-          onError={(error) => {
-            console.log(error);
-          }}
-          onPressLink={(uri) => {
-            console.log(`Link pressed: ${uri}`);
-          }}
-          style={[styles.pdf, { backgroundColor: colors.bhagwa }]}
-        />
       </View>
       <View style={styles.iconContainer}>
         <TouchableOpacity

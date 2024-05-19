@@ -38,6 +38,16 @@ export const MantraPage = () => {
 
   const { mantras, isLoading, error } = useMantras();
 
+  const filteredMantras = useMemo(() => {
+    if (!search) return mantras;
+    return mantras.filter(mantraTitleFilter(search));
+  }, [search]);
+
+  const scrollY = useRef(new Animated.Value(0)).current;
+
+  const bottomSheetModalRef = useRef(null);
+  const snapPoints = useMemo(() => ["50%"], []);
+
   if (isLoading) {
     return (
       <SafeAreaView style={styles.mainContainer}>
@@ -53,16 +63,6 @@ export const MantraPage = () => {
       </SafeAreaView>
     );
   }
-
-  const filteredMantras = useMemo(() => {
-    if (!search) return mantras;
-    return mantras.filter(mantraTitleFilter(search));
-  }, [search]);
-
-  const scrollY = useRef(new Animated.Value(0)).current;
-
-  const bottomSheetModalRef = useRef(null);
-  const snapPoints = useMemo(() => ["50%"], []);
 
   const [matra, setMantra] = useState();
 

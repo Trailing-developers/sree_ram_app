@@ -513,3 +513,8 @@ export const SHIVA = {
   description:
     "Lord Shiva is the supreme god of the universe. He is the god of the sky, the earth, the sea, and the fire. He is the god of the gods and the god of the humans.",
 };
+
+export const Katha_content = {
+  title : "Gayatri Mantra",
+  body : ["ॐ भूर् भुवः स्वः।","तत् सवितुर्वरेण्यं।","भर्गो देवस्य धीमहि।","धियो यो नः प्रचोदयात् ॥"]
+}

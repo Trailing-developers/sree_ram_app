@@ -10,6 +10,8 @@ import { colors } from "../../constants/theme";
 // import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { Katha_content } from "../../data";
+import { Line } from "react-native-svg";
 
 const BookKathaContent = ({ route }) => {
   const { bookId, pdfLink } = route.params;
@@ -22,7 +24,8 @@ const BookKathaContent = ({ route }) => {
   return (
     <View style={styles.container}>
       <View style={styles.pdfContainer}>
-        <Text>Book Katha Content for {bookId}</Text>
+        <Text style={styles.titlestyle}>{Katha_content.title}</Text>
+        {Katha_content.body.map(line=><Text>{line}</Text>)}
       </View>
       <View style={styles.iconContainer}>
         <TouchableOpacity
@@ -58,15 +61,18 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").height,
   },
   iconContainer: {
-    // position: "absolute",
-    // top: 20,
-    // left: 20,
+    position: "absolute",
+    bottom: 10,
+    left: 30,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     width: Dimensions.get("window").width * 0.8,
     zIndex: 10,
   },
+  titlestyle: {
+    fontSize: 35,
+  }
 });
 
 export default BookKathaContent;

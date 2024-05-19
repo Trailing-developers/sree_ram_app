@@ -22,7 +22,6 @@ export default function TeachingsScreen() {
   }, [search]);
 
   return (
-    <View style={styles.container}>
       <FlatList
         data={filteredKathaBooks}
         keyExtractor={(item) => item.id}
@@ -30,13 +29,11 @@ export default function TeachingsScreen() {
         contentContainerStyle={{
           paddingVertical: spacing.l,
           paddingHorizontal: spacing.s,
-          marginTop: 150,
           backgroundColor: colors.bhagwa,
           flex: 1,
         }}
         renderItem={({ item }) => <KathaCard item={item} />}
       />
-    </View>
   );
 }
 

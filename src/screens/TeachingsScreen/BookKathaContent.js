@@ -9,7 +9,7 @@ import {
 import { colors } from "../../constants/theme";
 // import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome6 } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 const BookKathaContent = ({ route }) => {
   const { bookId, pdfLink } = route.params;
@@ -31,13 +31,13 @@ const BookKathaContent = ({ route }) => {
           }}
           style={{ paddingBottom: 30 }}
         >
-          <FontAwesome6 name="music" size={30} color={colors.black} />
+          <FontAwesome5 name="music" size={30} color={colors.black} />
         </TouchableOpacity>
         <TouchableOpacity
           style={{ marginBottom: 30 }}
           onPress={() => navigation.navigate("VideoScreen")}
         >
-          <FontAwesome6 name="youtube" size={30} color={colors.black} />
+          <FontAwesome5 name="youtube" size={30} color={colors.black} />
         </TouchableOpacity>
       </View>
     </View>

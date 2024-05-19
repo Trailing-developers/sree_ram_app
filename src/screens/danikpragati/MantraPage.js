@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Animated,
   SafeAreaView,
   ScrollView,
@@ -7,17 +8,17 @@ import {
   View,
 } from "react-native";
 import { useNavigationSearch } from "../../hooks/useNavigationSearch";
-import { MANTRA_LIST } from "../../data";
 import { MantraListItem } from "./MantraListItem";
 import { mantraTitleFilter } from "../../helper/filter";
 import { useMemo, useRef, useState } from "react";
-import { colors, itemDivider } from "../../constants/theme";
+import { colors } from "../../constants/theme";
 import { FlatList } from "react-native-gesture-handler";
 import {
   BottomSheetModal,
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
 import DisplayMantra from "./DisplayMantra";
+import { useMantras } from "../../hooks/api/mantra";
 
 export const MantraPage = () => {
   const search = useNavigationSearch({
@@ -35,9 +36,27 @@ export const MantraPage = () => {
     );
   };
 
+  const { mantras, isLoading, error } = useMantras();
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.mainContainer}>
+        <ActivityIndicator />
+      </SafeAreaView>
+    );
+  }
+
+  if (error) {
+    return (
+      <SafeAreaView style={styles.mainContainer}>
+        <Text>Failed to fetch the data. Error: {error.message}</Text>
+      </SafeAreaView>
+    );
+  }
+
   const filteredMantras = useMemo(() => {
-    if (!search) return MANTRA_LIST;
-    return MANTRA_LIST.filter(mantraTitleFilter(search));
+    if (!search) return mantras;
+    return mantras.filter(mantraTitleFilter(search));
   }, [search]);
 
   const scrollY = useRef(new Animated.Value(0)).current;

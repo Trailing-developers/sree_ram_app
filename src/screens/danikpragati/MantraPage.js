@@ -21,6 +21,8 @@ import DisplayMantra from "./DisplayMantra";
 import { useMantras } from "../../hooks/api/mantra";
 
 export const MantraPage = () => {
+  const [matra, setMantra] = useState();
+
   const search = useNavigationSearch({
     searchBarOptions: { placeholder: "Search Mantras" },
   });
@@ -63,8 +65,6 @@ export const MantraPage = () => {
       </SafeAreaView>
     );
   }
-
-  const [matra, setMantra] = useState();
 
   const openModal = (item) => {
     setMantra(item);

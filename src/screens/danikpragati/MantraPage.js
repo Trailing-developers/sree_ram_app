@@ -32,7 +32,7 @@ export const MantraPage = () => {
   const filteredMantras = useMemo(() => {
     if (!search) return mantras;
     return mantras.filter(mantraTitleFilter(search));
-  }, [search]);
+  }, [search, mantras]);
 
   const scrollY = useRef(new Animated.Value(0)).current;
 
@@ -50,6 +50,11 @@ export const MantraPage = () => {
   const bottomSheetModalRef = useRef(null);
   const snapPoints = useMemo(() => ["50%"], []);
 
+  const openModal = (item) => {
+    setMantra(item);
+    bottomSheetModalRef.current.present();
+  };
+
   if (isLoading) {
     return (
       <SafeAreaView style={styles.mainContainer}>
@@ -65,11 +70,6 @@ export const MantraPage = () => {
       </SafeAreaView>
     );
   }
-
-  const openModal = (item) => {
-    setMantra(item);
-    bottomSheetModalRef.current.present();
-  };
 
   return (
     // <ScrollView

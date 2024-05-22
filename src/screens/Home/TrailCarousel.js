@@ -1,28 +1,16 @@
-import React from "react";
-import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
+import React, { useMemo } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { interpolate } from "react-native-reanimated";
 import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
-
-const data = [
-  {
-    title: "Holi",
-    body: "I love holi",
-    imgUrl:
-      "https://t4.ftcdn.net/jpg/05/60/58/67/360_F_560586710_VmIHNuH6TcdLHIn3cEuIDDAcCYBhkIL0.jpg",
-  },
-  {
-    title: "Diwali",
-    body: "Aenean ut eros et nisl sagittis vestibulum. Donec posuere vulputate arcu. Proin faucibus arcu quis ante. Curabitur at lacus ac velit ornare lobortis. ",
-    imgUrl: "https://images.indianexpress.com/2020/11/diwali-feature-1.jpg",
-  },
-  {
-    title: "Dusshera",
-    body: "Phasellus ullamcorper ipsum rutrum nunc. Nullam quis ante. Etiam ultricies nisi vel augue. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc.",
-    imgUrl:
-      "https://media.gettyimages.com/id/458583265/photo/goddess-during-durga-puja-celebrations.jpg?s=612x612&w=gi&k=20&c=InuPVvTsHwQh7Q6bR_e2ZjtnaXYC1HwPNzDNLCUN2dU=",
-  },
-];
+import { useHomeWidgets } from "../../hooks/api/homewidgets";
 
 export const SLIDER_WIDTH = Dimensions.get("window").width + 10;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8) + 10;
@@ -84,6 +72,22 @@ const styles = StyleSheet.create({
 });
 
 function TrailCarousel() {
+  const { data, isLoading, error } = useHomeWidgets();
+
+  const homeBanners = useMemo(() => {
+    if (!data) return [];
+    return data?.data?.filter((item) => item?.type === "BANNER")[0].data;
+  }, [data]);
+
+  if (error) return <Text>Something went wrong.</Text>;
+
+  if (isLoading)
+    return (
+      <View style={{ flex: 1, paddingBottom: 10 }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+
   const width = Dimensions.get("window").width;
 
   const animationStyle = (value) => {
@@ -107,7 +111,7 @@ function TrailCarousel() {
         width={width}
         height={IMAGE_HEIGHT}
         autoPlay={false}
-        data={data}
+        data={homeBanners}
         scrollAnimationDuration={1000}
         onSnapToItem={(index) => console.log("current index:", index)}
         renderItem={CarouselCardItem}

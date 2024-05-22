@@ -1,8 +1,19 @@
-import * as React from "react";
-import { Dimensions, Text, View, StyleSheet, Image } from "react-native";
-import Carousel,{ TAnimationStyle } from "react-native-reanimated-carousel";
-import Animated, {Extrapolate,interpolate,useAnimatedStyle,} from "react-native-reanimated";
-
+import {
+  Dimensions,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  ActivityIndicator,
+} from "react-native";
+import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+import Animated, {
+  Extrapolate,
+  interpolate,
+  useAnimatedStyle,
+} from "react-native-reanimated";
+import { useDarshanWidgets } from "../../hooks/api/widgets";
+import { useCallback, useMemo } from "react";
 
 const data = [
   {
@@ -30,18 +41,6 @@ export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 1) + 10;
 export const width = Dimensions.get("window").width;
 export const IMAGE_HEIGHT = width * 0.7;
 export const PAGE_WIDTH = width;
-
-const CarouselCardItem = ({ item, index }) => {
-  return (
-    <View style={styles.cardContainer} key={index}>
-      <Image source={{ uri: item.imgUrl }} style={styles.image} />
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.subtitle}>{item.body}</Text>
-      </View>
-    </View>
-  );
-};
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -81,10 +80,14 @@ const styles = StyleSheet.create({
 });
 
 function TempleCarousel() {
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
+  const { data, isLoading, error } = useDarshanWidgets();
 
-const animationStyle = React.useCallback(
-  (value) => {
+  const darshanBanner = useMemo(() => {
+    if (!data) return [];
+    return data?.data.filter((item) => item?.type === "BANNER")[0].data;
+  }, [data]);
+
+  const animationStyle = useCallback((value) => {
     "worklet";
 
     const zIndex = interpolate(value, [-1, 0, 1], [300, 0, -300]);
@@ -94,119 +97,121 @@ const animationStyle = React.useCallback(
       transform: [{ translateX }],
       zIndex,
     };
-  },
-  [],
-);
+  }, []);
 
-return (
-  <View style={{ flex: 1 }}>
-    <Carousel
-      loop
-      autoPlay={true}
-      style={{ width: PAGE_WIDTH, height: 240 }}
-      width={width}
-      data={data}
-      renderItem={({ index, item, animationValue }) => {
-        return (
-          <Item
-            key={index}
-            width={PAGE_WIDTH}
-            animationValue={animationValue}
-            item={item}
-          />
-        );
-      }}
+  if (error) return <Text>Something went wrong.</Text>;
 
-      customAnimation={animationStyle}
-      scrollAnimationDuration={1200}
-    />
-  </View>
-);
-
-function Item({ width, item, animationValue }) {
-  const leftStyle = useAnimatedStyle(() => {
-    const left = interpolate(
-      animationValue.value,
-      [-1, 0, 1],
-      [-(width / 2), 0, 0],
-      Extrapolate.CLAMP
+  if (isLoading)
+    return (
+      <View style={{ flex: 1, paddingBottom: 10 }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
     );
-    return {
-      left,
-    };
-  }, [animationValue, width]);
-
-  const rightStyle = useAnimatedStyle(() => {
-    const right = interpolate(
-      animationValue.value,
-      [-1, 0, 1],
-      [-(width / 2), 0, 0],
-      Extrapolate.CLAMP
-    );
-
-    return {
-      right,
-    };
-  }, [animationValue, width]);
 
   return (
-    <View style={{height: "100%", width }}>
-      <Animated.View
-        style={[
-          {
-            left: 0,
-            position: "absolute",
-            width: width / 2,
-            height: "100%",
-            overflow: "hidden",
-          },
-          leftStyle,
-        ]}
-      >
-        <Animated.Image
-          source={{uri:item.imgUrl}}
-          style={{
-            width,
-            height: "100%",
-            left: 0,
-            position: "absolute",
-          }}
-          resizeMode="cover"
-        />
-      </Animated.View>
-      <Animated.View
-        style={[
-          {
-            right: 0,
-            position: "absolute",
-            width: width / 2,
-            height: "100%",
-            overflow: "hidden",
-          },
-          rightStyle,
-        ]}
-      >
-        <Animated.Image
-          source={{uri: item.imgUrl}}
-          style={{
-            width,
-            height: "100%",
-            right: 0,
-            position: "absolute",
-          }}
-          resizeMode="cover"
-        >
-        </Animated.Image>
-        <View style={styles.textContainer}>
-        <Text style={styles.title}>{item.title}</Text>
-      </View>
-      </Animated.View>
+    <View style={{ flex: 1 }}>
+      <Carousel
+        loop
+        autoPlay={true}
+        style={{ width: PAGE_WIDTH, height: 240 }}
+        width={width}
+        data={darshanBanner}
+        renderItem={({ index, item, animationValue }) => {
+          return (
+            <Item
+              key={index}
+              width={PAGE_WIDTH}
+              animationValue={animationValue}
+              item={item}
+            />
+          );
+        }}
+        customAnimation={animationStyle}
+        scrollAnimationDuration={1200}
+      />
     </View>
   );
-}
 
+  function Item({ width, item, animationValue }) {
+    const leftStyle = useAnimatedStyle(() => {
+      const left = interpolate(
+        animationValue.value,
+        [-1, 0, 1],
+        [-(width / 2), 0, 0],
+        Extrapolate.CLAMP
+      );
+      return {
+        left,
+      };
+    }, [animationValue, width]);
+
+    const rightStyle = useAnimatedStyle(() => {
+      const right = interpolate(
+        animationValue.value,
+        [-1, 0, 1],
+        [-(width / 2), 0, 0],
+        Extrapolate.CLAMP
+      );
+
+      return {
+        right,
+      };
+    }, [animationValue, width]);
+
+    return (
+      <View style={{ height: "100%", width }}>
+        <Animated.View
+          style={[
+            {
+              left: 0,
+              position: "absolute",
+              width: width / 2,
+              height: "100%",
+              overflow: "hidden",
+            },
+            leftStyle,
+          ]}
+        >
+          <Animated.Image
+            source={{ uri: item.imgUrl }}
+            style={{
+              width,
+              height: "100%",
+              left: 0,
+              position: "absolute",
+            }}
+            resizeMode="cover"
+          />
+        </Animated.View>
+        <Animated.View
+          style={[
+            {
+              right: 0,
+              position: "absolute",
+              width: width / 2,
+              height: "100%",
+              overflow: "hidden",
+            },
+            rightStyle,
+          ]}
+        >
+          <Animated.Image
+            source={{ uri: item.imgUrl }}
+            style={{
+              width,
+              height: "100%",
+              right: 0,
+              position: "absolute",
+            }}
+            resizeMode="cover"
+          ></Animated.Image>
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{item.title}</Text>
+          </View>
+        </Animated.View>
+      </View>
+    );
+  }
 }
 
 export default TempleCarousel;
-
-

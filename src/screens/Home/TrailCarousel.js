@@ -10,7 +10,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { interpolate } from "react-native-reanimated";
 import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
-import { useHomeWidgets } from "../../hooks/api/homewidgets";
+import { useHomeWidgets } from "../../hooks/api/widgets";
 
 export const SLIDER_WIDTH = Dimensions.get("window").width + 10;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8) + 10;

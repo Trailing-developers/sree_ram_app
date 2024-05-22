@@ -6,7 +6,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { useHomeWidgets } from "../../hooks/api/homewidgets";
+import { useHomeWidgets } from "../../hooks/api/widgets";
 import { useMemo } from "react";
 
 const imageUrl =

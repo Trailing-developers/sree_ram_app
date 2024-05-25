@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 });
 
 function ParsadAndOther({ d }) {
-  const { data, wigetTitle } = d;
+  const { data, widgetTitle } = d;
   const width = Dimensions.get("window").width;
   const baseOptions = {
     vertical: false,
@@ -86,11 +86,11 @@ function ParsadAndOther({ d }) {
   };
   return (
     <View
-      key={wigetTitle}
+      key={widgetTitle}
       style={{ flex: 1, paddingBottom: 10, height: IMAGE_HEIGHT + 150 }}
     >
       <View style={styles.wigetTitleContainer}>
-        <Text style={styles.wigetTitleText}>{wigetTitle}</Text>
+        <Text style={styles.wigetTitleText}>{widgetTitle}</Text>
       </View>
       {/* <Carousel
         {...baseOptions}

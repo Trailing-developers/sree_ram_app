@@ -75,7 +75,7 @@ function ParsadAndOther({ d }) {
           <CardContent style={styles.container}>
             <View style={styles.textContainer}>
               <Text style={styles.title}>{item.name}</Text>
-              <Text style={styles.subtitle}>{item.state}</Text>
+              <Text style={styles.subtitle}>{item.place}</Text>
             </View>
           </CardContent>
         </Card>

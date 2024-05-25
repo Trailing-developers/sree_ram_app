@@ -69,7 +69,7 @@ function ParsadAndOther({ d }) {
 
   const CarouselCardItem = ({ item, index, style }) => {
     return (
-      <TouchableOpacity key={index} onPress={() => handleCardPress(item)}>
+      <TouchableOpacity key={item.pageId} onPress={() => handleCardPress(item)}>
         <Card key={item.title} style={[styles.card, style]}>
           <CardMedia source={item.imgUrl} />
           <CardContent style={styles.container}>
@@ -86,25 +86,17 @@ function ParsadAndOther({ d }) {
   };
   return (
     <View
-      key={widgetTitle}
+      key={data.pageId + "title"}
       style={{ flex: 1, paddingBottom: 10, height: IMAGE_HEIGHT + 150 }}
     >
       <View style={styles.wigetTitleContainer}>
         <Text style={styles.wigetTitleText}>{widgetTitle}</Text>
       </View>
-      {/* <Carousel
-        {...baseOptions}
-        loop={false}
-        style={{ width: "100%" }}
-        width={width * 0.85}
-        height={width * 0.8}
-        pagingEnabled={"true"}
-        data={data}
-        scrollAnimationDuration={1000}
-        onSnapToItem={(index) => console.log("current index:", index)}
-        renderItem={CarouselCardItem}
-      /> */}
-      <Carousel items={data} renderItems={CarouselCardItem} />
+      <Carousel
+        key={data.pageId + "carosal"}
+        items={data}
+        renderItems={CarouselCardItem}
+      />
     </View>
   );
 }

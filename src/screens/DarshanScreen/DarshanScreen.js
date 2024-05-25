@@ -1,4 +1,4 @@
-import { FlatList, ScrollView, View } from "react-native";
+import { ActivityIndicator, FlatList, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TempleCarousel from "./TempleCarousel";
 import ParsadAndOther from "./ParsadAndOther";
@@ -14,6 +14,15 @@ export default function DarshanScreen() {
     if (!data) return [];
     return data?.data.filter((item) => item?.type === "WIDGETS")[0].data;
   }, [data]);
+
+  if (error) return <Text>Something went wrong.</Text>;
+
+  if (isLoading)
+    return (
+      <View style={{ flex: 1, paddingBottom: 10 }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
 
   return (
     <ScrollView>

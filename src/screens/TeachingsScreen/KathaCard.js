@@ -11,7 +11,6 @@ const KathaCard = ({ item }) => {
   const handlePress = () => {
     navigate.navigate("KathaContent", {
       bookId: item.id,
-      pdfLink: item.pdfLink,
     });
   };
 
@@ -37,6 +36,7 @@ const styles = StyleSheet.create({
   cardContent: {
     justifyContent: "center",
     backgroundColor: colors.bhagwadark,
+    // borderRadius: 10,
   },
   cardText: {
     fontSize: 15,

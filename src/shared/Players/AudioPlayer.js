@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   FlatList,
+  SafeAreaView,
 } from "react-native";
 import { SONG_LIST } from "../../data";
 import TrackListItem from "./AudioPlayer/TrackListItem";
@@ -14,11 +15,15 @@ import { useNavigationSearch } from "../../hooks/useNavigationSearch";
 import { trackTitleFilter } from "../../helper/filter";
 import TrackPlayer from "react-native-track-player";
 import { useQueue } from "../../store/queue";
+import SearchBar from "../../searchBarAdd/SearchBar";
 
 export default function AudioPlayer({ id = 1 }) {
-  const search = useNavigationSearch({
-    searchBarOptions: { placeholder: "Search Songs" },
-  });
+
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const [clicked, setClicked] = useState(false);
+  // const search = useNavigationSearch({
+  //   searchBarOptions: { placeholder: "Search Songs" },
+  // });
   const ItemDivider = () => {
     return (
       <View
@@ -32,9 +37,17 @@ export default function AudioPlayer({ id = 1 }) {
   };
 
   const filteredSongs = useMemo(() => {
-    if (!search) return SONG_LIST;
-    return SONG_LIST.filter(trackTitleFilter(search));
-  }, [search]);
+    if (!searchPhrase.trim()) {
+      return SONG_LIST;
+    }
+    else {
+      const normalizedSearchPhrase = searchPhrase.trim().toLowerCase();
+      return SONG_LIST.filter(
+        (item) =>
+          item.title.toLowerCase().includes(normalizedSearchPhrase)
+      );
+    }
+  }, [searchPhrase]);
 
   const queueOffset = useRef(0);
   const { activeQueueId, setActiveQueueId } = useQueue();
@@ -76,6 +89,13 @@ export default function AudioPlayer({ id = 1 }) {
   };
 
   return (
+    <SafeAreaView>
+     <SearchBar
+        searchPhrase={searchPhrase}
+        setSearchPhrase={setSearchPhrase}
+        clicked={clicked}
+        setClicked={setClicked}
+      /> 
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"
       style={{ ...styles.mainContainer, paddingHorizontal: 20 }}
@@ -102,6 +122,7 @@ export default function AudioPlayer({ id = 1 }) {
         }}
       />
     </ScrollView>
+    </SafeAreaView>
   );
 }
 

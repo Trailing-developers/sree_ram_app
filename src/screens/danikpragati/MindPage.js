@@ -1,4 +1,7 @@
 import { Text, View } from "react-native";
+import React from "react";
+import { StyleSheet, TextInput, Keyboard, Button } from "react-native";
+import { Feather, Entypo } from "@expo/vector-icons";
 
 export const MindPage = () => {
   return (
@@ -19,3 +22,4 @@ export const MindPage = () => {
     </View>
   );
 };
+

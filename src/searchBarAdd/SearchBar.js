@@ -38,12 +38,14 @@ const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
             style={{ padding: 1 }}
             onPress={() => {
               setSearchPhrase("");
+              Keyboard.dismiss();
+              setClicked(false);
             }}
           />
         )}
       </View>
       {/* cancel button, depending on whether the search bar is clicked or not */}
-      {clicked && (
+      {/* {clicked && (
         <View>
           <Button
             title="Cancel"
@@ -53,7 +55,7 @@ const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
             }}
           />
         </View>
-      )}
+      )} */}
     </View>
   );
 };
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
   searchBar__clicked: {
     padding: 10,
     flexDirection: "row",
-    width: "80%",
+    width: "95%",
     backgroundColor: "#d9dbda",
     borderRadius: 15,
     alignItems: "center",

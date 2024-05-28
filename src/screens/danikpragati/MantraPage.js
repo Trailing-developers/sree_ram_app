@@ -13,6 +13,7 @@ import { mantraTitleFilter } from "../../helper/filter";
 import { useMemo, useRef, useState } from "react";
 import { colors } from "../../constants/theme";
 import { FlatList } from "react-native-gesture-handler";
+import SearchBar from "../../searchBarAdd/SearchBar";
 import {
   BottomSheetModal,
   BottomSheetModalProvider,
@@ -22,17 +23,25 @@ import { useMantras } from "../../hooks/api/mantra";
 
 export const MantraPage = () => {
   const [matra, setMantra] = useState();
-
-  const search = useNavigationSearch({
-    searchBarOptions: { placeholder: "Search Mantras" },
-  });
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const [clicked, setClicked] = useState(false);
+  // const search = useNavigationSearch({
+  //   searchBarOptions: { placeholder: "Search Mantras" },
+  // });
 
   const { mantras, isLoading, error } = useMantras();
 
   const filteredMantras = useMemo(() => {
-    if (!search) return mantras;
-    return mantras.filter(mantraTitleFilter(search));
-  }, [search, mantras]);
+    if (!searchPhrase.trim()) { 
+      return mantras;
+    } else {
+      const normalizedSearchPhrase = searchPhrase.trim().toLowerCase();
+      return mantras.filter(
+        (item) =>
+          item.title.toLowerCase().includes(normalizedSearchPhrase)
+      );
+    }
+  }, [searchPhrase]);
 
   const scrollY = useRef(new Animated.Value(0)).current;
 
@@ -78,6 +87,12 @@ export const MantraPage = () => {
     // >
     <BottomSheetModalProvider>
       <SafeAreaView style={styles.mainContainer}>
+      <SearchBar
+        searchPhrase={searchPhrase}
+        setSearchPhrase={setSearchPhrase}
+        clicked={clicked}
+        setClicked={setClicked}
+      />
         <FlatList
           data={filteredMantras}
           ItemSeparatorComponent={ItemDivider}

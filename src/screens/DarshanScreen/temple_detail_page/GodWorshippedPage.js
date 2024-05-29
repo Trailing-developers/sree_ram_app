@@ -2,6 +2,7 @@ import { TouchableOpacity } from "@gorhom/bottom-sheet";
 import { ScrollView, Image, StyleSheet, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native-gesture-handler";
+import FastImage from "react-native-fast-image";
 
 const GodWorshippedPage = ({ data }) => {
   const navigation = useNavigation();
@@ -15,12 +16,12 @@ const GodWorshippedPage = ({ data }) => {
               key={index}
               onPress={() => {
                 navigation.navigate("GodDetails", {
-                  image: god.image,
-                  name: god.name,
+                  image: god.god.image,
+                  name: god.god.name,
                 });
               }}
             >
-              <Image source={{ uri: god.image }} style={styles.image} />
+              <FastImage source={{ uri: god.god.image }} style={styles.image} />
             </TouchableOpacity>
           );
         })}

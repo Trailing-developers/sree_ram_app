@@ -34,12 +34,14 @@ import FastImage from "react-native-fast-image";
 import { TEMPLE_DETAIL_PAGE } from "../../data";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { colors, fontSize } from "../../constants/theme";
+import { useTemple } from "../../hooks/api/page";
 
 const data = TEMPLE_DETAIL_PAGE;
 const IMG_HEIGHT = 300;
 
 const TempleDetailPage = ({ route }) => {
   const { item } = route.params;
+  const { templeDetails, isLoading, error } = useTemple(item.pageId);
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const spanPoints = useMemo(() => ["10%", "80%"], []);
@@ -73,7 +75,7 @@ const TempleDetailPage = ({ route }) => {
       <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
         <AnimatedFastImage
           source={{
-            uri: item.imgUrl,
+            uri: templeDetails?.data?.image,
           }}
           style={[styles.image, imageAnimatedStyle]}
         />
@@ -94,13 +96,16 @@ const TempleDetailPage = ({ route }) => {
         </View>
 
         <View style={{ backgroundColor: "#fff" }}>
-          <TempleTitle title={item.name} address={data.address} />
+          <TempleTitle
+            title={templeDetails?.data?.name}
+            address={templeDetails?.data?.address}
+          />
           <Divider />
-          <HistoryPage data={data.history} />
+          <HistoryPage data={templeDetails?.data?.history} />
           <CrowdForecast data={data.crowdPatterns} />
           <ExtraInformation data={data.information} />
-          <GodWorshippedPage data={data.godAndGoddess} />
-          <DarshanInfoPage data={data.darshanDetails} />
+          <GodWorshippedPage data={templeDetails?.data?.gods} />
+          <DarshanInfoPage data={templeDetails?.data?.darshanTypes} />
           <NearByTemples
             data={{
               placeLocation: data.locationOfPlace,

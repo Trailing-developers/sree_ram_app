@@ -6,13 +6,13 @@ const HistoryPage = ({ data }) => {
     <View style={styles.historyContainer}>
       <ImageBackground
         source={{
-          uri: "https://t4.ftcdn.net/jpg/05/71/56/51/360_F_571565144_1BivKAfVmv64ieXYkeKMWmg5GCUpx3Rr.jpg",
+          uri: data?.backgroundImage,
         }}
         style={styles.ImageContainer}
       >
         <View style={styles.overlay}>
           <Text style={styles.title}>About the temple</Text>
-          <Text style={styles.description}>{data.desc}</Text>
+          <Text style={styles.description}>{data?.description}</Text>
         </View>
       </ImageBackground>
     </View>

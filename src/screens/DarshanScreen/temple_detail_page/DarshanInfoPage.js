@@ -13,9 +13,7 @@ const cardView = (charge, index) => {
 };
 
 export default DarshanInfoPage = ({ data }) => {
-  const { charges } = data;
-
-  const HEIGHT = charges.darshan.length * 50; // Assuming each card has a height of 50
+  const HEIGHT = data.length * 150; // Assuming each card has a height of 50
 
   return (
     // <FlatList
@@ -31,11 +29,11 @@ export default DarshanInfoPage = ({ data }) => {
         source={{
           uri: "https://londonmandir.baps.org/images/2011/10/darshan02_main.jpg",
         }}
-        style={{ width: "100%", height: HEIGHT }}
+        style={{ width: "100%", height: HEIGHT, elevation: 10 }}
         blurRadius={1}
       >
         <FlatList
-          data={charges.darshan}
+          data={data}
           numColumns={2}
           renderItem={(item, index) => <DarshanListItem item={item} />}
           scrollEnabled={false}

@@ -106,12 +106,12 @@ const TempleDetailPage = ({ route }) => {
           <ExtraInformation data={data.information} />
           <GodWorshippedPage data={templeDetails?.data?.gods} />
           <DarshanInfoPage data={templeDetails?.data?.darshanTypes} />
-          <NearByTemples
+          {/* <NearByTemples
             data={{
               placeLocation: data.locationOfPlace,
               userLocation: data.locationOfUser,
             }}
-          />
+          /> */}
           <Restaurants
             data={{
               placeLocation: data.locationOfPlace,

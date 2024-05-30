@@ -8,3 +8,11 @@ export const useTemple = (id) => {
   );
   return { templeDetails: data, isLoading, error };
 };
+
+export const useGodPage = (id) => {
+  const { data, isLoading, error } = useSWR(
+    `https://sree-ram-backend.vercel.app/api/gods/${id}`,
+    fetcher
+  );
+  return { godData: data, isLoading, error };
+};

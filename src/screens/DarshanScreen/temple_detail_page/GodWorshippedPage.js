@@ -15,10 +15,7 @@ const GodWorshippedPage = ({ data }) => {
             <TouchableOpacity
               key={index}
               onPress={() => {
-                navigation.navigate("GodDetails", {
-                  image: god?.god?.image,
-                  name: god?.god?.name,
-                });
+                navigation.navigate("GodDetails", { god: god });
               }}
             >
               <FastImage

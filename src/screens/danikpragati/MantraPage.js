@@ -32,16 +32,15 @@ export const MantraPage = () => {
   const { mantras, isLoading, error } = useMantras();
 
   const filteredMantras = useMemo(() => {
-    if (!searchPhrase.trim()) { 
+    if (!searchPhrase.trim()) {
       return mantras;
     } else {
       const normalizedSearchPhrase = searchPhrase.trim().toLowerCase();
-      return mantras.filter(
-        (item) =>
-          item.title.toLowerCase().includes(normalizedSearchPhrase)
+      return mantras.filter((item) =>
+        item.title.toLowerCase().includes(normalizedSearchPhrase)
       );
     }
-  }, [searchPhrase]);
+  }, [searchPhrase, mantras]);
 
   const scrollY = useRef(new Animated.Value(0)).current;
 
@@ -87,12 +86,12 @@ export const MantraPage = () => {
     // >
     <BottomSheetModalProvider>
       <SafeAreaView style={styles.mainContainer}>
-      <SearchBar
-        searchPhrase={searchPhrase}
-        setSearchPhrase={setSearchPhrase}
-        clicked={clicked}
-        setClicked={setClicked}
-      />
+        <SearchBar
+          searchPhrase={searchPhrase}
+          setSearchPhrase={setSearchPhrase}
+          clicked={clicked}
+          setClicked={setClicked}
+        />
         <FlatList
           data={filteredMantras}
           ItemSeparatorComponent={ItemDivider}

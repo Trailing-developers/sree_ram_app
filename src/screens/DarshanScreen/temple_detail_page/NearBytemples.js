@@ -22,9 +22,7 @@ const temples = [
   // other temples
 ];
 
-const NearByTemples = ({ data }) => {
-  const { placeLocation, userLocation } = data;
-
+const NearByTemples = ({ data, title }) => {
   return (
     <View style={{ marginVertical: 20 }}>
       <Text
@@ -34,17 +32,17 @@ const NearByTemples = ({ data }) => {
           marginLeft: 10,
         }}
       >
-        {"Nearby Temples"}
+        {title}
       </Text>
       <Carousel
-        items={temples}
+        items={data}
         renderItems={({ item, style }) => {
           return (
             <Card key={item.title + "_" + item.id} style={[styles.card, style]}>
-              <CardMedia source={item.image} />
+              <CardMedia source={item.temple.image} />
               <CardContent style={styles.container}>
                 <View style={styles.textBox}>
-                  <Text style={styles.title}>{item.name}</Text>
+                  <Text style={styles.title}>{item.temple.name}</Text>
                 </View>
                 <View style={styles.distanceBox}>
                   <Text style={styles.title}>5 KM</Text>

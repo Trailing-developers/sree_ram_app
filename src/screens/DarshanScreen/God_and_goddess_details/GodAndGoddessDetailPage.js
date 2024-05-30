@@ -6,18 +6,26 @@ import FastImage from "react-native-fast-image";
 import { SHIVA } from "../../../data";
 import { fontSize } from "../../../constants/theme";
 import NearByTemples from "../temple_detail_page/NearBytemples";
+import { useGodPage } from "../../../hooks/api/page";
 
-const data = SHIVA;
+// const data = SHIVA;
 const GodAndGoddessDetailPage = ({ route }) => {
-  const { image, name } = route.params;
+  const { god } = route.params;
+  const { godData, isLoading, error } = useGodPage(god?.godId);
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-      <Text style={styles.title}>{data.name}</Text>
+      <Text style={styles.title}>{godData?.data?.name}</Text>
       <View style={styles.container}>
-        <FastImage source={{ uri: image }} style={styles.image} />
-        <Text style={styles.description}>{data.description}</Text>
+        <FastImage
+          source={{ uri: godData?.data?.image }}
+          style={styles.image}
+        />
+        <Text style={styles.description}>{godData?.data?.description}</Text>
       </View>
-      <NearByTemples data={{ placeLocation: null, userLocation: null }} />
+      <NearByTemples
+        data={godData?.data?.temple}
+        title={`Popular ${godData?.data?.name} temple`}
+      />
     </ScrollView>
   );
 };

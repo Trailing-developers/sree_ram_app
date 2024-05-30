@@ -101,7 +101,10 @@ const TempleDetailPage = ({ route }) => {
             address={templeDetails?.data?.address}
           />
           <Divider />
-          <HistoryPage data={templeDetails?.data?.history} />
+          <HistoryPage
+            data={templeDetails?.data?.history}
+            defaultImage={templeDetails?.data?.image}
+          />
           <CrowdForecast data={data.crowdPatterns} />
           <ExtraInformation data={data.information} />
           <GodWorshippedPage data={templeDetails?.data?.gods} />

@@ -6,8 +6,8 @@ export const DarshanListItem = ({ item }) => {
   return (
     <Card key={item.index} style={styles.textBackground}>
       <CardContent>
-        <Text>{item.item.typeName}</Text>
-        <Text>{item.item.amount}</Text>
+        <Text>{item.item?.typeName}</Text>
+        <Text>{item.item?.amount}</Text>
       </CardContent>
     </Card>
   );

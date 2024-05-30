@@ -13,7 +13,7 @@ const cardView = (charge, index) => {
 };
 
 export default DarshanInfoPage = ({ data }) => {
-  const HEIGHT = data.length * 150; // Assuming each card has a height of 50
+  const HEIGHT = data ? data.length * 150 : 150; // Assuming each card has a height of 50
 
   return (
     // <FlatList

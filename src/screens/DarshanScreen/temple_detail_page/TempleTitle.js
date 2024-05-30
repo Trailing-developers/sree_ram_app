@@ -15,9 +15,9 @@ const TempleTitle = ({ title, address }) => {
       <Text selectable={true} style={styles.title}>
         {title}
       </Text>
-      <Text style={styles.address}>{address.address1}</Text>
-      <Text style={styles.address}>{address.city}</Text>
-      <Text style={styles.address}>{address.state}</Text>
+      <Text style={styles.address}>{address?.address1}</Text>
+      <Text style={styles.address}>{address?.city}</Text>
+      <Text style={styles.address}>{address?.state}</Text>
     </View>
     // </Animatable.View>
 

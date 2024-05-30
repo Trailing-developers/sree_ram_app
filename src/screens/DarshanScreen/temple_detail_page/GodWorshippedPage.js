@@ -10,18 +10,21 @@ const GodWorshippedPage = ({ data }) => {
     <View style={styles.container}>
       <Text style={styles.text}>Gods and Goddesses Worshipped</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {data.map((god, index) => {
+        {data?.map((god, index) => {
           return (
             <TouchableOpacity
               key={index}
               onPress={() => {
                 navigation.navigate("GodDetails", {
-                  image: god.god.image,
-                  name: god.god.name,
+                  image: god?.god?.image,
+                  name: god?.god?.name,
                 });
               }}
             >
-              <FastImage source={{ uri: god.god.image }} style={styles.image} />
+              <FastImage
+                source={{ uri: god?.god?.image }}
+                style={styles.image}
+              />
             </TouchableOpacity>
           );
         })}

@@ -5,24 +5,15 @@ import Card from "../../../shared/Card/Card";
 import CardMedia from "../../../shared/Card/CardMedia";
 import CardContent from "../../../shared/Card/CardContent";
 import { sizes } from "../../../constants/theme";
-
-const temples = [
-  {
-    name: "Rudranath",
-    id: 1,
-    image:
-      "https://static2.tripoto.com/media/filter/tst/img/335923/TripDocument/1621919337_img_20210522_144758.jpg",
-  },
-  {
-    name: "Tungnath",
-    id: 2,
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnnB386FLKJTw-Mqu1b_SBhEH58mRwiIwBIgbzq39gHg&s",
-  },
-  // other temples
-];
+import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const NearByTemples = ({ data, title }) => {
+  const navigation = useNavigation();
+  const handleCardPress = (item) => {
+    console.log(item);
+    navigation.navigate("TempleDetailPage", { item: { pageId: item.id } });
+  };
   return (
     <View style={{ marginVertical: 20 }}>
       <Text
@@ -38,17 +29,25 @@ const NearByTemples = ({ data, title }) => {
         items={data}
         renderItems={({ item, style }) => {
           return (
-            <Card key={item.title + "_" + item.id} style={[styles.card, style]}>
-              <CardMedia source={item.temple.image} />
-              <CardContent style={styles.container}>
-                <View style={styles.textBox}>
-                  <Text style={styles.title}>{item.temple.name}</Text>
-                </View>
-                <View style={styles.distanceBox}>
-                  <Text style={styles.title}>5 KM</Text>
-                </View>
-              </CardContent>
-            </Card>
+            <TouchableOpacity
+              key={item.pageId}
+              onPress={() => handleCardPress(item?.temple)}
+            >
+              <Card
+                key={item.title + "_" + item.id}
+                style={[styles.card, style]}
+              >
+                <CardMedia source={item.temple.image} />
+                <CardContent style={styles.container}>
+                  <View style={styles.textBox}>
+                    <Text style={styles.title}>{item.temple.name}</Text>
+                  </View>
+                  <View style={styles.distanceBox}>
+                    <Text style={styles.title}>5 KM</Text>
+                  </View>
+                </CardContent>
+              </Card>
+            </TouchableOpacity>
           );
         }}
       />

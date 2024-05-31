@@ -5,6 +5,9 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
+  ActivityIndicator,
+  SafeAreaView,
+  FlatList,
 } from "react-native";
 import { colors } from "../../constants/theme";
 // import Icon from "react-native-vector-icons/FontAwesome";
@@ -19,15 +22,32 @@ import Animated, {
   useAnimatedGestureHandler,
 } from "react-native-reanimated";
 import { PinchGestureHandler } from "react-native-gesture-handler";
+import { useKathaPage } from "../../hooks/api/page";
 
 const BookKathaContent = ({ route }) => {
   const { bookId, pdfLink } = route.params;
+  const { kathaData, isLoading, error } = useKathaPage(bookId);
   const navigation = useNavigation();
-  const source = {
-    uri: pdfLink,
-    cache: true,
-  };
-  console.log(bookId);
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.mainContainer}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </SafeAreaView>
+    );
+  }
+
+  if (error) {
+    return (
+      <SafeAreaView style={styles.mainContainer}>
+        <Text>Failed to fetch the data. Error: {error.message}</Text>
+      </SafeAreaView>
+    );
+  }
+  // const source = {
+  //   uri: pdfLink,
+  //   cache: true,
+  // };
 
   // // Shared values for pinch-to-zoom
   // const scale = useSharedValue(1);
@@ -60,26 +80,20 @@ const BookKathaContent = ({ route }) => {
   //   },
   // });
   return (
-    <View style={styles.container} >
-      <View style={styles.titlecontainer}> 
-        <Text style={styles.titletxtstyle}>{Katha_content.title}</Text>
+    <View key={kathaData?.id} style={styles.container}>
+      <View style={styles.titlecontainer}>
+        <Text style={styles.titletxtstyle}>{kathaData?.title}</Text>
       </View>
-      <ScrollView contentContainerStyle={styles.linecontainer}>
-        <View style={styles.linecontainer}>
-        {Katha_content.body.map(line=><Text style={styles.linetxtstyle}>{line}</Text>)}
-        </View>
-      </ScrollView>
-      {/* <ScrollView >
-        <PinchGestureHandler onGestureEvent={pinchGestureHandler}>
-          <Animated.View style={[animatedStyle,styles.linecontainer]}>
-            {Katha_content.body.map((line, index) => (
-              <Text key={index} style={styles.linetxtstyle}>
-                {line}
-              </Text>
-            ))}
-          </Animated.View>
-        </PinchGestureHandler> 
-      </ScrollView> */}
+      <FlatList
+        data={kathaData?.content}
+        contentContainerStyle={styles.linecontainer}
+        renderItem={({ item, index }) => (
+          <Text key={index} style={styles.linetxtstyle}>
+            {item}
+          </Text>
+        )}
+      />
+
       <View style={styles.iconContainer}>
         <TouchableOpacity
           onPress={() => {
@@ -91,11 +105,11 @@ const BookKathaContent = ({ route }) => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate("VideoScreen")}
-          style={{ right: 10}}
+          style={{ right: 10 }}
         >
           <FontAwesome5 name="youtube" size={40} color={colors.black} />
         </TouchableOpacity>
-      </View> 
+      </View>
     </View>
   );
 };
@@ -114,7 +128,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.bhagwa,
     alignItems: "center",
     justifyContent: "space-between",
-    width: Dimensions.get("window").width ,
+    width: Dimensions.get("window").width,
     height: 80,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
@@ -145,4 +159,3 @@ const styles = StyleSheet.create({
 });
 
 export default BookKathaContent;
-

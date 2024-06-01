@@ -41,15 +41,15 @@ const Tabs = ({ items }) => {
           })}
         </ScrollView>
       </View>
-      <View>{items[index].contentView()}</View>
+      {items[index]?.contentView()}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     marginTop: 10,
+    flex: 1,
   },
   tabBar: {
     flexDirection: "row",

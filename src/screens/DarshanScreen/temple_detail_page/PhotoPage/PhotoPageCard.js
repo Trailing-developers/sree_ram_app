@@ -4,6 +4,7 @@ import Card from "../../../../shared/Card/Card";
 import CardMedia from "../../../../shared/Card/CardMedia";
 import MyYoutubePlayer from "../../../../shared/Players/MyYoutubePlayer";
 import { spacing } from "../../../../constants/theme";
+import { ResizeMode } from "expo-av";
 
 const PhotoPageCard = ({ item, index }) => {
   return (
@@ -16,12 +17,12 @@ const PhotoPageCard = ({ item, index }) => {
         }}
       >
         {item.isVideo ? (
-          <MyYoutubePlayer source={item.source} />
+          <MyYoutubePlayer source={item.media} />
         ) : (
           <CardMedia
             borderRadiusStyle={styles.borderRadiusStyle}
             borderRadius={false}
-            source={item.source}
+            source={item.media}
             isVideo={item.isVideo}
           />
         )}

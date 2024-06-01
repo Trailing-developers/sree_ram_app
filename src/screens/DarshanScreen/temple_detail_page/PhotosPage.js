@@ -4,6 +4,7 @@ import MasonryList from "@react-native-seoul/masonry-list";
 import Tabs from "../../../shared/Tabs";
 import { spacing } from "../../../constants/theme";
 import PhotoPageCard from "./PhotoPage/PhotoPageCard";
+import { useTemplePhotoPage } from "../../../hooks/api/page";
 
 const photos = [
   {
@@ -106,16 +107,19 @@ const photos = [
   },
 ];
 
-const tabList = [
-  ...new Set(
-    photos.filter((photo) => photo.isVisible).map((photo) => photo.type)
-  ),
-];
-
-const PhotosPage = () => {
-  const tabContent = tabList.map((tab) => {
-    const data = photos.filter((photo) =>
-      photo.parents.includes(tab.toLowerCase())
+const PhotosPage = ({ route }) => {
+  const { item } = route.params;
+  const { templePhotos, isLoading, error } = useTemplePhotoPage(item.pageId);
+  const tabList = [
+    ...new Set(
+      templePhotos?.data
+        .filter((photo) => photo?.isVisible)
+        .map((photo) => photo?.tabs[0])
+    ),
+  ];
+  const tabContent = tabList?.map((tab) => {
+    const data = templePhotos?.data.filter((photo) =>
+      photo.tabs.includes(tab?.toLowerCase())
     );
     const isVideo = data.filter((photo) => photo.isVideo).length > 0;
     return {
@@ -134,11 +138,7 @@ const PhotosPage = () => {
     };
   });
 
-  return (
-    <View style={styles.container}>
-      <Tabs items={tabContent} />
-    </View>
-  );
+  return <Tabs items={tabContent} />;
 };
 
 const styles = StyleSheet.create({
@@ -150,6 +150,8 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   masonary: {
+    flex: 1,
+    alignItems: "center",
     paddingHorizontal: spacing.s,
   },
 });

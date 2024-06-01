@@ -32,3 +32,11 @@ export const useKathaPage = (id) => {
   );
   return { kathaData: data, isLoading, error };
 };
+
+export const useTemplePhotoPage = (id) => {
+  const { data, isLoading, error } = useSWR(
+    `https://sree-ram-backend.vercel.app/api/temple/media/${id}`,
+    fetcher
+  );
+  return { templePhotos: data, isLoading, error };
+};

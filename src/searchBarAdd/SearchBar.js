@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TextInput, View, Keyboard, Button } from "react-native";
+import { StyleSheet, TextInput, View, Keyboard, Button, Dimensions } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 
 const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
@@ -64,25 +64,25 @@ export default SearchBar;
 // styles
 const styles = StyleSheet.create({
   container: {
-    margin: 15,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    width: "90%",
+    width: Dimensions.get("screen").width,
+    height: Dimensions.get("screen").height * 0.067,
   },
   searchBar__unclicked: {
     padding: 10,
     flexDirection: "row",
-    width: "95%",
-    backgroundColor: "#d9dbda",
+    width: "97%",
+    backgroundColor: "white",
     borderRadius: 15,
     alignItems: "center",
   },
   searchBar__clicked: {
     padding: 10,
     flexDirection: "row",
-    width: "95%",
-    backgroundColor: "#d9dbda",
+    width: "97%",
+    backgroundColor: "white",
     borderRadius: 15,
     alignItems: "center",
     justifyContent: "space-evenly",
@@ -91,5 +91,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 10,
     width: "90%",
+    fontWeight: "500"
   },
 });

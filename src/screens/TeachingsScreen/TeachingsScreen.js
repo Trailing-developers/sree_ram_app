@@ -21,14 +21,15 @@ export default function TeachingsScreen() {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   const navigation = useNavigation();
+  const gap = Dimensions.get("screen").width * 0.03; 
   // const search = useNavigationSearch({
   //   searchBarOptions: { placeholder: "Search Katha Books" },
   // });
   const { kathaData, isLoading, error } = useKathaList();
 
-  const handlePress = (item) => {
-    navigation.navigate("KathaContent", { bookId: item.id });
-  };
+  // const handlePress = (item) => {
+  //   navigation.navigate("KathaContent", { bookId: item.id });
+  // };
 
   const filteredKathaBooks = useMemo(() => {
     if (!searchPhrase.trim()) {
@@ -69,12 +70,8 @@ export default function TeachingsScreen() {
         data={filteredKathaBooks}
         keyExtractor={(item) => item.id}
         numColumns={2}
-        contentContainerStyle={{
-          paddingVertical: spacing.l,
-          paddingHorizontal: spacing.s,
-          backgroundColor: colors.bhagwa,
-          flex: 1,
-        }}
+        contentContainerStyle={[styles.flatlist]}
+        columnWrapperStyle={{gap}}
         renderItem={({ item }) => <KathaCard item={item} />}
       />
     </SafeAreaView>
@@ -82,16 +79,11 @@ export default function TeachingsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  flatlist: {
+    paddingVertical: Dimensions.get("screen").width * 0.03,
+    paddingHorizontal: Dimensions.get("screen").width * 0.03,
+    backgroundColor: colors.bhagwa,
+    width: Dimensions.get("screen").width,
     flex: 1,
-  },
-  cardContent: {
-    justifyContent: "center",
-    backgroundColor: colors.bhagwadark,
-    borderRadius: 10,
-  },
-  cardText: {
-    fontSize: 15,
-    textAlign: "center",
   },
 });

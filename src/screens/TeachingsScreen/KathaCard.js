@@ -5,6 +5,7 @@ import Card from "../../shared/Card/Card";
 import CardMedia from "../../shared/Card/CardMedia";
 import CardContent from "../../shared/Card/CardContent";
 import { useNavigation } from "@react-navigation/native";
+import NewCard from "../../shared/Card/NewCard";
 
 const KathaCard = ({ item }) => {
   const navigate = useNavigation();
@@ -15,20 +16,25 @@ const KathaCard = ({ item }) => {
   };
 
   return (
-    <Card
-      key={item.id}
-      style={{
-        marginLeft: spacing.s,
-        marginBottom: spacing.l,
-      }}
-      onPress={handlePress}
-    >
-      <CardMedia source={item.image} />
+    // <Card
+    //   key={item.id}
+    //   style={{
+    //     marginLeft: spacing.s,
+    //     marginBottom: spacing.l,
+    //   }}
+    //   onPress={handlePress}
+    // >
+    //   <CardMedia source={item.image} />
 
-      <CardContent style={styles.cardContent}>
-        <Text style={styles.cardText}>{item.title}</Text>
-      </CardContent>
-    </Card>
+    //   <CardContent style={styles.cardContent}>
+    //     <Text style={styles.cardText}>{item.title}</Text>
+    //   </CardContent>
+    // </Card>
+    <NewCard key={item.id}
+      onPress={handlePress}
+      source={item.image}
+      title={item.title}>
+    </NewCard>
   );
 };
 

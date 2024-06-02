@@ -23,6 +23,11 @@ const PhotoPageCard = ({ item, index, itemList }) => {
           height: !item.isVideo && index > 1 && index % 3 === 0 ? 180 : 240,
           marginBottom: item.isVideo ? 15 : 0,
         }}
+        onPress={() => {
+          if (!item.isVideo) {
+            navigation.navigate("PhotoDetailPage", { index, itemList });
+          }
+        }}
       >
         {item.isVideo ? (
           <MyYoutubePlayer source={item.media} />

@@ -11,7 +11,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 const NearByTemples = ({ data, title }) => {
   const navigation = useNavigation();
   const handleCardPress = (item) => {
-    console.log(item);
     navigation.navigate("TempleDetailPage", { item: { pageId: item.id } });
   };
   return (
@@ -27,10 +26,11 @@ const NearByTemples = ({ data, title }) => {
       </Text>
       <Carousel
         items={data}
+        keyExtractor={(item) => item.templeId}
         renderItems={({ item, style }) => {
           return (
             <TouchableOpacity
-              key={item.pageId}
+              key={item.templeId}
               onPress={() => handleCardPress(item?.temple)}
             >
               <Card

@@ -6,7 +6,10 @@ import { FlatList } from "react-native-gesture-handler";
 const CARD_WIDTH = sizes.width - 80;
 const CARD_WIDTH_SPACING = CARD_WIDTH + spacing.l;
 
-export default function Carousel({ renderItems, items }) {
+export default function Carousel({ renderItems, items, keyExtractor }) {
+  if (!keyExtractor) {
+    keyExtractor = (item) => item.id;
+  }
   return (
     <FlatList
       data={items}
@@ -14,7 +17,7 @@ export default function Carousel({ renderItems, items }) {
       snapToInterval={CARD_WIDTH_SPACING}
       decelerationRate={"fast"}
       showsHorizontalScrollIndicator={false}
-      keyExtractor={(item) => item.id}
+      keyExtractor={keyExtractor}
       horizontal
       renderItem={({ item, index }) => {
         if (renderItems) {

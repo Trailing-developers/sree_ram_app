@@ -31,9 +31,9 @@ export default function DarshanScreen() {
         data={darshanWidget}
         scrollEnabled={false}
         keyExtractor={(item) => item.widgetTitle.toString()}
-        renderItem={({ item, index }) => (
-          <ParsadAndOther key={index} d={item} />
-        )}
+        renderItem={({ item, index }) => {
+          return <ParsadAndOther key={index} d={item} />;
+        }}
       />
     </ScrollView>
   );

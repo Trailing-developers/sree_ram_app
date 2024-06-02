@@ -55,9 +55,15 @@ const styles = StyleSheet.create({
 });
 
 function ParsadAndOther({ d }) {
-  console.log(d);
-  const { data, widgetTitle } = d;
+  const { widgetTitle, data } = d;
   const width = Dimensions.get("window").width;
+
+  //adding this to avoid virtuallist id exception and error in the console
+  if (data && data.length > 0) {
+    for (let i = 0; i < data.length; i++) {
+      data[i].id = data[i].pageId;
+    }
+  }
   const baseOptions = {
     vertical: false,
     width: width * 0.85,
@@ -87,7 +93,7 @@ function ParsadAndOther({ d }) {
   };
   return (
     <View
-      key={data.pageId + "_" + data.title}
+      key={data.widgetTitle}
       style={{ flex: 1, paddingBottom: 10, height: IMAGE_HEIGHT + 150 }}
     >
       <View style={styles.wigetTitleContainer}>

@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
 });
 
 function ParsadAndOther({ d }) {
+  console.log(d);
   const { data, widgetTitle } = d;
   const width = Dimensions.get("window").width;
   const baseOptions = {
@@ -86,14 +87,14 @@ function ParsadAndOther({ d }) {
   };
   return (
     <View
-      key={data.pageId + "title"}
+      key={data.pageId + "_" + data.title}
       style={{ flex: 1, paddingBottom: 10, height: IMAGE_HEIGHT + 150 }}
     >
       <View style={styles.wigetTitleContainer}>
         <Text style={styles.wigetTitleText}>{widgetTitle}</Text>
       </View>
       <Carousel
-        key={data.pageId + "carosal"}
+        key={data.widgetTitle}
         items={data}
         renderItems={CarouselCardItem}
       />

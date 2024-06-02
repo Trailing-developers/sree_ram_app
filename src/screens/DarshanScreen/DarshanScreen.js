@@ -30,6 +30,7 @@ export default function DarshanScreen() {
       <FlatList
         data={darshanWidget}
         scrollEnabled={false}
+        keyExtractor={(item) => item.widgetTitle.toString()}
         renderItem={({ item, index }) => (
           <ParsadAndOther key={index} d={item} />
         )}

@@ -177,7 +177,7 @@ export const VIDEO_LIST = [
     title: "🔴 Way to chant Mantra",
     thumbnail:
       "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/thumbnails/thumbnail2.jpeg",
-    videoUrl: "LjHzFaQf79w",
+    videoUrl: "4jigbIzHivE",
     duration: 584,
     user: {
       name: "Bakku",
@@ -186,38 +186,6 @@ export const VIDEO_LIST = [
     },
     views: 257000,
     isYoutube: true,
-  },
-  {
-    id: "3",
-    createdAt: "2 months ago",
-    title: "How Graham Stephan makes $4,578,896.32 a year on YouTube",
-    thumbnail:
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/thumbnails/thumbnail3.jpeg",
-    videoUrl: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
-    duration: 584,
-    user: {
-      name: "Graham Stephan",
-      image:
-        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/graham.jpg",
-    },
-    views: 257000,
-    isYoutube: false,
-  },
-  {
-    id: "4",
-    createdAt: "2 months ago",
-    title: "My One Month Bitcoin Mining Journey",
-    thumbnail:
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/thumbnails/thumbnail4.jpeg",
-    videoUrl: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
-    duration: 584,
-    user: {
-      name: "Biahaze",
-      image:
-        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/biahaze.jpg",
-    },
-    views: 257000,
-    isYoutube: false,
   },
 ];
 
@@ -584,7 +552,7 @@ export const Katha_content = {
     "If you can fill the unforgiving minute",
     "With sixty seconds’ worth of distance run,",
     "Yours is the Earth and everything that’s in it,",
-    "And—which is more—you’ll be a Man, my son!"
+    "And—which is more—you’ll be a Man, my son!",
   ],
 };
 

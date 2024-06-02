@@ -8,19 +8,12 @@ import YoutubePlayer from "react-native-youtube-iframe";
 export default VideoListItem = ({ item }) => {
   const [useNativeControls, setUseNativeControls] = useState(true);
   useEffect(() => {
-    return () => setUseNativeControls(false);
+    return () => setUseNativeControls(true);
   }, []);
   return (
     <View style={styles.mainContainer}>
       <View>
-        {/* <FastImage
-          source={{
-            uri: item.thumbnail,
-            priority: FastImage.priority.normal,
-          }}
-          style={{ ...styles.thumbnail }}
-        /> */}
-        {!item.isYoutube && (
+        {/* {!item.isYoutube && (
           <Video
             source={{ uri: item.videoUrl }}
             style={{ ...styles.thumbnail }}
@@ -30,17 +23,17 @@ export default VideoListItem = ({ item }) => {
             useNativeControls={true}
             resizeMode="contain"
           />
-        )}
+        )} */}
 
-        {item.isYoutube && (
-          <YoutubePlayer
-            videoId={item.videoUrl} // Replace VIDEO_ID with your YouTube video ID
-            play={false}
-            webViewStyle={{ ...styles.thumbnail }}
-          />
-        )}
+        {/* {item.isYoutube && ( */}
+        <YoutubePlayer
+          videoId={item.videoUrl} // Replace VIDEO_ID with your YouTube video ID
+          play={false}
+          webViewStyle={{ ...styles.thumbnail }}
+        />
+        {/* )} */}
 
-        <View style={styles.timeContainer}>
+        {/* <View style={styles.timeContainer}>
           <Text style={styles.time}>15:15</Text>
         </View>
       </View>
@@ -52,7 +45,7 @@ export default VideoListItem = ({ item }) => {
         <View style={styles.videoDetails}>
           <Text style={styles.videoTitleText}>{item.title}</Text>
           <Text style={styles.videoSubTitleText}>{item.user.name}</Text>
-        </View>
+        </View> */}
       </View>
     </View>
   );

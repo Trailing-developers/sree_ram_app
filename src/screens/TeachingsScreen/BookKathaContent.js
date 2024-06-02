@@ -12,7 +12,7 @@ import {
 import { colors } from "../../constants/theme";
 // import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome6 } from "@expo/vector-icons";
 import { Katha_content } from "../../data";
 import { ScrollView } from "react-native-gesture-handler";
 import Animated, {
@@ -101,13 +101,13 @@ const BookKathaContent = ({ route }) => {
           }}
           style={{ left: 10 }}
         >
-          <FontAwesome5 name="music" size={40} color={colors.black} />
+          <FontAwesome6 name="music" size={40} color={colors.black} />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate("VideoScreen")}
           style={{ right: 10 }}
         >
-          <FontAwesome5 name="youtube" size={40} color={colors.black} />
+          <FontAwesome6 name="youtube" size={40} color={colors.black} />
         </TouchableOpacity>
       </View>
     </View>

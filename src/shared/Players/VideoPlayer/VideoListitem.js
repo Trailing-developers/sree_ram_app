@@ -27,7 +27,7 @@ export default VideoListItem = ({ item }) => {
 
         {/* {item.isYoutube && ( */}
         <YoutubePlayer
-          videoId={item.videoUrl} // Replace VIDEO_ID with your YouTube video ID
+          videoId={item.media} // Replace VIDEO_ID with your YouTube video ID
           play={false}
           webViewStyle={{ ...styles.thumbnail }}
         />

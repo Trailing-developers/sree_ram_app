@@ -31,7 +31,7 @@ const BookKathaContent = ({ route }) => {
 
   if (isLoading) {
     return (
-      <SafeAreaView style={styles.mainContainer}>
+      <SafeAreaView style={styles.container}>
         <ActivityIndicator size="large" color={colors.primary} />
       </SafeAreaView>
     );
@@ -39,7 +39,7 @@ const BookKathaContent = ({ route }) => {
 
   if (error) {
     return (
-      <SafeAreaView style={styles.mainContainer}>
+      <SafeAreaView style={styles.container}>
         <Text>Failed to fetch the data. Error: {error.message}</Text>
       </SafeAreaView>
     );
@@ -104,7 +104,9 @@ const BookKathaContent = ({ route }) => {
           <FontAwesome6 name="music" size={40} color={colors.black} />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate("VideoScreen")}
+          onPress={() =>
+            navigation.navigate("VideoScreen", { id: kathaData?.id })
+          }
           style={{ right: 10 }}
         >
           <FontAwesome6 name="youtube" size={40} color={colors.black} />

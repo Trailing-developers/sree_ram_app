@@ -58,12 +58,6 @@ function ParsadAndOther({ d }) {
   const { widgetTitle, data } = d;
   const width = Dimensions.get("window").width;
 
-  //adding this to avoid virtuallist id exception and error in the console
-  if (data && data.length > 0) {
-    for (let i = 0; i < data.length; i++) {
-      data[i].id = data[i].pageId;
-    }
-  }
   const baseOptions = {
     vertical: false,
     width: width * 0.85,
@@ -102,6 +96,7 @@ function ParsadAndOther({ d }) {
       <Carousel
         key={data.widgetTitle}
         items={data}
+        keyExtractor={(item) => item.pageId}
         renderItems={CarouselCardItem}
       />
     </View>

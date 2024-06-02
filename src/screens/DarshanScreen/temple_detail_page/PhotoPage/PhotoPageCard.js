@@ -3,10 +3,11 @@ import { StyleSheet, Text, View } from "react-native";
 import Card from "../../../../shared/Card/Card";
 import CardMedia from "../../../../shared/Card/CardMedia";
 import MyYoutubePlayer from "../../../../shared/Players/MyYoutubePlayer";
-import { spacing } from "../../../../constants/theme";
-import { ResizeMode } from "expo-av";
+import { useNavigation } from "@react-navigation/native";
 
-const PhotoPageCard = ({ item, index }) => {
+const PhotoPageCard = ({ item, index, itemList }) => {
+  const navigation = useNavigation();
+
   return (
     <View>
       <Card
@@ -15,6 +16,9 @@ const PhotoPageCard = ({ item, index }) => {
           height: !item.isVideo && index > 1 && index % 3 === 0 ? 180 : 240,
           marginBottom: item.isVideo ? 15 : 0,
         }}
+        onPress={() =>
+          navigation.navigate("PhotoDetailPage", { index, itemList })
+        }
       >
         {item.isVideo ? (
           <MyYoutubePlayer source={item.media} />

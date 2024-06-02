@@ -129,9 +129,12 @@ const PhotosPage = ({ route }) => {
           data={data}
           key={(item) => item.id}
           numColumns={isVideo ? 1 : 2}
+          style={{ flex: 1 }}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.masonary}
-          renderItem={({ item, i }) => <PhotoPageCard item={item} index={i} />}
+          renderItem={({ item, i }) => (
+            <PhotoPageCard item={item} index={i} itemList={data} />
+          )}
           refreshing={false}
         />
       ),

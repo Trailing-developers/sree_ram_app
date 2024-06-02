@@ -20,6 +20,7 @@ import FeedbackScreen from "../screens/feedback/FeedbackScreen";
 import { DanikPragati } from "../screens/danikpragati/DanikPragati";
 import { MantraPage } from "../screens/danikpragati/MantraPage";
 import { MindPage } from "../screens/danikpragati/MindPage";
+import PhotoDetailPage from "../screens/DarshanScreen/temple_detail_page/PhotoPage/PhotoDetailPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -149,6 +150,13 @@ export default function Mynavigation() {
         <Stack.Screen
           name="MindPage"
           component={MindPage}
+          option={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="PhotoDetailPage"
+          component={PhotoDetailPage}
           option={{
             headerShown: true,
           }}

@@ -31,6 +31,11 @@ export default PhotoDetailPage = ({ route }) => {
           SMALL_WINDOW_WIDTH / 2,
         animated: true,
       });
+    } else {
+      bottomRef?.current?.scrollToOffset({
+        offset: 0,
+        animated: true,
+      });
     }
   };
 

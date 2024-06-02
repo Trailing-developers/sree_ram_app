@@ -21,7 +21,7 @@ export default function TeachingsScreen() {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   const navigation = useNavigation();
-  const gap = Dimensions.get("screen").width * 0.03; 
+  const gap = Dimensions.get("screen").width * 0.03;
   // const search = useNavigationSearch({
   //   searchBarOptions: { placeholder: "Search Katha Books" },
   // });
@@ -59,7 +59,7 @@ export default function TeachingsScreen() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.bhagwa}}>
+    <View style={{ flex: 1, backgroundColor: colors.bhagwa }}>
       <SearchBar
         searchPhrase={searchPhrase}
         setSearchPhrase={setSearchPhrase}
@@ -71,10 +71,10 @@ export default function TeachingsScreen() {
         keyExtractor={(item) => item.id}
         numColumns={2}
         contentContainerStyle={[styles.flatlist]}
-        columnWrapperStyle={{gap}}
+        columnWrapperStyle={{ gap }}
         renderItem={({ item }) => <KathaCard item={item} />}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 

@@ -1,14 +1,15 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 
 const MyYoutubePlayer = ({ source }) => {
+  const { width } = Dimensions.get("screen");
   return (
     <YoutubePlayer
       videoId={source} // Replace VIDEO_ID with your YouTube video ID
       play={false}
       height={700}
-      // style={styles.video}
+      width={width}
     />
   );
 };
@@ -18,10 +19,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    margin: 20,
   },
   video: {
     alignSelf: "stretch",
-    // height: 300, // Adjust height as per your requirement
+    height: 700, // Adjust height as per your requirement
     width: "100%", // Adjust width as per your requirement
   },
 });

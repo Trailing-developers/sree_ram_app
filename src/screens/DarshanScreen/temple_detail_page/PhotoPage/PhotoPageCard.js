@@ -4,9 +4,16 @@ import Card from "../../../../shared/Card/Card";
 import CardMedia from "../../../../shared/Card/CardMedia";
 import MyYoutubePlayer from "../../../../shared/Players/MyYoutubePlayer";
 import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const PhotoPageCard = ({ item, index, itemList }) => {
   const navigation = useNavigation();
+
+  // <TouchableOpacity
+  //   onPress={() =>
+  //     navigation.navigate("PhotoDetailPage", { index, itemList })
+  //   }
+  // >
 
   return (
     <View>
@@ -16,9 +23,6 @@ const PhotoPageCard = ({ item, index, itemList }) => {
           height: !item.isVideo && index > 1 && index % 3 === 0 ? 180 : 240,
           marginBottom: item.isVideo ? 15 : 0,
         }}
-        onPress={() =>
-          navigation.navigate("PhotoDetailPage", { index, itemList })
-        }
       >
         {item.isVideo ? (
           <MyYoutubePlayer source={item.media} />

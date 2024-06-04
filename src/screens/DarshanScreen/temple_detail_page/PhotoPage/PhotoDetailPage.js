@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Dimensions, FlatList, StyleSheet, Text, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -38,6 +38,10 @@ export default PhotoDetailPage = ({ route }) => {
       });
     }
   };
+
+  useEffect(() => {
+    setScrollActiveIndex(activeIndex);
+  }, []);
 
   return (
     <View style={{ flex: 1, backgroundColor: "#000" }}>

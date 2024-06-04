@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet, ActivityIndicator } from "react-native";
 import { Title } from "react-native-paper";
 import { ScrollView } from "react-native";
 import FastImage from "react-native-fast-image";
@@ -12,6 +12,16 @@ import { useGodPage } from "../../../hooks/api/page";
 const GodAndGoddessDetailPage = ({ route }) => {
   const { god } = route.params;
   const { godData, isLoading, error } = useGodPage(god?.godId);
+
+  if (error) return <Text>Something went wrong.</Text>;
+
+  if (isLoading)
+    return (
+      <View style={{ flex: 1, paddingBottom: 10 }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
       <Text style={styles.title}>{godData?.data?.name}</Text>

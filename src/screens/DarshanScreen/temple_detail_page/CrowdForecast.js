@@ -7,7 +7,7 @@ function CrowdForecast({ data }) {
     <View>
       <View style={styles.crowdForcastContainer}>
         <Text style={styles.crowdForcastTitle}>Crowd Forcast</Text>
-        <HistogramV2 dataPoints={data.timings} />
+        <HistogramV2 dataPoints={data} />
       </View>
     </View>
   );

@@ -105,7 +105,7 @@ const TempleDetailPage = ({ route }) => {
             data={templeDetails?.data?.history}
             defaultImage={templeDetails?.data?.image}
           />
-          <CrowdForecast data={data.crowdPatterns} />
+          <CrowdForecast data={templeDetails?.data?.crowded} />
           <ExtraInformation data={data.information} />
           <GodWorshippedPage data={templeDetails?.data?.gods} />
           <DarshanInfoPage data={templeDetails?.data?.darshanTypes} />

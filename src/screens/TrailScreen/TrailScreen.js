@@ -1,5 +1,5 @@
 import React from "react";
-import MapView, { Marker, Polyline } from "react-native-maps";
+import MapView, { Marker, Polyline, PROVIDER_DEFAULT } from "react-native-maps";
 import { StyleSheet, View } from "react-native";
 //information in https://blog.logrocket.com/react-native-maps-introduction/
 const start = {
@@ -18,7 +18,16 @@ const end = {
 export default function TrailScreen() {
   return (
     <View style={styles.container}>
-      <MapView style={styles.map} initialRegion={start}>
+      <MapView
+        style={styles.map}
+        initialRegion={start}
+        provider={PROVIDER_DEFAULT}
+        tileOverlay={{
+          urlTemplate: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+          maximumZ: 19,
+          subdomains: ["a", "b", "c"],
+        }}
+      >
         <Polyline
           coordinates={[
             start,

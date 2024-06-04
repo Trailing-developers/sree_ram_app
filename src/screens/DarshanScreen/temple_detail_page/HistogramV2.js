@@ -24,11 +24,11 @@ export default function HistogramV2({ dataPoints }) {
     decimalPlaces: 0,
   };
 
-  const barData = dataPoints.map((item) => {
+  const barData = dataPoints?.map((item) => {
     return {
-      value: item.timing,
-      label: item.label,
-      frontColor: item.color,
+      value: item?.timing,
+      label: item?.label,
+      frontColor: item?.color,
     };
   });
 

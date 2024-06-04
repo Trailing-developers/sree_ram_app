@@ -129,9 +129,8 @@ const PhotosPage = ({ route }) => {
           data={data}
           key={(item) => item.id}
           numColumns={isVideo ? 1 : 2}
-          style={{ flex: 1 }}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.masonary}
+          contentContainerStyle={{ paddingBottom: 80 }}
           renderItem={({ item, i }) => (
             <PhotoPageCard item={item} index={i} itemList={data} />
           )}
@@ -156,6 +155,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     paddingHorizontal: spacing.s,
+    marginBottom: 20,
   },
 });
 

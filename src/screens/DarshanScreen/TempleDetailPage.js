@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ImageBackground,
   Button,
+  ActivityIndicator,
 } from "react-native";
 import HistoryPage from "./temple_detail_page/HistoryPage";
 import CrowdForecast from "./temple_detail_page/CrowdForecast";
@@ -69,6 +70,15 @@ const TempleDetailPage = ({ route }) => {
       ],
     };
   });
+
+  if (error) return <Text>Something went wrong.</Text>;
+
+  if (isLoading)
+    return (
+      <View style={{ flex: 1, paddingBottom: 10 }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
 
   return (
     <View style={styles.container}>

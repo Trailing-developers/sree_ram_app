@@ -21,6 +21,9 @@ import { DanikPragati } from "../screens/danikpragati/DanikPragati";
 import { MantraPage } from "../screens/danikpragati/MantraPage";
 import { MindPage } from "../screens/danikpragati/MindPage";
 import PhotoDetailPage from "../screens/DarshanScreen/temple_detail_page/PhotoPage/PhotoDetailPage";
+import EventsScreen from "../screens/Calendar/EventScreen";
+import PanchangaScreen from "../screens/Calendar/PanchangaScreen";
+import CustomCalendar from "../screens/Calendar/CustomCalendar";
 
 const Stack = createNativeStackNavigator();
 
@@ -157,6 +160,27 @@ export default function Mynavigation() {
         <Stack.Screen
           name="PhotoDetailPage"
           component={PhotoDetailPage}
+          option={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="EventScreen"
+          component={EventsScreen}
+          option={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="PanchangaScreen"
+          component={PanchangaScreen}
+          option={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="CustomCalendar"
+          component={CustomCalendar}
           option={{
             headerShown: true,
           }}

@@ -40,7 +40,7 @@ export default function MenuItems() {
         />
         <Card
           title="Feedback"
-          onPress={() => handleCardPress("FeedbackScreen")}
+          onPress={() => handleCardPress("PanchangaScreen")}
           imageUrl={require("../../../assets/menuItemsImages/feedback.jpg")}
         />
       </View>

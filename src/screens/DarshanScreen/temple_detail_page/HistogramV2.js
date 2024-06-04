@@ -40,6 +40,7 @@ export default function HistogramV2({ dataPoints }) {
         barBorderRadius={4}
         frontColor="lightgray"
         data={barData}
+        width={screenWidth}
         yAxisThickness={0}
         xAxisThickness={0}
         hideYAxisText={true}
@@ -52,6 +53,7 @@ export default function HistogramV2({ dataPoints }) {
 const styles = StyleSheet.create({
   container: {
     // marginLeft: -30,
+    width: 500,
     flex: 1,
   },
   chart: {

@@ -1,21 +1,21 @@
 import React from "react";
 import HistogramV2 from "./HistogramV2";
-import { StyleSheet, Text, View } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
+
+const { height, width } = Dimensions.get("screen");
 
 function CrowdForecast({ data }) {
   return (
-    <View>
-      <View style={styles.crowdForcastContainer}>
-        <Text style={styles.crowdForcastTitle}>Crowd Forcast</Text>
-        <HistogramV2 dataPoints={data} />
-      </View>
+    <View style={styles.crowdForcastContainer}>
+      <Text style={styles.crowdForcastTitle}>Crowd Forcast</Text>
+      <HistogramV2 dataPoints={data} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   crowdForcastContainer: {
-    paddingVertical: 20,
+    width: width,
   },
   crowdForcastTitle: {
     fontSize: 20,

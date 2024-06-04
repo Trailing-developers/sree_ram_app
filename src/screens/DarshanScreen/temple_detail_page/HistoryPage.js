@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, StyleSheet, ImageBackground } from "react-native";
 
 const HistoryPage = ({ data, defaultImage }) => {
-  console.log(defaultImage);
   return (
     <View style={styles.historyContainer}>
       <ImageBackground

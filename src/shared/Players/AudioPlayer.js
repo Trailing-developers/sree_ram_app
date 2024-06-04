@@ -18,7 +18,6 @@ import { useQueue } from "../../store/queue";
 import SearchBar from "../../searchBarAdd/SearchBar";
 
 export default function AudioPlayer({ id = 1 }) {
-
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   // const search = useNavigationSearch({
@@ -39,12 +38,10 @@ export default function AudioPlayer({ id = 1 }) {
   const filteredSongs = useMemo(() => {
     if (!searchPhrase.trim()) {
       return SONG_LIST;
-    }
-    else {
+    } else {
       const normalizedSearchPhrase = searchPhrase.trim().toLowerCase();
-      return SONG_LIST.filter(
-        (item) =>
-          item.title.toLowerCase().includes(normalizedSearchPhrase)
+      return SONG_LIST.filter((item) =>
+        item.title.toLowerCase().includes(normalizedSearchPhrase)
       );
     }
   }, [searchPhrase]);
@@ -59,8 +56,6 @@ export default function AudioPlayer({ id = 1 }) {
       (track) => track.url === selectedTrack.url
     );
     if (trackIndex === -1) return;
-
-    console.log(activeQueueId);
 
     const isChangingQueue = id !== activeQueueId;
     if (isChangingQueue) {
@@ -90,38 +85,38 @@ export default function AudioPlayer({ id = 1 }) {
 
   return (
     <SafeAreaView>
-     <SearchBar
+      <SearchBar
         searchPhrase={searchPhrase}
         setSearchPhrase={setSearchPhrase}
         clicked={clicked}
         setClicked={setClicked}
-      /> 
-    <ScrollView
-      contentInsetAdjustmentBehavior="automatic"
-      style={{ ...styles.mainContainer, paddingHorizontal: 20 }}
-    >
-      <FlatList
-        data={filteredSongs}
-        ItemSeparatorComponent={ItemDivider}
-        scrollEnabled={false}
-        contentContainerStyle={{ paddingTop: 20, paddingBottom: 128 }}
-        ListFooterComponent={ItemDivider}
-        ListEmptyComponent={
-          <View>
-            <Text style={itemDivider.emptyContentText}>No songs found!</Text>
-          </View>
-        }
-        renderItem={(item, index) => {
-          return (
-            <TrackListItem
-              track={{ ...item.item }}
-              scrollEnabled={false}
-              handleTrackSelect={handleTrackSelect}
-            />
-          );
-        }}
       />
-    </ScrollView>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={{ ...styles.mainContainer, paddingHorizontal: 20 }}
+      >
+        <FlatList
+          data={filteredSongs}
+          ItemSeparatorComponent={ItemDivider}
+          scrollEnabled={false}
+          contentContainerStyle={{ paddingTop: 20, paddingBottom: 128 }}
+          ListFooterComponent={ItemDivider}
+          ListEmptyComponent={
+            <View>
+              <Text style={itemDivider.emptyContentText}>No songs found!</Text>
+            </View>
+          }
+          renderItem={(item, index) => {
+            return (
+              <TrackListItem
+                track={{ ...item.item }}
+                scrollEnabled={false}
+                handleTrackSelect={handleTrackSelect}
+              />
+            );
+          }}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 }

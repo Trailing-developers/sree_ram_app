@@ -44,8 +44,6 @@ const Date = ({ date, onSelectDate, selected }) => {
   );
 };
 
-export default Date;
-
 const styles = StyleSheet.create({
   card: {
     backgroundColor: "#eee",
@@ -66,3 +64,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+export default Date;

@@ -43,9 +43,6 @@ export default CalendarScreen = () => {
 
   return (
     <>
-      {/* <View style={styles.centered}>
-        <Text style={styles.title}>{currentMonth}</Text>
-      </View> */}
       <View style={styles.dateSection}>
         <View style={styles.scroll}>
           <ScrollView
@@ -255,7 +252,7 @@ const styles = StyleSheet.create({
   dateSection: {
     width: "100%",
     padding: 20,
-    backgroundColor: colors.light,
+    backgroundColor: "#AF0C6E",
   },
   contentContainer: {
     flex: 1,

@@ -1,9 +1,11 @@
 import useSWR from "swr";
 import { fetcher } from "../../helper/fetcher";
 
+const HOST = "sree-ram-backend.vercel.app";
+
 export const useHomeWidgets = () => {
   const { data, isLoading, error } = useSWR(
-    "https://sree-ram-backend.vercel.app/api/home",
+    `https://${HOST}/api/home`,
     fetcher
   );
   return { data: data, isLoading, error };
@@ -11,7 +13,7 @@ export const useHomeWidgets = () => {
 
 export const useDarshanWidgets = () => {
   const { data, isLoading, error } = useSWR(
-    "https://sree-ram-backend.vercel.app/api/darshan",
+    `https://${HOST}/api/darshan`,
     fetcher
   );
   return { data: data, isLoading, error };

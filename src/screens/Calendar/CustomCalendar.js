@@ -5,40 +5,38 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const CustomCalendar = () => {
   return (
-    <View>
-      <Card style={styles.card}>
-        <View style={styles.header}>
-          <View style={styles.dateContainer}>
-            <Text style={styles.day}>WED</Text>
-            <Text style={styles.date}>17</Text>
-            <Text style={styles.month}>Apr</Text>
-          </View>
-          <View style={styles.iconContainer}>
-            <Icon name="share" size={24} color="#fff" style={styles.icon} />
-            <Icon name="bell" size={24} color="#fff" style={styles.icon} />
-          </View>
+    <Card style={styles.card}>
+      <View style={styles.header}>
+        <View style={styles.dateContainer}>
+          <Text style={styles.day}>WED</Text>
+          <Text style={styles.date}>17</Text>
+          <Text style={styles.month}>Apr</Text>
         </View>
-        <Image
-          source={{
-            uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTysDorhF7fdv_XALx4wUYEuco09TBygrYpvQ&s",
-          }}
-          style={styles.image}
+        <View style={styles.iconContainer}>
+          <Icon name="share" size={24} color="#fff" style={styles.icon} />
+          <Icon name="bell" size={24} color="#fff" style={styles.icon} />
+        </View>
+      </View>
+      <Image
+        source={{
+          uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTysDorhF7fdv_XALx4wUYEuco09TBygrYpvQ&s",
+        }}
+        style={styles.image}
+      />
+      <View style={styles.avatarContainer}>
+        <Avatar.Image
+          size={40}
+          source={{ uri: "https://your-avatar-url.com/avatar.jpg" }}
         />
-        <View style={styles.avatarContainer}>
-          <Avatar.Image
-            size={40}
-            source={{ uri: "https://your-avatar-url.com/avatar.jpg" }}
-          />
-        </View>
-        <Card.Content>
-          <Text style={styles.title}>Ram Navami</Text>
-          <Text style={styles.subtitle}>Shukla Paksha, Chaitra Masa</Text>
-          <Text style={styles.description}>
-            Celebrating the birth of Lord Rama with devotion and reverence.
-          </Text>
-        </Card.Content>
-      </Card>
-    </View>
+      </View>
+      <Card.Content>
+        <Text style={styles.title}>Ram Navami</Text>
+        <Text style={styles.subtitle}>Shukla Paksha, Chaitra Masa</Text>
+        <Text style={styles.description}>
+          Celebrating the birth of Lord Rama with devotion and reverence.
+        </Text>
+      </Card.Content>
+    </Card>
   );
 };
 
@@ -46,7 +44,6 @@ const styles = StyleSheet.create({
   card: {
     margin: 10,
     borderRadius: 10,
-    overflow: "hidden",
   },
   header: {
     flexDirection: "row",

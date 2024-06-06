@@ -5,6 +5,7 @@ import CardContent from "../../shared/Card/CardContent";
 import { colors, fontSize } from "../../constants/theme";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableHighlight } from "react-native-gesture-handler";
+import NewCard from "../../shared/Card/NewCard";
 
 export const DanikListItem = ({ item }) => {
   const navigation = useNavigation();
@@ -14,16 +15,22 @@ export const DanikListItem = ({ item }) => {
     }
   };
   return (
-    <View key={item.index} style={styles.container}>
-      <TouchableHighlight onPress={handlePress}>
-        <Card style={{ width: 200, height: 200 }}>
-          <CardMedia source={item.item.imageUrl} borderRadius={false} />
-          <CardContent style={styles.titleContainer}>
-            <Text style={styles.title}>{item.item.title}</Text>
-          </CardContent>
-        </Card>
-      </TouchableHighlight>
-    </View>
+    // <View key={item.index} style={styles.container}>
+    //   <TouchableHighlight onPress={handlePress}>
+    //     <Card style={{ width: 200, height: 200 }}>
+    //       <CardMedia source={item.item.imageUrl} borderRadius={false} />
+    //       <CardContent style={styles.titleContainer}>
+    //         <Text style={styles.title}>{item.item.title}</Text>
+    //       </CardContent>
+    //     </Card>
+    //   </TouchableHighlight>
+    // </View>
+    <NewCard key={item.id}
+    onPress={handlePress}
+    source={item.item.imageUrl}
+    title={item.item.title}>
+    </NewCard>
+
   );
 };
 

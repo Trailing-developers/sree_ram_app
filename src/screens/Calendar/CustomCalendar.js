@@ -1,41 +1,54 @@
+import moment from "moment";
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import FastImage from "react-native-fast-image";
 import { Card, Avatar } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-const CustomCalendar = () => {
+const CustomCalendar = ({ selectedDate, data }) => {
+  const dayOfTheWeek = moment(selectedDate).format("ddd").toUpperCase();
+  const day = moment(selectedDate).format("D");
+  const month = moment(selectedDate).format("MMM").toUpperCase();
+
   return (
     <Card style={styles.card}>
       <View style={styles.header}>
         <View style={styles.dateContainer}>
-          <Text style={styles.day}>WED</Text>
-          <Text style={styles.date}>17</Text>
-          <Text style={styles.month}>Apr</Text>
+          <Text style={styles.day}>{dayOfTheWeek}</Text>
+          <Text style={styles.date}>{day}</Text>
+          <Text style={styles.month}>{month}</Text>
         </View>
         <View style={styles.iconContainer}>
           <Icon name="share" size={24} color="#fff" style={styles.icon} />
           <Icon name="bell" size={24} color="#fff" style={styles.icon} />
         </View>
       </View>
-      <Image
-        source={{
-          uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTysDorhF7fdv_XALx4wUYEuco09TBygrYpvQ&s",
-        }}
-        style={styles.image}
-      />
-      <View style={styles.avatarContainer}>
-        <Avatar.Image
-          size={40}
-          source={{ uri: "https://your-avatar-url.com/avatar.jpg" }}
-        />
-      </View>
-      <Card.Content>
-        <Text style={styles.title}>Ram Navami</Text>
-        <Text style={styles.subtitle}>Shukla Paksha, Chaitra Masa</Text>
-        <Text style={styles.description}>
-          Celebrating the birth of Lord Rama with devotion and reverence.
-        </Text>
-      </Card.Content>
+      {data && (
+        <>
+          <FastImage
+            source={{
+              uri: data?.image,
+            }}
+            style={styles.image}
+          />
+          <View style={styles.avatarContainer}>
+            <Avatar.Image
+              size={40}
+              source={{ uri: "https://your-avatar-url.com/avatar.jpg" }}
+            />
+          </View>
+          <Card.Content>
+            <Text style={styles.title}>{data?.name}</Text>
+            {data?.location && (
+              <Text
+                style={styles.subtitle}
+              >{`${data?.location?.address1},${data?.location?.city},${data?.location?.state}`}</Text>
+            )}
+            {/* <Text style={styles.subtitle}>Shukla Paksha, Chaitra Masa</Text> */}
+            <Text style={styles.description}>{data?.description}</Text>
+          </Card.Content>
+        </>
+      )}
     </Card>
   );
 };

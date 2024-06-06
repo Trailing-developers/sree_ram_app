@@ -56,7 +56,7 @@ export const MantraPage = () => {
   };
 
   const bottomSheetModalRef = useRef(null);
-  const snapPoints = useMemo(() => ["50%"], []);
+  const snapPoints = useMemo(() => ["80%"], []);
 
   const openModal = (item) => {
     setMantra(item);

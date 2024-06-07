@@ -111,12 +111,6 @@ export const MantraPage = () => {
               <BlurView blurType="light" blurAmount={45} style={styles.absolute} />
               <View >
               <MantraPageOverlay item={{...matra}} />
-              <SearchBar
-                searchPhrase={searchPhrase}
-                setSearchPhrase={setSearchPhrase}
-                clicked={clicked}
-                setClicked={setClicked}
-              />
               <Entypo
                 name="cross"
                 size={35}
@@ -150,7 +144,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderColor: colors.bhagwa,
     borderWidth: 2,
-    top: Dimensions.get("screen").height * 0.7,
+    top: Dimensions.get("screen").height * 0.77,
     left: Dimensions.get("screen").width * 0.45,
   },
   absolute: {

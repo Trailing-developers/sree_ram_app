@@ -1,6 +1,7 @@
 import {
   ActivityIndicator,
   Animated,
+  Dimensions,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -14,12 +15,15 @@ import { useMemo, useRef, useState } from "react";
 import { colors } from "../../constants/theme";
 import { FlatList } from "react-native-gesture-handler";
 import SearchBar from "../../searchBarAdd/SearchBar";
+import { Entypo } from "@expo/vector-icons";
+import { BlurView } from "@react-native-community/blur";
 import {
   BottomSheetModal,
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
 import DisplayMantra from "./DisplayMantra";
 import { useMantras } from "../../hooks/api/mantra";
+import MantraPageOverlay from "./MantraPageOverlay";
 
 export const MantraPage = () => {
   const [matra, setMantra] = useState();
@@ -55,12 +59,11 @@ export const MantraPage = () => {
     );
   };
 
-  const bottomSheetModalRef = useRef(null);
-  const snapPoints = useMemo(() => ["80%"], []);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const openModal = (item) => {
+  const handleClick = (item) => {
     setMantra(item);
-    bottomSheetModalRef.current.present();
+    setIsVisible(true);
   };
 
   if (isLoading) {
@@ -78,44 +81,49 @@ export const MantraPage = () => {
       </SafeAreaView>
     );
   }
+  
 
   return (
-    // <ScrollView
-    //   contentInsetAdjustmentBehavior="automatic"
-    //   style={{ ...styles.mainContainer, paddingHorizontal: 20 }}
-    // >
-    <BottomSheetModalProvider>
-      <SafeAreaView style={styles.mainContainer}>
-        <SearchBar
-          searchPhrase={searchPhrase}
-          setSearchPhrase={setSearchPhrase}
-          clicked={clicked}
-          setClicked={setClicked}
-        />
-        <FlatList
-          data={filteredMantras}
-          ItemSeparatorComponent={ItemDivider}
-          contentContainerStyle={{
+      <View style={styles.mainContainer}>
+        {!isVisible && <View>
+          <SearchBar
+            searchPhrase={searchPhrase}
+            setSearchPhrase={setSearchPhrase}
+            clicked={clicked}
+            setClicked={setClicked}
+          />
+          <FlatList
+            data={filteredMantras}
+            ItemSeparatorComponent={ItemDivider}
+            contentContainerStyle={{
             marginTop: 10,
             marginBottom: 10,
             paddingHorizontal: 10,
             paddingBottom: 100,
-          }}
-          renderItem={(item, index) => (
-            <MantraListItem item={item} onPress={() => openModal(item)} />
+            }}
+            renderItem={(item, index) => (
+              <MantraListItem item={item} onPress={() => handleClick(item)} />
+            )}
+          />
+          </View>}
+          {isVisible && (
+            <View style = {{flex: 1}}>
+              <BlurView blurType="light" blurAmount={45} style={styles.absolute} />
+              <View >
+              <MantraPageOverlay item={{...matra}} />
+              <Entypo
+                name="cross"
+                size={35}
+                color="black"
+                style={[styles.iconstyle]}
+                onPress={() => {
+                setIsVisible(false);
+                }}
+              />
+            </View>
+          </View>
           )}
-        />
-        {/* </ScrollView> */}
-      </SafeAreaView>
-      <BottomSheetModal
-        ref={bottomSheetModalRef}
-        index={0}
-        snapPoints={snapPoints}
-        style={styles.bottomSheet}
-      >
-        <DisplayMantra {...matra} />
-      </BottomSheetModal>
-    </BottomSheetModalProvider>
+      </View>
   );
 };
 
@@ -127,5 +135,24 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  iconstyle:{
+    height: 38,
+    width: 38,
+    borderRadius: 100,
+    padding: 1.3,
+    backgroundColor: colors.white,
+    borderColor: colors.bhagwa,
+    borderWidth: 2,
+    top: Dimensions.get("screen").height * 0.77,
+    left: Dimensions.get("screen").width * 0.45,
+  },
+  absolute: {
+    position: 'absolute',
+    backgroundColor: "rgba(255,196,112,0.1)",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
 });

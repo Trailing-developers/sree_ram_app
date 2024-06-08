@@ -1,13 +1,15 @@
 import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
 import { colors } from "../../constants/theme";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { useCalendarEvents } from "../../hooks/api/event";
 import CustomCalendar from "./CustomCalendar";
 import { Card, Text, Button, Avatar } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { useNavigation } from "@react-navigation/native";
 
 export const Tithi = ({ date }) => {
   const endDate = new Date(date);
+  const navigation = useNavigation();
   endDate.setDate(endDate.getDate() + 1);
   const { events, isLoading, error } = useCalendarEvents(date, endDate);
 
@@ -24,7 +26,7 @@ export const Tithi = ({ date }) => {
 
   return (
     <ScrollView>
-      <CustomCalendar data={events.data[0]} selectedDate={date} />
+      <CustomCalendar data={events.data.events[0]} selectedDate={date} />
 
       <Card style={styles.card}>
         <Card.Title
@@ -65,7 +67,15 @@ export const Tithi = ({ date }) => {
       <Card style={styles.card}>
         <Card.Title
           title="More about the day"
-          right={() => <Text style={styles.linkText}>WHAT IS THIS?</Text>}
+          right={() => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("FestivalScreen");
+              }}
+            >
+              <Text style={styles.linkText}>{">"}</Text>
+            </TouchableOpacity>
+          )}
         />
         <Card.Content>
           <View style={styles.row}>
@@ -299,6 +309,7 @@ const styles = StyleSheet.create({
   linkText: {
     color: "#3182ce",
     fontWeight: "bold",
+    fontSize: 20,
   },
   row: {
     flexDirection: "row",

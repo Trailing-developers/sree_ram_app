@@ -72,9 +72,4 @@ const data = [
     imageUrl: require("../../../assets/GodImages/RajaDasrath.jpg"),
     link: "Page5",
   },
-  {
-    title: "Sugriva",
-    imageUrl: require("../../../assets/GodImages/Sugriva.png"),
-    link: "Page6",
-  },
 ];

@@ -24,6 +24,7 @@ import PhotoDetailPage from "../screens/DarshanScreen/temple_detail_page/PhotoPa
 import EventsScreen from "../screens/Calendar/EventScreen";
 import PanchangaScreen from "../screens/Calendar/PanchangaScreen";
 import CustomCalendar from "../screens/Calendar/CustomCalendar";
+import FestivalScreen from "../screens/Calendar/FestivalScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -181,6 +182,13 @@ export default function Mynavigation() {
         <Stack.Screen
           name="CustomCalendar"
           component={CustomCalendar}
+          option={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="FestivalScreen"
+          component={FestivalScreen}
           option={{
             headerShown: true,
           }}

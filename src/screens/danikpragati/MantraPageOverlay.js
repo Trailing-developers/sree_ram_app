@@ -7,7 +7,7 @@ export default function MantraPageOverlay ({item}) {
     return(
     <View style={styles.container}>
       <View style={styles.image}>
-        <Image source={{uri: "https://www.shutterstock.com/image-vector/beautiful-glowing-om-rays-red-600nw-2047680773.jpg"}} style={styles.image}/>
+        <Image source={{uri: item.item.image}} style={styles.image}/>
         <View style={styles.overlay}/>
       </View>
       <Text style={styles.title}>{"||  " + item?.item.title + "  ||"}</Text>

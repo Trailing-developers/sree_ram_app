@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
 } from "react-native";
 import { useNavigationSearch } from "../../hooks/useNavigationSearch";
 import { MantraListItem } from "./MantraListItem";
@@ -82,10 +83,13 @@ export const MantraPage = () => {
     );
   }
   
-
   return (
       <View style={styles.mainContainer}>
-        {!isVisible && <View>
+        {!isVisible && <View style={{flex:1}}>
+          <View style={styles.image}>
+          <Image source={{uri: "https://www.shutterstock.com/image-vector/beautiful-glowing-om-rays-red-600nw-2047680773.jpg"}} style={styles.image}/>
+          <View style={styles.overlay}/>
+          </View>
           <SearchBar
             searchPhrase={searchPhrase}
             setSearchPhrase={setSearchPhrase}
@@ -108,7 +112,8 @@ export const MantraPage = () => {
           </View>}
           {isVisible && (
             <View style = {{flex: 1}}>
-              <BlurView blurType="light" blurAmount={45} style={styles.absolute} />
+              <Image source={{uri:matra.item.image}} style={styles.image}/>
+              <BlurView blurType="light" blurAmount={10} style={styles.absolute} />
               <View >
               <MantraPageOverlay item={{...matra}} />
               <Entypo
@@ -120,8 +125,8 @@ export const MantraPage = () => {
                 setIsVisible(false);
                 }}
               />
+              </View>
             </View>
-          </View>
           )}
       </View>
   );
@@ -154,5 +159,17 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
+  },
+  image: {
+    height: "100%",
+    width:  "100%",
+    objectFit: "fill",
+    borderRadius: 10,
+    position: "absolute",
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(255, 255, 230, 0.6)',
+    borderRadius: 10,
   },
 });

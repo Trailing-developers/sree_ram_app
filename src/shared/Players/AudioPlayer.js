@@ -16,8 +16,13 @@ import { trackTitleFilter } from "../../helper/filter";
 import TrackPlayer from "react-native-track-player";
 import { useQueue } from "../../store/queue";
 import SearchBar from "../../searchBarAdd/SearchBar";
+import { useTrack } from "../../hooks/api/track";
 
-export default function AudioPlayer({ id = 1 }) {
+export default function AudioPlayer({ route }) {
+  const { id } = route.params;
+  const { tracks, isLoading, error } = useTrack(id);
+  const songData = tracks?.data?.songs;
+
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   // const search = useNavigationSearch({
@@ -37,10 +42,10 @@ export default function AudioPlayer({ id = 1 }) {
 
   const filteredSongs = useMemo(() => {
     if (!searchPhrase.trim()) {
-      return SONG_LIST;
+      return songData;
     } else {
       const normalizedSearchPhrase = searchPhrase.trim().toLowerCase();
-      return SONG_LIST.filter((item) =>
+      return songData.filter((item) =>
         item.title.toLowerCase().includes(normalizedSearchPhrase)
       );
     }

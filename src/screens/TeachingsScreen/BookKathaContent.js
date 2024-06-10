@@ -97,7 +97,7 @@ const BookKathaContent = ({ route }) => {
       <View style={styles.iconContainer}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("AudioPlayer");
+            navigation.navigate("AudioPlayer", { id: kathaData?.trackId });
           }}
           style={{ left: 10 }}
         >

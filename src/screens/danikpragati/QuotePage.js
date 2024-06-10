@@ -1,6 +1,5 @@
 import React from "react";
 import { ScrollView, Text, View, Image } from "react-native";
-import { ScrollView, Text, View, Image } from "react-native";
 import { SliderBox } from "react-native-image-slider-box";
 
 const MahabharataImages = [
@@ -46,7 +45,6 @@ export const QuotePage = () => {
           inactiveDotColor="#90A4AE"
           paginationBoxVerticalPadding={20}
           autoplay={true}
-          circleLoop
         />
       </View>
 

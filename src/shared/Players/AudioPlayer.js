@@ -7,10 +7,11 @@ import {
   FlatList,
   SafeAreaView,
   ImageBackground,
+  ActivityIndicator,
 } from "react-native";
 import { SONG_LIST } from "../../data";
 import TrackListItem from "./AudioPlayer/TrackListItem";
-import { itemDivider, utilsStyles } from "../../constants/theme";
+import { colors, itemDivider, utilsStyles } from "../../constants/theme";
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigationSearch } from "../../hooks/useNavigationSearch";
 import { trackTitleFilter } from "../../helper/filter";
@@ -54,7 +55,7 @@ export default function AudioPlayer({ route }) {
         item.title.toLowerCase().includes(normalizedSearchPhrase)
       );
     }
-  }, [searchPhrase]);
+  }, [searchPhrase, songData]);
 
   const queueOffset = useRef(0);
   const { activeQueueId, setActiveQueueId } = useQueue();
@@ -93,6 +94,22 @@ export default function AudioPlayer({ route }) {
       TrackPlayer.play();
     }
   };
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </SafeAreaView>
+    );
+  }
+
+  if (error) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text>Failed to fetch the data. Error: {error.message}</Text>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView>

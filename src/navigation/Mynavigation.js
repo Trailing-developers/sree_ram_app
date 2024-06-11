@@ -25,10 +25,12 @@ import EventsScreen from "../screens/Calendar/EventScreen";
 import PanchangaScreen from "../screens/Calendar/PanchangaScreen";
 import CustomCalendar from "../screens/Calendar/CustomCalendar";
 import FestivalScreen from "../screens/Calendar/FestivalScreen";
+import { useFloatingPlayer } from "../hooks/FloatingPlayerContext";
 
 const Stack = createNativeStackNavigator();
 
 export default function Mynavigation() {
+  const { isPlayerVisible, dismissPlayer } = useFloatingPlayer();
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -194,14 +196,17 @@ export default function Mynavigation() {
           }}
         />
       </Stack.Navigator>
-      <FloatingPlayer
-        style={{
-          Positions: "absolute",
-          left: 8,
-          right: 8,
-          botton: 78,
-        }}
-      />
+      {isPlayerVisible && (
+        <FloatingPlayer
+          style={{
+            Positions: "absolute",
+            left: 8,
+            right: 8,
+            botton: 78,
+          }}
+          onDismiss={dismissPlayer}
+        />
+      )}
     </NavigationContainer>
   );
 }

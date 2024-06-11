@@ -5,8 +5,7 @@ import { useSetupTrackPlayer } from "./src/hooks/useSetupTrackPlayer";
 import { SplashScreen } from "expo-router";
 import { useCallback } from "react";
 import { useLogTrackPlayerState } from "./src/hooks/useLogTrackPlayerState";
-import { FloatingPlayer } from "./src/shared/Players/AudioPlayer/FloatingPlayer";
-import { Positions } from "react-native-calendars/src/expandableCalendar";
+import { FloatingPlayerProvider } from "./src/hooks/FloatingPlayerContext";
 
 SplashScreen.preventAutoHideAsync();
 export default function App() {
@@ -22,7 +21,9 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Mynavigation />
+      <FloatingPlayerProvider>
+        <Mynavigation />
+      </FloatingPlayerProvider>
     </GestureHandlerRootView>
   );
 }

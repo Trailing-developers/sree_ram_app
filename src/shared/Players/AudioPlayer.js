@@ -19,11 +19,14 @@ import { useQueue } from "../../store/queue";
 import SearchBar from "../../searchBarAdd/SearchBar";
 import { useTrack } from "../../hooks/api/track";
 import { BlurView } from "@react-native-community/blur";
+import { useFloatingPlayer } from "../../hooks/FloatingPlayerContext";
 
 export default function AudioPlayer({ route }) {
   const { id } = route.params;
   const { tracks, isLoading, error } = useTrack(id);
   const songData = tracks?.data?.songs;
+
+  const { showPlayer } = useFloatingPlayer();
 
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
@@ -65,6 +68,7 @@ export default function AudioPlayer({ route }) {
     if (trackIndex === -1) return;
 
     const isChangingQueue = id !== activeQueueId;
+    showPlayer();
     if (isChangingQueue) {
       const beforeTrack = songData.slice(0, trackIndex);
       const afterTrack = songData.slice(trackIndex + 1);

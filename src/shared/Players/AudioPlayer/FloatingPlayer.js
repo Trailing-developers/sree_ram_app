@@ -1,7 +1,7 @@
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useActiveTrack } from "react-native-track-player";
 import { colors, unknownTrackImageUri } from "../../../constants/theme";
-import { StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { PlayPauseButton, SkipToNextButton } from "./PlayerControl";
 import FastImage from "react-native-fast-image";
 import { useLastActiveTrack } from "../../../hooks/useLastActiveTrack";
@@ -30,23 +30,21 @@ export const FloatingPlayer = ({ style }) => {
       activeOpacity={0.9}
       style={[styles.container, style]}
     >
-      <>
-        <FastImage
-          source={{ uri: displayTrack.artwork ?? unknownTrackImageUri }}
-          style={styles.trackArtworkImage}
+      <FastImage
+        source={{ uri: displayTrack.artwork ?? unknownTrackImageUri }}
+        style={styles.trackArtworkImage}
+      />
+      <View style={styles.trackTitleContainer}>
+        <MovingText
+          style={styles.trackTitle}
+          text={displayTrack.title ?? ""}
+          animationThreshold={25}
         />
-        <View style={styles.trackTitleContainer}>
-          <MovingText
-            style={styles.trackTitle}
-            text={displayTrack.title ?? ""}
-            animationThreshold={25}
-          />
-        </View>
-        <View style={styles.trackControlContainer}>
-          <PlayPauseButton iconSize={24} />
-          <SkipToNextButton iconSize={22} />
-        </View>
-      </>
+      </View>
+      <View style={styles.trackControlContainer}>
+        <PlayPauseButton iconSize={24} />
+        <SkipToNextButton iconSize={22} />
+      </View>
     </TouchableOpacity>
   );
 };

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   SafeAreaView,
+  ImageBackground,
 } from "react-native";
 import { SONG_LIST } from "../../data";
 import TrackListItem from "./AudioPlayer/TrackListItem";
@@ -17,6 +18,7 @@ import TrackPlayer from "react-native-track-player";
 import { useQueue } from "../../store/queue";
 import SearchBar from "../../searchBarAdd/SearchBar";
 import { useTrack } from "../../hooks/api/track";
+import { BlurView } from "@react-native-community/blur";
 
 export default function AudioPlayer({ route }) {
   const { id } = route.params;
@@ -57,15 +59,15 @@ export default function AudioPlayer({ route }) {
   const handleTrackSelect = async (selectedTrack) => {
     // await TrackPlayer.load(selectedTrack);
     // await TrackPlayer.play();
-    const trackIndex = SONG_LIST.findIndex(
+    const trackIndex = songData.findIndex(
       (track) => track.url === selectedTrack.url
     );
     if (trackIndex === -1) return;
 
     const isChangingQueue = id !== activeQueueId;
     if (isChangingQueue) {
-      const beforeTrack = SONG_LIST.slice(0, trackIndex);
-      const afterTrack = SONG_LIST.slice(trackIndex + 1);
+      const beforeTrack = songData.slice(0, trackIndex);
+      const afterTrack = songData.slice(trackIndex + 1);
       await TrackPlayer.reset();
       await TrackPlayer.add(selectedTrack);
       await TrackPlayer.add(afterTrack);
@@ -78,7 +80,7 @@ export default function AudioPlayer({ route }) {
     } else {
       const nextTrackIndex =
         trackIndex - queueOffset.current < 0
-          ? SONG_LIST.length + trackIndex - queueOffset.current
+          ? songData.length + trackIndex - queueOffset.current
           : trackIndex - queueOffset.current;
       console.log(
         `trackIndex : ${trackIndex} , nextTrackIndex : ${nextTrackIndex}`
@@ -96,32 +98,37 @@ export default function AudioPlayer({ route }) {
         clicked={clicked}
         setClicked={setClicked}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={{ ...styles.mainContainer, paddingHorizontal: 20 }}
-      >
-        <FlatList
-          data={filteredSongs}
-          ItemSeparatorComponent={ItemDivider}
-          scrollEnabled={false}
-          contentContainerStyle={{ paddingTop: 20, paddingBottom: 128 }}
-          ListFooterComponent={ItemDivider}
-          ListEmptyComponent={
-            <View>
-              <Text style={itemDivider.emptyContentText}>No songs found!</Text>
-            </View>
-          }
-          renderItem={(item, index) => {
-            return (
-              <TrackListItem
-                track={{ ...item.item }}
-                scrollEnabled={false}
-                handleTrackSelect={handleTrackSelect}
-              />
-            );
-          }}
-        />
-      </ScrollView>
+      <ImageBackground source={{ uri: tracks?.data?.image }}>
+        <BlurView style={styles.absolute} blurType="light" blurAmount={20} />
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={{ ...styles.mainContainer, paddingHorizontal: 20 }}
+        >
+          <FlatList
+            data={filteredSongs}
+            ItemSeparatorComponent={ItemDivider}
+            scrollEnabled={false}
+            contentContainerStyle={{ paddingTop: 20, paddingBottom: 128 }}
+            ListFooterComponent={ItemDivider}
+            ListEmptyComponent={
+              <View>
+                <Text style={itemDivider.emptyContentText}>
+                  No songs found!
+                </Text>
+              </View>
+            }
+            renderItem={(item, index) => {
+              return (
+                <TrackListItem
+                  track={{ ...item.item }}
+                  scrollEnabled={false}
+                  handleTrackSelect={handleTrackSelect}
+                />
+              );
+            }}
+          />
+        </ScrollView>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
@@ -134,6 +141,15 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  backgroundImage: {
+    flex: 1,
+  },
+  absolute: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
   },
   trackTitle: {
     flex: 1,

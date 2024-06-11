@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useActiveTrack } from "react-native-track-player";
 import { ActivityIndicator } from "react-native-paper";
@@ -15,6 +15,7 @@ import { PlayerControls } from "./PlayerControl";
 import { PlayerProgressBar } from "./PlayerProgressBar";
 import { PlayerVolumeBar } from "./PlayerVolumeBar";
 import { PlayerRepeatToggle } from "./PlayerRepeatToggle";
+import { BlurView } from "@react-native-community/blur";
 
 export default PlayerScreen = () => {
   const activeTrack = useActiveTrack();
@@ -29,63 +30,69 @@ export default PlayerScreen = () => {
   }
   return (
     <View style={styles.overlayContainer}>
-      <DismissPlayerSymbol />
-      <View style={{ flex: 1, marginTop: top + 70, marginBottom: bottom }}>
-        <View style={styles.artworkContainer}>
-          <FastImage
-            source={{
-              uri: activeTrack.artwork ?? unknownTrackImageUri,
-              priority: FastImage.priority.high,
-            }}
-            resizeMode="cover"
-            style={styles.artworkImage}
-          />
-        </View>
-        <View style={{ flex: 1 }}>
-          <View style={{ marginTop: "auto" }}>
-            <View style={{ height: 60 }}>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <View style={styles.trackTitleTextContainer}>
-                  <MovingText
-                    text={activeTrack.title ?? ""}
-                    animationThreshold={30}
-                    style={styles.trackTitleText}
+      <ImageBackground source={{ uri: activeTrack?.artwork }}>
+        <BlurView style={styles.absolute} blurType="light" blurAmount={20} />
+        <DismissPlayerSymbol />
+
+        <View style={{ flex: 1, marginTop: top + 70, marginBottom: bottom }}>
+          <View style={styles.artworkContainer}>
+            <FastImage
+              source={{
+                uri: activeTrack.artwork ?? unknownTrackImageUri,
+                priority: FastImage.priority.high,
+              }}
+              resizeMode="stretch"
+              style={styles.artworkImage}
+            />
+          </View>
+          <View style={{ flex: 1 }}>
+            <View style={{ marginTop: "auto" }}>
+              <View style={{ height: 60 }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <View style={styles.trackTitleTextContainer}>
+                    <MovingText
+                      text={activeTrack.title ?? ""}
+                      animationThreshold={30}
+                      style={styles.trackTitleText}
+                    />
+                  </View>
+                  <FontAwesome
+                    name={isFavorite ? "heart" : "heart-o"}
+                    size={24}
+                    color={colors.white}
+                    style={{ marginHorizontal: 14 }}
+                    onPress={() => {
+                      console.log("favorite pressed!!");
+                    }}
                   />
                 </View>
-                <FontAwesome
-                  name={isFavorite ? "heart" : "heart-o"}
-                  size={24}
-                  color={colors.white}
-                  style={{ marginHorizontal: 14 }}
-                  onPress={() => {
-                    console.log("favorite pressed!!");
-                  }}
-                />
+                {activeTrack.artist && (
+                  <Text
+                    numberOfLines={1}
+                    style={[styles.trackArtistText, { marginTop: 6 }]}
+                  >
+                    {activeTrack.artist}
+                  </Text>
+                )}
               </View>
-              {activeTrack.artist && (
-                <Text
-                  numberOfLines={1}
-                  style={[styles.trackArtistText, { marginTop: 6 }]}
-                >
-                  {activeTrack.artist}
-                </Text>
-              )}
-            </View>
-            <PlayerProgressBar style={{ marginTop: 32 }} />
-            <PlayerControls style={{ marginTop: 40, marginBottom: 30 }} />
-            <PlayerVolumeBar style={{ marginTop: "auto", marginBottom: 30 }} />
-            <View style={{ flexDirection: "row", justifyContent: "center" }}>
-              <PlayerRepeatToggle size={30} style={{ marginBottom: 6 }} />
+              <PlayerProgressBar style={{ marginTop: 32 }} />
+              <PlayerControls style={{ marginTop: 40, marginBottom: 30 }} />
+              <PlayerVolumeBar
+                style={{ marginTop: "auto", marginBottom: 30 }}
+              />
+              <View style={{ flexDirection: "row", justifyContent: "center" }}>
+                <PlayerRepeatToggle size={30} style={{ marginBottom: 6 }} />
+              </View>
             </View>
           </View>
         </View>
-      </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -120,10 +127,12 @@ const DismissPlayerSymbol = () => {
 const styles = StyleSheet.create({
   overlayContainer: {
     flex: 1,
-    paddingHorizontal: 20,
-    backgroundColor: colors.bhagwa,
+    paddingHorizontal: 0,
     justifyContent: "center",
     alignItems: "center",
+  },
+  absolute: {
+    ...StyleSheet.absoluteFillObject,
   },
   artworkContainer: {
     shadowOffset: { width: 0, height: 8 },

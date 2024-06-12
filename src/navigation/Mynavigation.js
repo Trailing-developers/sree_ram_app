@@ -20,6 +20,7 @@ import FeedbackScreen from "../screens/feedback/FeedbackScreen";
 import { DanikPragati } from "../screens/danikpragati/DanikPragati";
 import { MantraPage } from "../screens/danikpragati/MantraPage";
 import { MindPage } from "../screens/danikpragati/MindPage";
+import { QuotePage } from "../screens/danikpragati/QuotePage";
 import PhotoDetailPage from "../screens/DarshanScreen/temple_detail_page/PhotoPage/PhotoDetailPage";
 import EventsScreen from "../screens/Calendar/EventScreen";
 import PanchangaScreen from "../screens/Calendar/PanchangaScreen";
@@ -160,6 +161,15 @@ export default function Mynavigation() {
             headerShown: true,
           }}
         />
+
+        <Stack.Screen
+          name="QuotePage"
+          component={QuotePage}
+          option={{
+            headerShown: true,
+          }}
+
+          />
         <Stack.Screen
           name="PhotoDetailPage"
           component={PhotoDetailPage}

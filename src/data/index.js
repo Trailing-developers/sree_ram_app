@@ -213,6 +213,7 @@ export const DANIK_PRGATI_HOME = [
   {
     title: "Quotes",
     subtitle: "Vichaar",
+    pageId: "QuotePage",
     imageUrl:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTleKSRqO9muwxpAeR3SKEx61uAJyVdOy1TxA&usqp=CAU",
   },

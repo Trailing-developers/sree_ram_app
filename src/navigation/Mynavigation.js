@@ -18,14 +18,19 @@ import { FloatingPlayer } from "../shared/Players/AudioPlayer/FloatingPlayer";
 import { VideoScreen } from "../shared/Players/VideoPlayer/VideoScreen";
 import FeedbackScreen from "../screens/feedback/FeedbackScreen";
 import { DanikPragati } from "../screens/danikpragati/DanikPragati";
-import { MantraPage } from "../screens/danikpragati/MantraPage";
+import {MantraPage} from "../screens/danikpragati/MantraPage";
+import { ManifestPage } from "../screens/danikpragati/ManifestPage";
 import { MindPage } from "../screens/danikpragati/MindPage";
+import {NutritionPage} from "../screens/danikpragati/NutritionPage"
+import { QuotePage } from "../screens/danikpragati/QuotePage";
+import { SubliminalsPage } from "../screens/danikpragati/SubliminalsPage";
 import PhotoDetailPage from "../screens/DarshanScreen/temple_detail_page/PhotoPage/PhotoDetailPage";
 import EventsScreen from "../screens/Calendar/EventScreen";
 import PanchangaScreen from "../screens/Calendar/PanchangaScreen";
 import CustomCalendar from "../screens/Calendar/CustomCalendar";
 import FestivalScreen from "../screens/Calendar/FestivalScreen";
 import { useFloatingPlayer } from "../hooks/FloatingPlayerContext";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -161,6 +166,34 @@ export default function Mynavigation() {
           }}
         />
         <Stack.Screen
+         name="NutritionPage"
+         component={NutritionPage}
+         option={{
+           headerShown: true,
+         }}
+         />
+         <Stack.Screen
+         name="ManifestPage"
+         component={ManifestPage}
+         option={{
+           headerShown: true,
+         }}
+         />
+         <Stack.Screen
+         name="SubliminalsPage"
+         component={SubliminalsPage}
+         option={{
+           headerShown: true,
+         }}
+         />
+         <Stack.Screen
+         name="QuotePage"
+         component={QuotePage}
+         option={{
+           headerShown: true,
+         }}
+         />
+         <Stack.Screen
           name="PhotoDetailPage"
           component={PhotoDetailPage}
           option={{

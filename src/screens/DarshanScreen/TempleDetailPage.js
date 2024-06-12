@@ -121,13 +121,19 @@ const TempleDetailPage = ({ route }) => {
           <DarshanInfoPage data={templeDetails?.data?.darshanTypes} />
           {/* <NearByTemples
             data={{
-              placeLocation: data.locationOfPlace,
+              placeLocation: {
+                lat: templeDetails?.data?.latitude,
+                lng: templeDetails?.data?.longitude,
+              },
               userLocation: data.locationOfUser,
             }}
           /> */}
           <Restaurants
             data={{
-              placeLocation: data.locationOfPlace,
+              placeLocation: {
+                lat: templeDetails?.data?.latitude,
+                lng: templeDetails?.data?.longitude,
+              },
               userLocation: data.locationOfUser,
             }}
           />

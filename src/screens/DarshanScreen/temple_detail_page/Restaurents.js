@@ -1,5 +1,15 @@
 import React from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  ActivityIndicator,
+  SafeAreaView,
+  StyleSheet,
+} from "react-native";
+import { useNearbyHotels } from "../../../hooks/api/nearbysearch";
+import { colors } from "../../../constants/theme";
 
 const restaurants = [
   {
@@ -17,14 +27,33 @@ const restaurants = [
 
 const Restaurants = ({ data }) => {
   const { placeLocation, userLocation } = data;
+  const { nearbyHotelsData, isLoading, error } = useNearbyHotels(
+    placeLocation.lat,
+    placeLocation.lng
+  );
 
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </SafeAreaView>
+    );
+  }
+
+  if (error) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text>Failed to fetch the data. Error: {error.message}</Text>
+      </SafeAreaView>
+    );
+  }
   return (
     <View style={{ marginLeft: 10, marginVertical: 20 }}>
       <Text style={{ fontSize: 18, fontWeight: "bold", marginBottom: 10 }}>
         Nearby Ashrams, Hotels and Restaurants
       </Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {restaurants.map((restaurant) => (
+        {nearbyHotelsData?.data?.data?.map((restaurant) => (
           <View key={restaurant.name} style={{ marginRight: 20 }}>
             <Image
               source={{ uri: restaurant.image }}
@@ -37,5 +66,7 @@ const Restaurants = ({ data }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({});
 
 export default Restaurants;

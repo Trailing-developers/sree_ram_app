@@ -224,6 +224,7 @@ export const DANIK_PRGATI_HOME = [
   },
   {
     title: "Nutrition",
+    pageId:"VratAahar",
     subtitle: "Ahaar",
     imageUrl:
       "https://static.toiimg.com/thumb/imgsize-23456,msid-105968419,width-600,resizemode-4/105968419.jpg",

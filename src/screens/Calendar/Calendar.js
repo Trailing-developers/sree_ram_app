@@ -71,7 +71,6 @@ export default CalendarScreen = () => {
       </View>
 
       <View style={styles.contentContainer}>
-        {/* <Text style={styles.title}>{selectedDate}</Text> */}
         <Tithi date={selectedDate} />
       </View>
     </>

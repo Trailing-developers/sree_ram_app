@@ -18,10 +18,6 @@ const CustomCalendar = ({ selectedDate, data }) => {
           <Text style={styles.date}>{day}</Text>
           <Text style={styles.month}>{month}</Text>
         </View>
-        <View style={styles.iconContainer}>
-          <Icon name="share" size={24} color="#fff" style={styles.icon} />
-          <Icon name="bell" size={24} color="#fff" style={styles.icon} />
-        </View>
       </View>
       {data && (
         <>
@@ -31,12 +27,6 @@ const CustomCalendar = ({ selectedDate, data }) => {
             }}
             style={styles.image}
           />
-          <View style={styles.avatarContainer}>
-            <Avatar.Image
-              size={40}
-              source={{ uri: "https://your-avatar-url.com/avatar.jpg" }}
-            />
-          </View>
           <Card.Content>
             <Text style={styles.title}>{data?.name}</Text>
             {data?.location && (

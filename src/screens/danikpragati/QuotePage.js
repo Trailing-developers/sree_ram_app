@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View, Image } from "react-native";
 import { SliderBox } from "react-native-image-slider-box";
 import Carousel from "../DarshanScreen/Carousel";
 
@@ -38,71 +38,51 @@ export const QuotePage = () => {
 
   return (
     <ScrollView style={{ flex: 1, paddingBottom: 120 }}>
-      <View>
-        <Text
-          style={{
-            fontSize: 24,
-            textAlign: "left",
-            color: "black",
-            marginTop: 20,
-            marginLeft: 20,
-            fontWeight: "bold",
-          }}
-        >
-          Quotes from Mahabharata
-        </Text>
+      {/* <View>
+        
+         <Text style={{ fontSize: 24, textAlign: "left", color: 'black', marginTop: 20, marginLeft: 20,fontWeight:"bold"}}>
+           Quotes from Mahabharata
+         </Text>
       </View>
-      <View style={{ padding: 20 }}>
-        <SliderBox
-          images={MahabharataImages}
-          sliderBoxHeight={450}
-          sliderBoxWidth={350} // Set the height of the slider
-          ImageComponentStyle={{ borderRadius: 15, width: "100%", margin: 0 }}
-          dotColor="#FFEE58"
-          inactiveDotColor="#90A4AE"
-          paginationBoxVerticalPadding={20}
-          autoplay={true}
+
+      <View style={{ padding:20 }}>
+        <SliderBox images={MahabharataImages}
+        sliderBoxHeight={450}
+        sliderBoxWidth={350}  // Set the height of the slider
+        ImageComponentStyle={{ borderRadius: 15, width: '100%', margin: 0 }}
+        dotColor="#FFEE58"
+        inactiveDotColor="#90A4AE"
+        paginationBoxVerticalPadding={20}
+        autoplay={true}
+        
         />
       </View>
+
       <View>
-        <Text
-          style={{
-            fontSize: 24,
-            textAlign: "left",
-            color: "black",
-            marginLeft: 20,
-            fontWeight: "bold",
-          }}
-        >
+        <Text style={{ fontSize: 24, textAlign: "left", color: 'black', marginLeft: 20,fontWeight:"bold"}}>
           Quotes from Geeta
         </Text>
       </View>
-      <View style={{ padding: 20 }}>
-        <SliderBox
-          images={GeetaImages}
-          sliderBoxHeight={450}
-          sliderBoxWidth={350} // Set the height of the slider
-          ImageComponentStyle={{ borderRadius: 15, width: "100%", margin: 0 }}
-          dotColor="#FFEE58"
-          inactiveDotColor="#90A4AE"
-          paginationBoxVerticalPadding={20}
-          autoplay={true}
+
+      
+      <View style={{ padding:20 }}>
+        <SliderBox images={GeetaImages}
+        sliderBoxHeight={450}
+        sliderBoxWidth={350}  // Set the height of the slider
+        ImageComponentStyle={{ borderRadius: 15, width: '100%', margin: 0 }}
+        dotColor="#FFEE58"
+        inactiveDotColor="#90A4AE"
+        paginationBoxVerticalPadding={20}
+        autoplay={true}
+        
         />
       </View>
       <View>
-        <Text
-          style={{
-            fontSize: 24,
-            textAlign: "left",
-            color: "black",
-            paddingLeft: 20,
-            fontWeight: "bold",
-          }}
-        >
+        <Text style={{ fontSize: 24, textAlign: "left", color: 'black', paddingLeft: 20,fontWeight:"bold" }}>
           Quotes from Vedas
         </Text>
-      </View>{" "}
-      */}
+      </View> */}
+
       <View style={{ padding: 20 }}>
         <SliderBox
           images={VedasImages}

@@ -219,6 +219,7 @@ export const DANIK_PRGATI_HOME = [
   {
     title: "Yoga",
     subtitle: "Body Health",
+    pageId: "Yoga",
     imageUrl: "https://www.yogapoint.com/images-new/img-chakra-course.jpg",
   },
   {
@@ -242,6 +243,52 @@ export const DANIK_PRGATI_HOME = [
 //   "Surya",
 //   "Kuber Mantra",
 //   "Panchakshari Shiva Mantra",
+export const SURYA_NAMASKAR = [
+  {
+    image1: "https://oneyogathailand.com/wp-content/uploads/2022/05/sun-salutation-step-1-pranamasana-prayer-pose.jpg",
+    nameofpose: "Pranamasana",
+  },
+  {
+    image1: "https://oneyogathailand.com/wp-content/uploads/2022/05/sun-salutation-step-2-hasta-utthanasana-raised-arms-pose.jpg",
+    nameofpose: "Hasta Uttanasana",
+  },
+  {
+    image1: "https://oneyogathailand.com/wp-content/uploads/2022/05/sun-salutation-step-3-padahastasana-hand-to-foot-pose.jpg",
+    nameofpose: "Padahastasana",
+  },
+  {
+    image1: "https://oneyogathailand.com/wp-content/uploads/2022/05/sun-salutation-step-4-ashwa-sanchalanasana-equestrian-pose.jpg",
+    nameofpose: " Ashwa Sanchalanasana",
+  },
+  {
+    image1: "https://oneyogathailand.com/wp-content/uploads/2022/05/sun-salutation-step-5-parvatasana-mountain-pose.jpg",
+    nameofpose: "Parvatasana",
+  },
+  {
+    image1: "https://oneyogathailand.com/wp-content/uploads/2022/05/sun-salutation-step-6-ashtanga-namaskara-salute-with-eight-parts.jpg",
+    nameofpose: "Ashtanga Namaskara",
+  },
+  {
+    image1: "https://oneyogathailand.com/wp-content/uploads/2022/05/sun-salutation-step-7-bhujangasana-cobra-pose.jpg",
+    nameofpose: "Bhujangasana",
+  },
+  {
+    image1: "https://oneyogathailand.com/wp-content/uploads/2022/05/sun-salutation-step-8-parvatasana-mountain-pose.jpg",
+    nameofpose: "Parvatasana",
+  },
+  {
+    image1: "https://oneyogathailand.com/wp-content/uploads/2022/05/sun-salutation-step-9-ashwa-sanchalanasana-equestrian-pose.jpg",
+    nameofpose: "Ashwa Sanchalanasana",
+  },
+  {
+    image1: "https://oneyogathailand.com/wp-content/uploads/2022/05/sun-salutation-step-10-padahastasana-hand-to-foot-pose.jpg",
+    nameofpose: "Padahastasana",
+  },
+  {
+    image1: "https://oneyogathailand.com/wp-content/uploads/2022/05/sun-salutation-step-11-hasta-utthanasana-raised-arms-pose-768x512.jpg",
+    nameofpose: "Hastauttanasana",
+  },
+];
 export const MANTRA_LIST = [
   {
     title: "Shiv Rudra Gayatri Mantra",

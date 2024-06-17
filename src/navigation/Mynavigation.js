@@ -25,6 +25,7 @@ import EventsScreen from "../screens/Calendar/EventScreen";
 import PanchangaScreen from "../screens/Calendar/PanchangaScreen";
 import CustomCalendar from "../screens/Calendar/CustomCalendar";
 import FestivalScreen from "../screens/Calendar/FestivalScreen";
+import { Yoga } from "../screens/danikpragati/Yoga";
 
 const Stack = createNativeStackNavigator();
 
@@ -154,6 +155,13 @@ export default function Mynavigation() {
         <Stack.Screen
           name="MindPage"
           component={MindPage}
+          option={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="Yoga"
+          component={Yoga}
           option={{
             headerShown: true,
           }}

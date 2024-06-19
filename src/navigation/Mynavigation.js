@@ -30,6 +30,8 @@ import { VratAahar } from "../screens/danikpragati/VratAahar";
 import { Manifestation } from "../screens/danikpragati/Manifestation";
 import { Subliminals } from "../screens/danikpragati/Subliminals";
 import { useFloatingPlayer } from "../hooks/FloatingPlayerContext";
+import SattvicDiet from "../screens/danikpragati/SattvicDiet";
+import NutritionPage from "../screens/danikpragati/NutritionPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +48,16 @@ export default function Mynavigation() {
         <Stack.Screen
           name="VratAahar"
           component={VratAahar}
+          options={{ title: "" }}
+        />
+        <Stack.Screen
+          name="SattvicDiet"
+          component={SattvicDiet}
+          options={{ title: "" }}
+        />
+        <Stack.Screen
+          name="NutritionPage"
+          component={NutritionPage}
           options={{ title: "" }}
         />
         <Stack.Screen name="CharitraScreen" component={CharitraScreen} />

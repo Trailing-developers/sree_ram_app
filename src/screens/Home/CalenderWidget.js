@@ -2,6 +2,7 @@ import {
   ActivityIndicator,
   Image,
   StyleSheet,
+  Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,

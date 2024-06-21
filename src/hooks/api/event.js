@@ -1,9 +1,9 @@
 import useSWR from "swr";
 import { fetcher, fetcherWithTimeZone } from "../../helper/fetcher";
 
-const isLocal = false;
+const isLocal = true;
 const HOST = isLocal
-  ? "https://eddc-86-20-89-189.ngrok-free.app"
+  ? "http://localhost:3000"
   : "https://sree-ram-backend.vercel.app";
 
 export const useCalendarEvents = (start, end) => {
@@ -18,4 +18,13 @@ export const useCalendarEvents = (start, end) => {
   );
 
   return { events: data, isLoading, error };
+};
+
+export const useFullCalendarView = (year, month) => {
+  console.log(year, month);
+  const { data, isLoading, error } = useSWR(
+    `${HOST}/api/calendar/year/${year}/month/${month}`,
+    fetcher
+  );
+  return { calendarData: data, isLoading, error };
 };

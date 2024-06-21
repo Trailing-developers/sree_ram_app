@@ -10,7 +10,7 @@ export const formatSecondsToMinute = (seconds) => {
 
 export const convertTo12HourFormat = (time24) => {
   if (time24 == null) {
-    return ``;
+    return "";
   }
   let [hours, minutes] = time24.split(":").map(Number);
 

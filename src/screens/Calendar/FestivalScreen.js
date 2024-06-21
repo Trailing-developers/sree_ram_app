@@ -8,42 +8,46 @@ import {
 } from "react-native";
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons"; // Using Expo for icons
 import { colors } from "../../constants/theme";
+import { useFullCalendarView } from "../../hooks/api/event";
 
-const FestivalScreen = () => {
+const FestivalScreen = ({ route }) => {
+  const { year, month } = route.params;
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
-  const dates = [
-    // Populate this array with your dates and event icons
-    { date: 1, event: "ekadashi" },
-    { date: 2, event: "none" },
-    { date: 3, event: "pradosha" },
-    { date: 4, event: "amavasya" },
-    { date: 5, event: "festival" },
-    { date: 6, event: "festival" },
-    { date: 7, event: "none" },
-    { date: 8, event: "none" },
-    { date: 9, event: "none" },
-    { date: 10, event: "none" },
-    { date: 11, event: "none" },
-    { date: 12, event: "none" },
-    { date: 13, event: "none" },
-    { date: 14, event: "festival" },
-    { date: 15, event: "festival" },
-    { date: 16, event: "none" },
-    { date: 17, event: "none" },
-    { date: 18, event: "pradosha" },
-    { date: 19, event: "none" },
-    { date: 20, event: "pournami" },
-    { date: 21, event: "festival" },
-    { date: 22, event: "pournami" },
-    { date: 23, event: "none" },
-    { date: 24, event: "none" },
-    { date: 25, event: "none" },
-    { date: 26, event: "none" },
-    { date: 27, event: "none" },
-    { date: 28, event: "none" },
-    { date: 29, event: "none" },
-    { date: 30, event: "sankranti" },
-  ];
+  const { calendarData, isLoading, error } = useFullCalendarView(year, month);
+  console.log(calendarData);
+  // const dates = [
+  //   // Populate this array with your dates and event icons
+  //   { date: 1, event: "ekadashi" },
+  //   { date: 2, event: "none" },
+  //   { date: 3, event: "pradosha" },
+  //   { date: 4, event: "amavasya" },
+  //   { date: 5, event: "festival" },
+  //   { date: 6, event: "festival" },
+  //   { date: 7, event: "none" },
+  //   { date: 8, event: "none" },
+  //   { date: 9, event: "none" },
+  //   { date: 10, event: "none" },
+  //   { date: 11, event: "none" },
+  //   { date: 12, event: "none" },
+  //   { date: 13, event: "none" },
+  //   { date: 14, event: "festival" },
+  //   { date: 15, event: "festival" },
+  //   { date: 16, event: "none" },
+  //   { date: 17, event: "none" },
+  //   { date: 18, event: "pradosha" },
+  //   { date: 19, event: "none" },
+  //   { date: 20, event: "pournami" },
+  //   { date: 21, event: "festival" },
+  //   { date: 22, event: "pournami" },
+  //   { date: 23, event: "none" },
+  //   { date: 24, event: "none" },
+  //   { date: 25, event: "none" },
+  //   { date: 26, event: "none" },
+  //   { date: 27, event: "none" },
+  //   { date: 28, event: "none" },
+  //   { date: 29, event: "none" },
+  //   { date: 30, event: "sankranti" },
+  // ];
 
   const eventsLegend = [
     { event: "Sankranti", icon: "sun-o" },
@@ -76,7 +80,7 @@ const FestivalScreen = () => {
         ))}
       </View>
       <View style={styles.calendarContainer}>
-        {dates.map((item, index) => (
+        {calendarData.map((item, index) => (
           <View key={index} style={styles.dateContainer}>
             <Text
               style={[

@@ -11,8 +11,6 @@ import { convertTo12HourFormat } from "../../helper/miscellaneous";
 import { colors } from "../../constants/theme";
 
 const TodayItems = ({ data }) => {
-  console.log(data);
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <ImageBackground
@@ -53,30 +51,33 @@ const TodayItems = ({ data }) => {
             </Text>
           </View>
         </View>
-        <View style={styles.infoRow}>
-          <View style={styles.infoBox}>
-            <Text style={styles.infoLabel}>Yoga</Text>
-            <Text style={styles.infoValue}>{data?.yogatimes[1]?.name}</Text>
-            <Text style={styles.infoValue}>
-              upto:
-              {" " +
-                convertTo12HourFormat(
-                  data?.yogatimes[1]?.completion.split(" ")[1]
-                )}
-            </Text>
+        {data?.yogatimes && (
+          <View style={styles.infoRow}>
+            <View style={styles.infoBox}>
+              <Text style={styles.infoLabel}>Yoga</Text>
+              <Text style={styles.infoValue}>{data?.yogatimes[1]?.name}</Text>
+              <Text style={styles.infoValue}>
+                upto:
+                {" " +
+                  convertTo12HourFormat(
+                    data?.yogatimes[1]?.completion.split(" ")[1]
+                  )}
+              </Text>
+            </View>
+
+            <View style={styles.infoBox}>
+              <Text style={styles.infoLabel}>Yoga</Text>
+              <Text style={styles.infoValue}>{data?.yogatimes[2]?.name}</Text>
+              <Text style={styles.infoValue}>
+                upto:
+                {" " +
+                  convertTo12HourFormat(
+                    data?.yogatimes[2]?.completion.split(" ")[1]
+                  )}
+              </Text>
+            </View>
           </View>
-          <View style={styles.infoBox}>
-            <Text style={styles.infoLabel}>Yoga</Text>
-            <Text style={styles.infoValue}>{data?.yogatimes[2]?.name}</Text>
-            <Text style={styles.infoValue}>
-              upto:
-              {" " +
-                convertTo12HourFormat(
-                  data?.yogatimes[2]?.completion.split(" ")[1]
-                )}
-            </Text>
-          </View>
-        </View>
+        )}
       </ImageBackground>
     </ScrollView>
   );

@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  FlatList,
   ImageBackground,
   StyleSheet,
   View,
@@ -29,11 +30,16 @@ export const Tithi = ({ date }) => {
       </View>
     );
 
-  console.log(events?.data?.sun_moon_rise);
-
   return (
     <ScrollView>
-      <CustomCalendar data={events.data.events[0]} selectedDate={date} />
+      <FlatList
+        data={events.data.events}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        renderItem={({ item, index }) => (
+          <CustomCalendar data={item} selectedDate={date} />
+        )}
+      />
 
       <Card style={styles.card}>
         <ImageBackground

@@ -20,12 +20,18 @@ import FeedbackScreen from "../screens/feedback/FeedbackScreen";
 import { DanikPragati } from "../screens/danikpragati/DanikPragati";
 import { MantraPage } from "../screens/danikpragati/MantraPage";
 import { MindPage } from "../screens/danikpragati/MindPage";
+import { QuotePage } from "../screens/danikpragati/QuotePage";
 import PhotoDetailPage from "../screens/DarshanScreen/temple_detail_page/PhotoPage/PhotoDetailPage";
 import EventsScreen from "../screens/Calendar/EventScreen";
 import PanchangaScreen from "../screens/Calendar/PanchangaScreen";
 import CustomCalendar from "../screens/Calendar/CustomCalendar";
 import FestivalScreen from "../screens/Calendar/FestivalScreen";
+import { VratAahar } from "../screens/danikpragati/VratAahar";
+import { Manifestation } from "../screens/danikpragati/Manifestation";
+import { Subliminals } from "../screens/danikpragati/Subliminals";
 import { useFloatingPlayer } from "../hooks/FloatingPlayerContext";
+import SattvicDiet from "../screens/danikpragati/SattvicDiet";
+import NutritionPage from "../screens/danikpragati/NutritionPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +44,21 @@ export default function Mynavigation() {
           name="Home"
           component={HomeScreen}
           options={{ title: "Welcome" }}
+        />
+        <Stack.Screen
+          name="VratAahar"
+          component={VratAahar}
+          options={{ title: "" }}
+        />
+        <Stack.Screen
+          name="SattvicDiet"
+          component={SattvicDiet}
+          options={{ title: "" }}
+        />
+        <Stack.Screen
+          name="NutritionPage"
+          component={NutritionPage}
+          options={{ title: "" }}
         />
         <Stack.Screen name="CharitraScreen" component={CharitraScreen} />
         <Stack.Screen name="TrailScreen" component={TrailScreen} />
@@ -85,6 +106,20 @@ export default function Mynavigation() {
         <Stack.Screen
           name="GodDetails"
           component={GodAndGoddessDetailPage}
+          options={{
+            useNativeDrive: true,
+          }}
+        />
+        <Stack.Screen
+          name="Manifestation"
+          component={Manifestation}
+          options={{
+            useNativeDrive: true,
+          }}
+        />
+        <Stack.Screen
+          name="Subliminals"
+          component={Subliminals}
           options={{
             useNativeDrive: true,
           }}
@@ -156,6 +191,14 @@ export default function Mynavigation() {
         <Stack.Screen
           name="MindPage"
           component={MindPage}
+          option={{
+            headerShown: true,
+          }}
+        />
+
+        <Stack.Screen
+          name="QuotePage"
+          component={QuotePage}
           option={{
             headerShown: true,
           }}

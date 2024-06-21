@@ -5,9 +5,13 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
+  
+
+  
 } from "react-native";
 import { useHomeWidgets } from "../../hooks/api/widgets";
 import { useMemo } from "react";
+import {Text} from "react-native";
 
 const imageUrl =
   "https://d.newsweek.com/en/full/1978216/dragon-dance-chinese-new-year.jpg";
@@ -24,7 +28,7 @@ export default function CalenderWidget() {
       .data[0];
   }, [data]);
 
-  if (error) return <Text>Something went wrong.</Text>;
+  // if (error) return <Text>Something went wrong.</Text>;
 
   if (isLoading)
     return (

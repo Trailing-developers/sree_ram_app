@@ -1,38 +1,38 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import AudioPlayer from '../../shared/Players/AudioPlayer';
 
-export const MindPage = () => {
+
+export const NutritionPage = () => {
   const navigation = useNavigation();
 
   return (
     <ImageBackground 
-      source={{ uri: 'https://w0.peakpx.com/wallpaper/284/26/HD-wallpaper-portrait-display-vertical-artwork-digital-art-space-stars-milky-way-planet-blue.jpg' }} 
+      source={{ uri: 'https://i.pinimg.com/736x/31/c2/04/31c20422fdc9db2e882b8c24fd7cecca.jpg' }} 
       style={styles.container}
     >
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         
         <TouchableOpacity 
           style={styles.buttonContainer} 
-          onPress={() => navigation.navigate('Manifestation')}>
+          onPress={() => navigation.navigate('SattvicDiet')}>
           <Image 
-            source={{ uri: 'https://i.cdn.newsbytesapp.com/images/l2520230904181838.jpeg' }} 
+            source={{ uri: 'https://static.toiimg.com/thumb/imgsize-23456,msid-105968419,width-600,resizemode-4/105968419.jpg' }} 
             style={styles.buttonImage}
           />
           <View style={styles.dialogBox}>
-            <Text style={styles.dialogText}>Manifestation</Text>
+            <Text style={styles.dialogText}>Sattvic Diet</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity 
           style={styles.buttonContainer} 
-          onPress={() => navigation.navigate('AudioPlayer',{id:5})}>
+          onPress={() => navigation.navigate('VratAahar')}>
           <Image 
-            source={{ uri: 'https://source.boomplaymusic.com/group10/M00/05/14/da593483fbcb4089873969ed83527aef_464_464.jpg' }} 
+            source={{ uri: 'https://www.healthifyme.com/blog/wp-content/uploads/2023/06/shutterstock_1684628152-1.jpg' }} 
             style={styles.buttonImage}
           />
           <View style={styles.dialogBox}>
-            <Text style={styles.dialogText}>Subliminals</Text>
+            <Text style={styles.dialogText}>VratAahar</Text>
           </View>
         </TouchableOpacity>
       </ScrollView>
@@ -67,14 +67,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   dialogBox: {
-    backgroundColor: 'rgba(255,255,255,0.8)',
+    backgroundColor: 'orange',
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 0,
     width: 400,
     height: 50,
     justifyContent: 'center',
-    marginTop:-20
+    marginTop:-15
   },
   dialogText: {
     color: '#000',
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MindPage;
+export default NutritionPage;

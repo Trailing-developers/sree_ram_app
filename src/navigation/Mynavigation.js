@@ -32,6 +32,7 @@ import { Subliminals } from "../screens/danikpragati/Subliminals";
 import { useFloatingPlayer } from "../hooks/FloatingPlayerContext";
 import SattvicDiet from "../screens/danikpragati/SattvicDiet";
 import NutritionPage from "../screens/danikpragati/NutritionPage";
+import FullCalendar from "../screens/Calendar/FullCalendar";
 
 const Stack = createNativeStackNavigator();
 
@@ -234,6 +235,13 @@ export default function Mynavigation() {
         <Stack.Screen
           name="FestivalScreen"
           component={FestivalScreen}
+          option={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="FullCalendar"
+          component={FullCalendar}
           option={{
             headerShown: true,
           }}

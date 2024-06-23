@@ -20,10 +20,9 @@ export const useCalendarEvents = (start, end) => {
   return { events: data, isLoading, error };
 };
 
-export const useFullCalendarView = (year, month) => {
-  console.log(year, month);
+export const useFullCalendarView = (start, end) => {
   const { data, isLoading, error } = useSWR(
-    `${HOST}/api/calendar/year/${year}/month/${month}`,
+    `${HOST}/api/calendar/start/${start}/end/${end}`,
     fetcher
   );
   return { calendarData: data, isLoading, error };

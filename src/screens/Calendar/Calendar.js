@@ -20,7 +20,7 @@ export default CalendarScreen = ({ navigation }) => {
       headerRight: () => (
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("FestivalScreen", {
+            navigation.navigate("FullCalendar", {
               year: 2024,
               month: 6,
             })

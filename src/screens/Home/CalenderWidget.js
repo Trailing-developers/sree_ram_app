@@ -2,19 +2,13 @@ import {
   ActivityIndicator,
   Image,
   StyleSheet,
+  Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-  
-
-  
 } from "react-native";
 import { useHomeWidgets } from "../../hooks/api/widgets";
 import { useMemo } from "react";
-import {Text} from "react-native";
-
-const imageUrl =
-  "https://d.newsweek.com/en/full/1978216/dragon-dance-chinese-new-year.jpg";
 
 export default function CalenderWidget() {
   const { data, isLoading, error } = useHomeWidgets();

@@ -8,9 +8,13 @@ import {
 } from "react-native";
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons"; // Using Expo for icons
 import { colors } from "../../constants/theme";
+import { useFullCalendarView } from "../../hooks/api/event";
 
-const FestivalScreen = () => {
+const FestivalScreen = ({ route }) => {
+  const { year, month } = route.params;
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
+  const { calendarData, isLoading, error } = useFullCalendarView(year, month);
+  console.log(calendarData);
   const dates = [
     // Populate this array with your dates and event icons
     { date: 1, event: "ekadashi" },
@@ -76,7 +80,7 @@ const FestivalScreen = () => {
         ))}
       </View>
       <View style={styles.calendarContainer}>
-        {dates.map((item, index) => (
+        {dates?.map((item, index) => (
           <View key={index} style={styles.dateContainer}>
             <Text
               style={[

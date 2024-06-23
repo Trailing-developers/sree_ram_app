@@ -1,16 +1,29 @@
 import useSWR from "swr";
-import { fetcher } from "../../helper/fetcher";
+import { fetcher, fetcherWithTimeZone } from "../../helper/fetcher";
 
-const isLocal = false;
+const isLocal = true;
 const HOST = isLocal
-  ? "http://192.168.1.70:3000"
+  ? "http://localhost:3000"
   : "https://sree-ram-backend.vercel.app";
 
 export const useCalendarEvents = (start, end) => {
+  const offset = new Date().getTimezoneOffset() / -60;
+  const options = {
+    "Content-Type": "application/json",
+    "Timezone-Offset": offset.toString(),
+  };
   const { data, isLoading, error } = useSWR(
-    `${HOST}/api/event/start/${start}/end/${end}`,
+    [`${HOST}/api/event/start/${start}/end/${end}`, options],
+    fetcherWithTimeZone
+  );
+
+  return { events: data, isLoading, error };
+};
+
+export const useFullCalendarView = (start, end) => {
+  const { data, isLoading, error } = useSWR(
+    `${HOST}/api/calendar/start/${start}/end/${end}`,
     fetcher
   );
-  console.log(start, end);
-  return { events: data, isLoading, error };
+  return { calendarData: data, isLoading, error };
 };

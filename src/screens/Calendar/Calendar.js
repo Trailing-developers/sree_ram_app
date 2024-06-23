@@ -1,16 +1,41 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useLayoutEffect } from "react";
 import { StyleSheet, View, ScrollView, FlatList } from "react-native";
 import moment from "moment";
 import Date from "./Date";
 import { Tithi } from "./Tithi";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-export default CalendarScreen = () => {
+export default CalendarScreen = ({ navigation }) => {
   const [selectedDate, setSelectedDate] = useState(
     moment().format("YYYY-MM-DD")
   );
   const [dates, setDates] = useState([]);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [currentMonth, setCurrentMonth] = useState();
+
+  // set header
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("FullCalendar", {
+              year: 2024,
+              month: 6,
+            })
+          }
+        >
+          <Icon
+            name="calendar"
+            size={25}
+            color="#000"
+            style={{ marginLeft: 15 }}
+          />
+        </TouchableOpacity>
+      ),
+    });
+  });
 
   // get the dates from today to 10 days from now, format them as strings and store them in state
   const getDates = () => {
@@ -71,7 +96,6 @@ export default CalendarScreen = () => {
       </View>
 
       <View style={styles.contentContainer}>
-        {/* <Text style={styles.title}>{selectedDate}</Text> */}
         <Tithi date={selectedDate} />
       </View>
     </>

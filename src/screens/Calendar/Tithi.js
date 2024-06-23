@@ -1,4 +1,10 @@
-import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  ImageBackground,
+  StyleSheet,
+  View,
+} from "react-native";
 import { colors } from "../../constants/theme";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { useCalendarEvents } from "../../hooks/api/event";
@@ -6,6 +12,8 @@ import CustomCalendar from "./CustomCalendar";
 import { Card, Text, Button, Avatar } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
+import SunAndMoonRise from "./SunAndMoonRise";
+import { convertTo12HourFormat } from "../../helper/miscellaneous";
 
 export const Tithi = ({ date }) => {
   const endDate = new Date(date);
@@ -22,47 +30,50 @@ export const Tithi = ({ date }) => {
       </View>
     );
 
-  console.log(events);
-
   return (
     <ScrollView>
-      <CustomCalendar data={events.data.events[0]} selectedDate={date} />
+      <FlatList
+        data={events.data.events}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        renderItem={({ item, index }) => (
+          <CustomCalendar data={item} selectedDate={date} />
+        )}
+      />
 
       <Card style={styles.card}>
-        <Card.Title
-          title="Tithi"
-          right={() => <Text style={styles.linkText}>WHAT IS THIS?</Text>}
-        />
-        <Card.Content>
-          <View style={styles.row}>
-            <Text style={styles.largeText}>Chaturdashi</Text>
-            <Text style={styles.nowText}>NOW</Text>
-            <Text style={styles.largeText}>Amavasya</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.smallText}>upto 07:30 pm today</Text>
-            <Text style={styles.smallText}>upto 05:42 pm on 6th</Text>
-          </View>
-        </Card.Content>
+        <ImageBackground
+          source={{
+            uri: "https://blog.cosmicinsights.net/wp-content/uploads/2018/08/IMG_1680.png",
+          }}
+        >
+          <Card.Title
+            title="Tithi"
+            titleStyle={{ color: "white", fontSize: 25 }}
+            right={() => <Text style={styles.linkText}>?</Text>}
+          />
+          <Card.Content>
+            <View style={styles.row}>
+              <Text style={styles.largeText}>
+                {events?.data?.tithi?.paksha} {events?.data?.tithi?.name}
+              </Text>
+              {/* <Text style={styles.largeText}>Amavasya</Text> */}
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.smallText}>
+                upto{" "}
+                {convertTo12HourFormat(
+                  events?.data?.tithi?.completes_at.split(" ")[1]
+                )}{" "}
+                today
+              </Text>
+              {/* <Text style={styles.smallText}>upto 05:42 pm on 6th</Text> */}
+            </View>
+          </Card.Content>
+        </ImageBackground>
       </Card>
 
-      <Card style={styles.card}>
-        <Card.Title title="Sun & Moon Timings" />
-        <Card.Content>
-          <View style={styles.row}>
-            <Icon name="weather-sunset-up" size={20} color="black" />
-            <Text style={styles.smallText}>05:41 am</Text>
-            <Icon name="weather-sunset-down" size={20} color="black" />
-            <Text style={styles.smallText}>07:11 pm</Text>
-          </View>
-          <View style={styles.row}>
-            <Icon name="weather-night" size={20} color="black" />
-            <Text style={styles.smallText}>05:12 am</Text>
-            <Icon name="weather-night" size={20} color="black" />
-            <Text style={styles.smallText}>06:23 pm</Text>
-          </View>
-        </Card.Content>
-      </Card>
+      <SunAndMoonRise data={events.data} />
 
       <Card style={styles.card}>
         <Card.Title
@@ -178,85 +189,6 @@ export const Tithi = ({ date }) => {
         </Card.Content>
       </Card>
     </ScrollView>
-    // <FlatList
-    //   data={events?.data}
-    //   scrollEnabled={false}
-    //   contentContainerStyle={{ padding: 10 }}
-    //   renderItem={({ item, index }) => {
-    //     return (
-    //       <View style={styles.festivalContainer}>
-    //         <View style={styles.header}>
-    //           <Text style={styles.text}>{item.name}</Text>
-    //         </View>
-    //         <View style={styles.normalContent}>
-    //           <Text style={styles.textMain}>{item.description}</Text>
-    //           <Text style={styles.textMain}>Moon</Text>
-    //         </View>
-    //       </View>
-    //     );
-    //   }}
-    // />
-    // <ScrollView showsVerticalScrollIndicator={false}>
-    //   <View style={styles.container}>
-    //     <View style={styles.header}>
-    //       <Text style={styles.text}>Tithi</Text>
-    //     </View>
-    //     <View style={styles.mainContent}>
-    //       <Text style={styles.textMain}>Dwadashi</Text>
-    //       <Text style={styles.textMain}>Dwadashi</Text>
-    //     </View>
-    //   </View>
-    //   <View style={styles.festivalContainer}>
-    //     <View style={styles.header}>
-    //       <Text style={styles.text}>Festivals</Text>
-    //     </View>
-    //     <View style={styles.mainContent}>
-    //       <Text style={styles.textMain}>Diwali</Text>
-    //     </View>
-    //   </View>
-
-    //   <View style={styles.festivalContainer}>
-    //     <View style={styles.header}>
-    //       <Text style={styles.text}>Sun & Moon Timings</Text>
-    //     </View>
-    //     <View style={styles.normalContent}>
-    //       <Text style={styles.textMain}>Sun</Text>
-    //       <Text style={styles.textMain}>Moon</Text>
-    //     </View>
-    //   </View>
-
-    //   <View style={styles.festivalContainer}>
-    //     <View style={styles.header}>
-    //       <Text style={styles.text}>More about the day</Text>
-    //     </View>
-    //     <View style={styles.normalContent}>
-    //       <Text style={styles.textMain}>shukla Paksha</Text>
-    //       <Text style={styles.textMain}>Uttara Phalguni</Text>
-    //     </View>
-    //   </View>
-
-    //   <View style={styles.normalContainer}>
-    //     <View style={styles.header}>
-    //       <Text style={styles.text}>Muhurta Today</Text>
-    //     </View>
-    //     <View style={styles.someOtherContainer}>
-    //       <Text style={styles.text}>Today is good for</Text>
-    //       <Text style={styles.smallText}>
-    //         Business inaugurations or crucial decisions
-    //       </Text>
-    //     </View>
-    //     <View style={styles.normalContent}>
-    //       <Text style={styles.textMain}>Abhijit muhurta starts in 7 hours</Text>
-    //       <Text style={styles.textMain}>Amrit Kala starts in 1 hour</Text>
-    //     </View>
-    //   </View>
-
-    //   <View style={styles.festivalContainer}>
-    //     <View style={styles.header}>
-    //       <Text>Listen Mantra/songs for this day</Text>
-    //     </View>
-    //   </View>
-    // </ScrollView>
   );
 };
 
@@ -290,7 +222,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    color: colors.primary,
+    color: colors.white,
   },
   mainContent: {
     flexDirection: "row",
@@ -303,13 +235,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   card: {
-    marginBottom: 16,
+    margin: 16,
     backgroundColor: "#edf2f7",
   },
   linkText: {
     color: "#3182ce",
     fontWeight: "bold",
     fontSize: 20,
+    paddingHorizontal: 20,
   },
   row: {
     flexDirection: "row",
@@ -317,9 +250,9 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   largeText: {
-    fontSize: 18,
+    fontSize: 28,
     fontWeight: "bold",
-    color: "#2d3748",
+    color: "white",
   },
   nowText: {
     fontSize: 12,
@@ -331,8 +264,10 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   smallText: {
-    fontSize: 14,
-    color: "#4a5568",
+    fontSize: 20,
+    color: "white",
+    fontWeight: "bold",
+    padding: 20,
   },
   mediumText: {
     fontSize: 16,

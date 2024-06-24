@@ -38,3 +38,13 @@ export function timeToMinutes(timeStr) {
   const totalMinutes = hours * 60 + minutes;
   return totalMinutes;
 }
+
+export function muhuratTimeFormat(muhuratTime) {
+  if (muhuratTime == null) {
+    return "";
+  }
+  const times = muhuratTime.split(" ")[1];
+  const hours = times.split(":")[0];
+  const minutes = times.split(":")[1];
+  return convertTo12HourFormat(`${hours}:${minutes}`);
+}

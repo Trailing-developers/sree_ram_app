@@ -5,6 +5,7 @@ import Date from "./Date";
 import { Tithi } from "./Tithi";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import FullCalendar from "./FullCalendar";
 
 export default CalendarScreen = ({ navigation }) => {
   const [selectedDate, setSelectedDate] = useState(
@@ -64,7 +65,7 @@ export default CalendarScreen = ({ navigation }) => {
 
   return (
     <>
-      <View style={styles.dateSection}>
+      {/* <View style={styles.dateSection}>
         <View style={styles.scroll}>
           <ScrollView
             horizontal
@@ -93,8 +94,7 @@ export default CalendarScreen = ({ navigation }) => {
             />
           </ScrollView>
         </View>
-      </View>
-
+      </View> */}
       <View style={styles.contentContainer}>
         <Tithi date={selectedDate} />
       </View>

@@ -14,6 +14,8 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
 import SunAndMoonRise from "./SunAndMoonRise";
 import { convertTo12HourFormat } from "../../helper/miscellaneous";
+import FullCalendar from "./FullCalendar";
+import MuhratTimeline from "./MuhratTimeline";
 
 export const Tithi = ({ date }) => {
   const endDate = new Date(date);
@@ -32,6 +34,7 @@ export const Tithi = ({ date }) => {
 
   return (
     <ScrollView>
+      <FullCalendar />
       <FlatList
         data={events.data.events}
         horizontal
@@ -74,107 +77,7 @@ export const Tithi = ({ date }) => {
       </Card>
 
       <SunAndMoonRise data={events.data} />
-
-      <Card style={styles.card}>
-        <Card.Title
-          title="More about the day"
-          right={() => (
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("FestivalScreen");
-              }}
-            >
-              <Text style={styles.linkText}>{">"}</Text>
-            </TouchableOpacity>
-          )}
-        />
-        <Card.Content>
-          <View style={styles.row}>
-            <Icon name="weather-partly-cloudy" size={20} color="black" />
-            <View>
-              <Text style={styles.mediumText}>
-                Krishna Paksha, Vaisakha Masa
-              </Text>
-              <Text style={styles.smallText}>1946 Krodhi, Shaka Samvat</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <Icon name="star" size={20} color="black" />
-            <Text style={styles.smallText}>
-              Krittika Nakshatra upto 08:51 pm today
-            </Text>
-          </View>
-          <View style={styles.row}>
-            <Icon name="star-four-points" size={20} color="black" />
-            <Text style={styles.smallText}>
-              Rohini Nakshatra from 08:51 pm upto 07:51 pm on 6th
-            </Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.mediumText}>AYANA</Text>
-            <Text style={styles.smallText}>Uttarayana</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.mediumText}>RITU</Text>
-            <Text style={styles.smallText}>Grishma Summer</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.mediumText}>VAARA</Text>
-            <Text style={styles.smallText}>Budhavaara Wednesday</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.mediumText}>YOGA</Text>
-            <Text style={styles.smallText}>Atiganda upto 02:51 am today</Text>
-            <Text style={styles.smallText}>Sukarma upto 12:09 am on 6th</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.mediumText}>KARANA</Text>
-            <Text style={styles.smallText}>Vishti upto 08:31 am today</Text>
-            <Text style={styles.smallText}>Shakuni upto 07:30 pm today</Text>
-          </View>
-        </Card.Content>
-      </Card>
-
-      <Card style={styles.card}>
-        <Card.Title
-          title="Muhurta Today"
-          right={() => <Text style={styles.linkText}>WHAT IS THIS?</Text>}
-        />
-        <Card.Content>
-          <Text style={styles.smallText}>
-            Ordinary day: Suitable for regular activities; no special blessings.
-          </Text>
-          <Text style={styles.mediumText}>Good and Bad Muhurta</Text>
-          <View style={styles.row}>
-            <View style={styles.dot} />
-            <Text style={styles.smallText}>AMRIT KALA No auspicious time</Text>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.dot} />
-            <Text style={styles.smallText}>
-              ABHIJIT MUHURTA Starts in 9 hours at 12:26 pm
-            </Text>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.dot} />
-            <Text style={styles.smallText}>
-              YAMAGANDA KALA Starts in 4 hours at 07:22 am
-            </Text>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.dot} />
-            <Text style={styles.smallText}>
-              GULIKA KALA Starts in 7 hours at 10:45 am
-            </Text>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.dot} />
-            <Text style={styles.smallText}>
-              RAHU KALA Starts in 9 hours at 12:26 pm
-            </Text>
-          </View>
-        </Card.Content>
-      </Card>
+      <MuhratTimeline data={events?.data?.goodbadtimes} />
 
       <Card style={styles.card}>
         <Card.Content>

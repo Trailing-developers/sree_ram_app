@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import { fetcher, fetcherWithTimeZone } from "../../helper/fetcher";
 
-const isLocal = true;
+const isLocal = false;
 const HOST = isLocal
   ? "http://localhost:3000"
   : "https://sree-ram-backend.vercel.app";

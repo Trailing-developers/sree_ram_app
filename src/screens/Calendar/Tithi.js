@@ -16,12 +16,23 @@ import SunAndMoonRise from "./SunAndMoonRise";
 import { convertTo12HourFormat } from "../../helper/miscellaneous";
 import FullCalendar from "./FullCalendar";
 import MuhratTimeline from "./MuhratTimeline";
+import { useEffect, useState } from "react";
+import moment from "moment";
 
-export const Tithi = ({ date }) => {
-  const endDate = new Date(date);
-  const navigation = useNavigation();
-  endDate.setDate(endDate.getDate() + 1);
-  const { events, isLoading, error } = useCalendarEvents(date, endDate);
+export const Tithi = () => {
+  const [date, setDate] = useState(moment());
+  const [endDate, setEndDate] = useState(moment());
+
+  useEffect(() => {
+    setEndDate(moment(date));
+  }, [date]);
+
+  const { events, isLoading, error } =
+    date &&
+    useCalendarEvents(
+      date?.format("YYYY-MM-DD 00:00:00"),
+      endDate?.format("YYYY-MM-DD 23:59:59")
+    );
 
   if (error) return <Text>Something went wrong.</Text>;
 
@@ -34,7 +45,7 @@ export const Tithi = ({ date }) => {
 
   return (
     <ScrollView>
-      <FullCalendar />
+      <FullCalendar date={date} setDate={setDate} />
       <FlatList
         data={events.data.events}
         horizontal

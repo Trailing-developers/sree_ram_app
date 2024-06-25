@@ -12,8 +12,8 @@ import { FontAwesome, MaterialIcons } from "@expo/vector-icons"; // Using Expo f
 import { useFullCalendarView } from "../../hooks/api/event";
 import { colors } from "../../constants/theme";
 
-const FullCalendar = () => {
-  const [currentMonth, setCurrentMonth] = useState(moment());
+const FullCalendar = ({ date, setDate }) => {
+  const [currentMonth, setCurrentMonth] = useState(date);
   const [calendar, setCalendar] = useState([]);
   const [start, setStart] = useState(moment("2024-06-01"));
   const [end, setEnd] = useState(moment("2024-07-01"));
@@ -46,43 +46,31 @@ const FullCalendar = () => {
     const daysInPrevMonth = prevMonth.daysInMonth();
 
     let calendar = [];
-    let isPrevMonth = false;
-    let isNextMonth = false;
     // Fill with previous month's dates
     for (let i = startDayOfWeek - 1; i >= 0; i--) {
-      calendar.push(daysInPrevMonth - i);
-      isPrevMonth = true;
+      calendar.push({
+        day: daysInPrevMonth - i,
+        month: prevMonth.month(),
+        year: prevMonth.year(),
+      });
     }
     // Fill with current month's dates
     for (let day = 1; day <= daysInMonth; day++) {
-      calendar.push(day);
+      calendar.push({ day: day, month: month, year: year });
     }
     // Fill the remaining slots with next month's dates
     const remainingDays = 42 - calendar.length; // 42 slots for 6 weeks
     for (let i = 1; i <= remainingDays; i++) {
-      calendar.push(i);
-      isNextMonth = true;
+      calendar.push({
+        day: i,
+        month: month === 12 ? 1 : month + 1,
+        year: month === 12 ? year + 1 : year,
+      });
     }
+    setStart(`${calendar[0].year}-${calendar[0].month}-${calendar[0].day}`);
 
-    if (isPrevMonth) {
-      setStart(`${prevMonth.year()}-${prevMonth.month()}-${calendar[0]}`);
-    } else {
-      setStart(`${currentMonth.year()}-${prevMonth.month()}-${calendar[0]}`);
-    }
-
-    if (isNextMonth) {
-      setEnd(
-        `${currentMonth.year()}-${currentMonth.month() + 1}-${
-          calendar[calendar.length - 1]
-        }`
-      );
-    } else {
-      setEnd(
-        `${currentMonth.year()}-${currentMonth.month()}-${
-          calendar[calendar.length - 1]
-        }`
-      );
-    }
+    const last = calendar[calendar.length - 1];
+    setEnd(`${last.year}-${last.month}-${last.day}`);
 
     setCalendar(calendar);
   }, [currentMonth]);
@@ -103,34 +91,38 @@ const FullCalendar = () => {
     return weeks.map((week, i) => (
       <View key={i} style={styles.weekContainer}>
         <View key={i} style={styles.weekRow}>
-          {week.map((day, index) => (
+          {week.map((item, index) => (
             <View key={index} style={styles.dayContainer}>
-              <Text
-                style={[
-                  styles.dayText,
-                  currentMonth.date() === day &&
-                    currentMonth.month() == today.month() &&
-                    currentMonth.year() == today.year() &&
-                    styles.highlightedDate,
-                ]}
+              <TouchableOpacity
+                onPress={() =>
+                  setDate(moment(`${item.year}-${item.month + 1}-${item.day}`))
+                }
               >
-                {day}
-              </Text>
+                <Text
+                  style={[
+                    styles.dayText,
+                    item.day === today.date() &&
+                      item.month === today.month() &&
+                      item.year === today.year() &&
+                      styles.highlightedTodayDate,
+                    item.day === date.date() &&
+                      item.month === date.month() &&
+                      item.year === date.year() &&
+                      styles.highlightedDate,
+                  ]}
+                >
+                  {item.day}
+                </Text>
+              </TouchableOpacity>
               {calendarData &&
-                calendarData[currentMonth.year()] &&
-                calendarData[currentMonth.year()][currentMonth.month()] &&
-                calendarData[currentMonth.year()][currentMonth.month()][day] &&
-                calendarData[currentMonth.year()][currentMonth.month()][
-                  day
-                ][0] &&
-                calendarData[currentMonth.year()][currentMonth.month()][day][0][
-                  "type"
-                ] && (
+                calendarData[item.year] &&
+                calendarData[item.year][item.month] &&
+                calendarData[item.year][item.month][item.day] &&
+                calendarData[item.year][item.month][item.day][0] &&
+                calendarData[item.year][item.month][item.day][0]["type"] && (
                   <FontAwesome
                     name={getEventIcon(
-                      calendarData[currentMonth.year()][currentMonth.month()][
-                        day
-                      ][0]["type"]
+                      calendarData[item.year][item.month][item.day][0]["type"]
                     )}
                     size={16}
                     color="#9c2b2b"
@@ -301,6 +293,12 @@ const styles = StyleSheet.create({
   legendText: {
     marginLeft: 4,
     fontSize: 14,
+  },
+  highlightedTodayDate: {
+    backgroundColor: colors.bhagwadark,
+    borderRadius: 16,
+    padding: 4,
+    color: "white",
   },
   highlightedDate: {
     backgroundColor: "#9c2b2b",

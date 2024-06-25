@@ -1,9 +1,11 @@
 import moment from "moment";
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
 import FastImage from "react-native-fast-image";
 import { Card, Avatar } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+
+const width = Dimensions.get("screen").width * 0.95;
 
 const CustomCalendar = ({ selectedDate, data }) => {
   const dayOfTheWeek = moment(selectedDate).format("ddd").toUpperCase();
@@ -29,11 +31,11 @@ const CustomCalendar = ({ selectedDate, data }) => {
           />
           <Card.Content>
             <Text style={styles.title}>{data?.name}</Text>
-            {data?.location && (
+            {/* {data?.location && (
               <Text
                 style={styles.subtitle}
               >{`${data?.location?.address1},${data?.location?.city},${data?.location?.state}`}</Text>
-            )}
+            )} */}
             {/* <Text style={styles.subtitle}>Shukla Paksha, Chaitra Masa</Text> */}
             <Text style={styles.description}>{data?.description}</Text>
           </Card.Content>
@@ -47,6 +49,7 @@ const styles = StyleSheet.create({
   card: {
     margin: 10,
     borderRadius: 10,
+    width: width,
   },
   header: {
     flexDirection: "row",
@@ -102,6 +105,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 14,
     marginTop: 5,
+    lineHeight: 24,
   },
 });
 
